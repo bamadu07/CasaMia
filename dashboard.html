@@ -1,0 +1,3220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Casa Mia Restaurant</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* ===== VARIABLES JAUNE ===== */
+        :root {
+            --primary-color: #FFC107;
+            --primary-dark: #FFA000;
+            --primary-light: #FFD54F;
+            --secondary-color: #333333;
+            --light-color: #FFFDE7;
+            --text-color: #333;
+            --text-light: #666;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(255, 193, 7, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* ===== CONNEXION OVERLAY ===== */
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px); 
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0); 
+            }
+        }
+
+        #loginContainer {
+            width: 100%;
+            max-width: 420px;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: 0 25px 75px rgba(0, 0, 0, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark), var(--primary-color));
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 0%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .login-logo {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.5);
+            animation: pulse 3s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-logo::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg) translate(-50%, -50%);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translate(-100%, -100%); }
+            100% { transform: rotate(45deg) translate(100%, 100%); }
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .login-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .login-subtitle {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .login-form .form-label {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .login-form .form-label i {
+            color: var(--primary-color);
+            margin-right: 8px;
+            width: 16px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: var(--text-color);
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .input-with-icon input:valid {
+            border-color: #d1d1d1;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: var(--primary-color);
+        }
+
+        .remember-me label {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            user-select: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .login-btn .spinner-border {
+            width: 20px;
+            height: 20px;
+            border-width: 2px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .demo-credentials {
+            background: rgba(255, 193, 7, 0.08);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-color);
+            text-align: left;
+        }
+
+        .demo-credentials p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .demo-credentials strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .demo-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .demo-title i {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        /* Alert Messages */
+        .alert {
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert-danger {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border-left: 4px solid #dc3545;
+        }
+
+        .alert-danger i {
+            color: #dc3545;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: var(--secondary-color);
+            color: white;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            z-index: 1000;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .sidebar-brand {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .sidebar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .brand-first {
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255, 193, 7, 0.1);
+            color: white;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .sidebar-menu i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: none;
+        }
+
+        .main-content.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        .highlight {
+            color: var(--primary-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Statistics Cards */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Orders Section */
+        .orders-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.1);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th {
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .orders-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.1);
+            vertical-align: middle;
+        }
+
+        .orders-table tbody tr:hover {
+            background-color: rgba(255, 193, 7, 0.05);
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .customer-name {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .customer-phone {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .order-items {
+            max-width: 200px;
+        }
+
+        .items-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        .items-list li {
+            margin-bottom: 0.3rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item-name {
+            color: var(--text-color);
+        }
+
+        .item-quantity {
+            color: var(--text-light);
+        }
+
+        .order-total {
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .order-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #856404;
+        }
+
+        .status-preparing {
+            background-color: rgba(0, 123, 255, 0.2);
+            color: #004085;
+        }
+
+        .status-ready {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #155724;
+        }
+
+        .status-delivered {
+            background-color: rgba(108, 117, 125, 0.2);
+            color: #383d41;
+        }
+
+        .status-cancelled {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #721c24;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-view {
+            background-color: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+        }
+
+        .btn-view:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--primary-color);
+        }
+
+        .btn-edit:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-invoice {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .btn-invoice:hover {
+            background-color: #28a745;
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-light);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: rgba(255, 193, 7, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tabs */
+        .tabs-navigation {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 193, 7, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Styles pour le modal de facture */
+        #invoiceModal .modal-dialog {
+            max-width: 900px;
+        }
+
+        #invoiceContent {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Animation pour l'apparition de la facture */
+        @keyframes fadeInInvoice {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #invoiceContent {
+            animation: fadeInInvoice 0.3s ease-out;
+        }
+
+        /* Styles de la facture */
+        .invoice-container {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #FFC107;
+            padding-bottom: 20px;
+        }
+        
+        .company-info {
+            flex: 1;
+        }
+        
+        .invoice-title {
+            text-align: right;
+        }
+        
+        .company-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFC107;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .company-logo i {
+            color: #FFC107;
+            margin-right: 10px;
+        }
+        
+        .invoice-details {
+            margin: 30px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .client-info, .invoice-info {
+            width: 45%;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFC107;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .invoice-table th {
+            background: #FFFDE7;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #FFC107;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .invoice-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .invoice-table tr:last-child td {
+            border-bottom: 2px solid #FFC107;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .totals-section {
+            margin-top: 30px;
+            width: 300px;
+            margin-left: auto;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+        
+        .grand-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFA000;
+            border-top: 2px solid #FFC107;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .terms {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .stamp {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #FFC107;
+            display: inline-block;
+            font-style: italic;
+            color: #FFC107;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        @media print {
+            .invoice-container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .sidebar, .page-header, .modal-footer {
+                display: none !important;
+            }
+            
+            .modal-body {
+                padding: 0 !important;
+            }
+            
+            #invoiceContent {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+                overflow: hidden;
+            }
+
+            .sidebar:hover {
+                width: 250px;
+            }
+
+            .sidebar-brand h2,
+            .sidebar-menu span {
+                display: none;
+            }
+
+            .sidebar:hover .sidebar-brand h2,
+            .sidebar:hover .sidebar-menu span {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .sidebar:hover + .main-content {
+                margin-left: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                margin-bottom: 1rem;
+            }
+
+            .sidebar-menu {
+                display: flex;
+                overflow-x: auto;
+            }
+
+            .sidebar-menu li {
+                margin-bottom: 0;
+            }
+
+            .sidebar-menu a {
+                padding: 0.8rem 1rem;
+                white-space: nowrap;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs-navigation {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .action-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .login-card {
+                padding: 30px 20px;
+            }
+            
+            .invoice-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .client-info, .invoice-info {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .invoice-details {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Overlay - TOUJOURS VISIBLE AU DÉPART -->
+    <div id="loginOverlay">
+        <div id="loginContainer">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-logo">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h1 class="login-title">Casa Mia</h1>
+                    <p class="login-subtitle">Administration du restaurant</p>
+                </div>
+
+                <div class="alert alert-danger" id="loginError" style="display: none;">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <span id="loginErrorMessage"></span>
+                    </div>
+                </div>
+
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user"></i>
+                            Nom d'utilisateur
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" 
+                                   id="username"
+                                   placeholder="admin"
+                                   required
+                                   autocomplete="username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-lock"></i>
+                            Mot de passe
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" 
+                                   id="password"
+                                   placeholder="••••••••"
+                                   required
+                                   autocomplete="current-password">
+                            <button type="button" class="password-toggle" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Se souvenir de moi</label>
+                    </div>
+
+                    <button type="submit" class="login-btn" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Se connecter</span>
+                        <div class="spinner-border spinner-border-sm" role="status" style="display: none;" id="loginSpinner">
+                            <span class="visually-hidden">Chargement...</span>
+                        </div>
+                    </button>
+
+                    <div class="login-footer">
+                        <div class="demo-credentials">
+                            <div class="demo-title">
+                                <strong>Identifiants de démonstration</strong>
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <p class="mb-1">Utilisateur: <strong>admin</strong></p>
+                            <p class="mb-0">Mot de passe: <strong>CasaMia2023</strong></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p class="mt-3">Chargement en cours...</p>
+    </div>
+
+    <!-- Sidebar (CACHÉE initialement) -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <img src="images/logoo.png" alt="Logo Casa Mia" id="logo">
+            <h2><span class="brand-first">Casa</span> Mia</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="#" class="active" id="dashboardLink">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Tableau de bord</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="ordersLink">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Commandes</span>
+                    <span class="badge bg-warning ms-auto" id="ordersBadge">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="menuLink">
+                    <i class="fas fa-utensils"></i>
+                    <span>Menu</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="customersLink">
+                    <i class="fas fa-users"></i>
+                    <span>Clients</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="inventoryLink">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventaire</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html" id="homeLink">
+                    <i class="fas fa-home"></i>
+                    <span>Retour au site</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="logoutLink">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content (CACHÉ initialement) -->
+    <div class="main-content" id="mainContent">
+        <!-- Tabs Navigation -->
+        <div class="tabs-navigation mb-4" id="tabsNav">
+            <button class="tab-btn active" data-tab="dashboard">Tableau de bord</button>
+            <button class="tab-btn" data-tab="orders">Commandes</button>
+            <button class="tab-btn" data-tab="menu">Menu</button>
+            <button class="tab-btn" data-tab="customers">Clients</button>
+            <button class="tab-btn" data-tab="inventory">Inventaire</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboardTab" class="tab-content active">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>Tableau de bord <span class="highlight">Admin</span></h1>
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Administrateur</div>
+                        <div style="font-size: 0.85rem; color: var(--text-light);" id="currentDate">Chargement...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-value" id="totalOrders">0</div>
+                    <div class="stat-label">Commandes totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-value" id="pendingOrders">0</div>
+                    <div class="stat-label">En attente</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-value" id="totalRevenue">0 FCFA</div>
+                    <div class="stat-label">Revenu total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-value" id="totalCustomers">0</div>
+                    <div class="stat-label">Clients</div>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="orders-section">
+                <div class="section-header">
+                    <h2 class="section-title">Commandes récentes</h2>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-outline-primary" id="refreshOrders">
+                            <i class="fas fa-sync-alt me-1"></i> Actualiser
+                        </button>
+                        <button class="btn btn-sm btn-outline-warning ms-2" id="createTestOrder">
+                            <i class="fas fa-plus me-1"></i> Créer commande test
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="orders-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Client</th>
+                                <th>Articles</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Les commandes seront chargées ici -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Aucune commande</h3>
+                    <p>Les commandes passées par les clients apparaîtront ici</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="ordersTab" class="tab-content">
+            <div class="dashboard-header">
+                <h1>Gestion des <span class="highlight">Commandes</span></h1>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="exportOrders()">
+                        <i class="fas fa-download me-1"></i> Exporter
+                    </button>
+                </div>
+            </div>
+
+            <div class="orders-section">
+                <div class="section-header">
+                    <h2 class="section-title">Toutes les commandes</h2>
+                    <div class="btn-group">
+                        <select class="form-select" id="filterStatus">
+                            <option value="all">Tous les statuts</option>
+                            <option value="en attente">En attente</option>
+                            <option value="en préparation">En préparation</option>
+                            <option value="prête">Prête</option>
+                            <option value="livrée">Livrée</option>
+                            <option value="annulée">Annulée</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Client</th>
+                                <th>Articles</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allOrdersTable">
+                            <!-- All orders will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Tab -->
+        <div id="menuTab" class="tab-content">
+            <div class="dashboard-header">
+                <h1>Gestion du <span class="highlight">Menu</span></h1>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="openDishModal()">
+                        <i class="fas fa-plus me-1"></i> Ajouter un plat
+                    </button>
+                </div>
+            </div>
+
+            <div class="orders-section">
+                <div class="table-responsive">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Catégorie</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menuTableBody">
+                            <!-- Menu items will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers Tab -->
+        <div id="customersTab" class="tab-content">
+            <div class="dashboard-header">
+                <h1>Gestion des <span class="highlight">Clients</span></h1>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="exportCustomers()">
+                        <i class="fas fa-download me-1"></i> Exporter
+                    </button>
+                </div>
+            </div>
+
+            <div class="orders-section">
+                <div class="table-responsive">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                <th>Commandes</th>
+                                <th>Total dépensé</th>
+                                <th>Dernière commande</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customersTableBody">
+                            <!-- Customers will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Tab -->
+        <div id="inventoryTab" class="tab-content">
+            <div class="dashboard-header">
+                <h1>Gestion de l'<span class="highlight">Inventaire</span></h1>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="addInventoryItem()">
+                        <i class="fas fa-plus me-1"></i> Ajouter un article
+                    </button>
+                </div>
+            </div>
+
+            <div class="orders-section">
+                <div class="table-responsive">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Article</th>
+                                <th>Catégorie</th>
+                                <th>Stock actuel</th>
+                                <th>Stock minimum</th>
+                                <th>Unité</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <!-- Inventory items will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Details Modal -->
+        <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Détails de la commande <span id="modalOrderId"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Informations client</h6>
+                                <div class="mb-3">
+                                    <strong>Nom:</strong> <span id="modalClientName"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Téléphone:</strong> <span id="modalClientPhone"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Adresse:</strong> <span id="modalClientAddress"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Notes:</strong> <span id="modalClientNotes"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Détails de la commande</h6>
+                                <div class="mb-3">
+                                    <strong>Date:</strong> <span id="modalOrderDate"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Statut:</strong> <span id="modalOrderStatus"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Total:</strong> <span id="modalOrderTotal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h6 class="mt-4">Articles commandés</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Article</th>
+                                        <th>Prix unitaire</th>
+                                        <th>Quantité</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalOrderItems">
+                                    <!-- Les articles seront ajoutés ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" id="btnChangeStatus">
+                                <i class="fas fa-edit me-1"></i> Changer statut
+                            </button>
+                            <button type="button" class="btn btn-success" id="btnGenerateInvoice" onclick="generateInvoiceForOrder(selectedOrderId)">
+                                <i class="fas fa-file-pdf me-1"></i> Facture PDF
+                            </button>
+                            <button type="button" class="btn btn-danger" id="btnCancelOrder">
+                                <i class="fas fa-times me-1"></i> Annuler
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Modal -->
+        <div class="modal fade" id="invoiceModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning text-dark">
+                        <h5 class="modal-title">
+                            <i class="fas fa-file-invoice me-2"></i>Facture <span id="invoiceModalNumber"></span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="invoiceContent" style="background: white; padding: 30px; max-width: 800px; margin: 0 auto;">
+                            <!-- Le contenu de la facture sera injecté ici -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i> Fermer
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="downloadInvoicePDF()">
+                            <i class="fas fa-download me-1"></i> Télécharger PDF
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="printInvoice()">
+                            <i class="fas fa-print me-1"></i> Imprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // ===== CONFIGURATION =====
+        const CONFIG = {
+            ADMIN_CREDENTIALS: {
+                username: "admin",
+                password: "CasaMia2023"
+            },
+            SESSION_DURATION: 2 * 60 * 60 * 1000 // 2 heures
+        };
+
+        // ===== GLOBAL VARIABLES =====
+        let orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
+        let dishes = JSON.parse(localStorage.getItem('menuItems')) || [];
+        let selectedOrderId = null;
+        let isAuthenticated = false;
+        let currentInvoiceData = null;
+
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page chargée - Écran de connexion requis");
+            
+            // FORCER l'affichage de l'écran de connexion
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('sidebar').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'none';
+            
+            // Vérifier s'il y a une session active
+            checkSession();
+            
+            // Configurer le formulaire de connexion
+            setupLoginForm();
+        });
+
+        // ===== AUTHENTICATION OBLIGATOIRE =====
+        function checkSession() {
+            const token = localStorage.getItem('adminToken');
+            const tokenExpiry = localStorage.getItem('tokenExpiry');
+            
+            if (token && tokenExpiry) {
+                const now = new Date().getTime();
+                if (now < parseInt(tokenExpiry)) {
+                    console.log("Session valide détectée");
+                    authenticateUser();
+                    return true;
+                } else {
+                    console.log("Session expirée");
+                    clearAuthData();
+                }
+            }
+            return false;
+        }
+
+        function setupLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            const togglePassword = document.getElementById('togglePassword');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+            
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const passwordInput = document.getElementById('password');
+                    const icon = this.querySelector('i');
+                    
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.className = 'fas fa-eye-slash';
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.className = 'fas fa-eye';
+                    }
+                });
+            }
+            
+            // Focus automatique
+            setTimeout(() => {
+                const usernameInput = document.getElementById('username');
+                if (usernameInput) {
+                    usernameInput.focus();
+                }
+            }, 100);
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const loginSpinner = document.getElementById('loginSpinner');
+            const loginError = document.getElementById('loginError');
+            
+            // Cacher les erreurs
+            loginError.style.display = 'none';
+            
+            // Validation
+            if (!username || !password) {
+                showLoginError('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            // Afficher le chargement
+            loginBtn.disabled = true;
+            loginSpinner.style.display = 'inline-block';
+            
+            // Simuler un délai réseau
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Vérifier les identifiants
+            if (username === CONFIG.ADMIN_CREDENTIALS.username && 
+                password === CONFIG.ADMIN_CREDENTIALS.password) {
+                
+                // Générer un token
+                const token = 'token_' + Date.now();
+                const expiryTime = new Date().getTime() + CONFIG.SESSION_DURATION;
+                
+                // Sauvegarder la session
+                localStorage.setItem('adminToken', token);
+                localStorage.setItem('tokenExpiry', expiryTime.toString());
+                
+                // Connexion réussie
+                loginBtn.innerHTML = '<i class="fas fa-check"></i> Connexion réussie!';
+                
+                setTimeout(() => {
+                    authenticateUser();
+                }, 500);
+                
+            } else {
+                // Échec
+                showLoginError('Identifiants incorrects');
+                loginBtn.disabled = false;
+                loginSpinner.style.display = 'none';
+            }
+        }
+
+        function showLoginError(message) {
+            const errorElement = document.getElementById('loginError');
+            const messageElement = document.getElementById('loginErrorMessage');
+            
+            messageElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function clearAuthData() {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('tokenExpiry');
+        }
+
+        function authenticateUser() {
+            console.log("Authentification réussie - Accès au dashboard");
+            isAuthenticated = true;
+            
+            // Cacher l'écran de connexion
+            document.getElementById('loginOverlay').style.display = 'none';
+            
+            // Afficher le dashboard
+            document.getElementById('sidebar').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('mainContent').classList.add('show');
+            
+            // Initialiser
+            initDashboard();
+            loadData();
+            setupEventListeners();
+            
+            showNotification('Connexion réussie! Bienvenue Administrateur.', 'success');
+        }
+
+        function manualLogout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter?')) {
+                clearAuthData();
+                isAuthenticated = false;
+                
+                // Cacher le dashboard
+                document.getElementById('sidebar').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('show');
+                
+                // Afficher l'écran de connexion
+                document.getElementById('loginOverlay').style.display = 'flex';
+                
+                // Réinitialiser le formulaire
+                document.getElementById('loginForm').reset();
+                document.getElementById('loginError').style.display = 'none';
+                document.getElementById('loginBtn').innerHTML = '<i class="fas fa-sign-in-alt"></i><span>Se connecter</span>';
+                document.getElementById('loginBtn').disabled = false;
+                document.getElementById('loginSpinner').style.display = 'none';
+                
+                showNotification('Déconnexion réussie', 'info');
+            }
+        }
+
+        // ===== PROTECTION DES ACCÈS =====
+        // Empêcher l'accès direct aux pages admin
+        function protectAccess() {
+            if (!isAuthenticated) {
+                // Rediriger vers la page de connexion
+                window.location.href = window.location.pathname.includes('dashboard') 
+                    ? window.location.href 
+                    : window.location.href.split('?')[0];
+                
+                // Forcer l'affichage du login
+                document.getElementById('loginOverlay').style.display = 'flex';
+                document.getElementById('sidebar').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'none';
+                
+                return false;
+            }
+            return true;
+        }
+
+        // ===== FONCTIONS DU DASHBOARD =====
+        function initDashboard() {
+            // Vérifier l'authentification
+            if (!protectAccess()) return;
+            
+            // Mettre à jour la date
+            updateCurrentDate();
+            setInterval(updateCurrentDate, 60000);
+            
+            showTab('dashboard');
+        }
+
+        function updateCurrentDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('currentDate').textContent = 
+                now.toLocaleDateString('fr-FR', options);
+        }
+
+        function loadData() {
+            if (!protectAccess()) return;
+            
+            orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
+            
+            if (dishes.length === 0) {
+                dishes = [
+                    {
+                        id: 1,
+                        name: "Poulet Yassa",
+                        category: "Plats principaux",
+                        description: "Poulet mariné au citron avec oignons",
+                        price: 5000,
+                        available: true
+                    },
+                    {
+                        id: 2,
+                        name: "Thieboudienne",
+                        category: "Plats principaux",
+                        description: "Riz au poisson et légumes",
+                        price: 6000,
+                        available: true
+                    },
+                    {
+                        id: 3,
+                        name: "Mafé",
+                        category: "Plats principaux",
+                        description: "Ragoût de viande à la sauce arachide",
+                        price: 5500,
+                        available: true
+                    },
+                    {
+                        id: 4,
+                        name: "Salade César",
+                        category: "Entrées",
+                        description: "Salade avec poulet grillé et sauce césar",
+                        price: 3500,
+                        available: true
+                    }
+                ];
+                localStorage.setItem('menuItems', JSON.stringify(dishes));
+            }
+            
+            updateStatistics();
+            updateOrdersTable();
+            updateMenuTable();
+            updateCustomersTable();
+        }
+
+        function setupEventListeners() {
+            // Vérifier l'authentification
+            if (!protectAccess()) return;
+            
+            // Navigation par onglets
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tab = this.dataset.tab;
+                    showTab(tab);
+                    
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Navigation sidebar
+            document.getElementById('dashboardLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!protectAccess()) return;
+                showTab('dashboard');
+            });
+            
+            document.getElementById('ordersLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!protectAccess()) return;
+                showTab('orders');
+            });
+            
+            document.getElementById('menuLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!protectAccess()) return;
+                showTab('menu');
+            });
+            
+            document.getElementById('customersLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!protectAccess()) return;
+                showTab('customers');
+            });
+            
+            document.getElementById('inventoryLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!protectAccess()) return;
+                showTab('inventory');
+            });
+            
+            document.getElementById('logoutLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                manualLogout();
+            });
+            
+            // Bouton d'actualisation
+            document.getElementById('refreshOrders').addEventListener('click', function() {
+                if (!protectAccess()) return;
+                loadData();
+                showNotification('Données actualisées!', 'success');
+            });
+            
+            // Bouton de test
+            document.getElementById('createTestOrder').addEventListener('click', createSampleOrder);
+            
+            // Filtre des commandes
+            document.getElementById('filterStatus').addEventListener('change', function() {
+                if (!protectAccess()) return;
+                filterAllOrders(this.value);
+            });
+        }
+
+        function showTab(tabName) {
+            if (!protectAccess()) return;
+            
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            const tabElement = document.getElementById(tabName + 'Tab');
+            if (tabElement) {
+                tabElement.classList.add('active');
+            }
+            
+            if (tabName === 'dashboard') {
+                updateStatistics();
+                updateOrdersTable();
+            } else if (tabName === 'orders') {
+                loadAllOrders();
+            } else if (tabName === 'menu') {
+                updateMenuTable();
+            } else if (tabName === 'customers') {
+                updateCustomersTable();
+            } else if (tabName === 'inventory') {
+                updateInventoryTable();
+            }
+        }
+
+        function formatDate(dateString) {
+            try {
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) {
+                    return 'Date invalide';
+                }
+                return date.toLocaleDateString('fr-FR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch (e) {
+                return 'Date invalide';
+            }
+        }
+
+        function formatPrice(price) {
+            if (isNaN(price)) return '0 FCFA';
+            return new Intl.NumberFormat('fr-FR').format(price) + ' FCFA';
+        }
+
+        function formatPriceSimple(price) {
+            if (isNaN(price)) return '0';
+            return new Intl.NumberFormat('fr-FR').format(price);
+        }
+
+        function updateStatistics() {
+            const totalOrders = orders.length;
+            const pendingOrders = orders.filter(order => order.status === 'en attente').length;
+            const totalRevenue = orders.reduce((sum, order) => sum + (parseFloat(order.total) || 0), 0);
+            
+            const uniqueClients = new Set();
+            orders.forEach(order => {
+                if (order.client && order.client.phone) {
+                    uniqueClients.add(order.client.phone);
+                }
+            });
+
+            document.getElementById('totalOrders').textContent = totalOrders;
+            document.getElementById('pendingOrders').textContent = pendingOrders;
+            document.getElementById('totalRevenue').textContent = formatPrice(totalRevenue);
+            document.getElementById('totalCustomers').textContent = uniqueClients.size;
+            document.getElementById('ordersBadge').textContent = pendingOrders;
+        }
+
+        // ===== GESTION DES COMMANDES =====
+        function updateOrdersTable() {
+            if (!protectAccess()) return;
+            
+            const tbody = document.getElementById('ordersTableBody');
+            const emptyState = document.getElementById('emptyState');
+
+            if (orders.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+            
+            tbody.innerHTML = sortedOrders.map((order, index) => {
+                const orderIndex = orders.indexOf(order);
+                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+                const itemsList = order.items.map(item => 
+                    `<li>
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-quantity">×${item.quantity}</span>
+                    </li>`
+                ).join('');
+                
+                let statusClass = '';
+                switch(order.status) {
+                    case 'en attente': statusClass = 'status-pending'; break;
+                    case 'en préparation': statusClass = 'status-preparing'; break;
+                    case 'prête': statusClass = 'status-ready'; break;
+                    case 'livrée': statusClass = 'status-delivered'; break;
+                    case 'annulée': statusClass = 'status-cancelled'; break;
+                    default: statusClass = 'status-pending';
+                }
+
+                return `
+                    <tr>
+                        <td class="order-id">${orderNumber}</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-name">${order.client?.name || 'Non spécifié'}</div>
+                                <div class="customer-phone">${order.client?.phone || 'Non spécifié'}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="items-list">
+                                ${itemsList}
+                            </ul>
+                        </td>
+                        <td class="order-total">${formatPrice(order.total)}</td>
+                        <td class="order-date">${formatDate(order.date)}</td>
+                        <td>
+                            <span class="status-badge ${statusClass}">${order.status}</span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Changer statut">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function loadAllOrders() {
+            if (!protectAccess()) return;
+            
+            const tbody = document.getElementById('allOrdersTable');
+            
+            if (orders.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Aucune commande</h3>
+                                <p>Les commandes passées par les clients apparaîtront ici</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            tbody.innerHTML = sortedOrders.map((order, index) => {
+                const orderIndex = orders.indexOf(order);
+                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+                const itemsList = order.items.map(item => 
+                    `<li>
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-quantity">×${item.quantity}</span>
+                    </li>`
+                ).join('');
+                
+                let statusClass = '';
+                switch(order.status) {
+                    case 'en attente': statusClass = 'status-pending'; break;
+                    case 'en préparation': statusClass = 'status-preparing'; break;
+                    case 'prête': statusClass = 'status-ready'; break;
+                    case 'livrée': statusClass = 'status-delivered'; break;
+                    case 'annulée': statusClass = 'status-cancelled'; break;
+                    default: statusClass = 'status-pending';
+                }
+
+                return `
+                    <tr>
+                        <td class="order-id">${orderNumber}</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-name">${order.client?.name || 'Non spécifié'}</div>
+                                <div class="customer-phone">${order.client?.phone || 'Non spécifié'}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="items-list">
+                                ${itemsList}
+                            </ul>
+                        </td>
+                        <td class="order-total">${formatPrice(order.total)}</td>
+                        <td class="order-date">${formatDate(order.date)}</td>
+                        <td>
+                            <span class="status-badge ${statusClass}">${order.status}</span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Changer statut">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterAllOrders(status) {
+            if (!protectAccess()) return;
+            
+            const tbody = document.getElementById('allOrdersTable');
+            
+            let filteredOrders = orders;
+            if (status !== 'all') {
+                filteredOrders = orders.filter(order => order.status === status);
+            }
+            
+            if (filteredOrders.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Aucune commande</h3>
+                                <p>Aucune commande trouvée avec ce statut</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            const sortedOrders = [...filteredOrders].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            tbody.innerHTML = sortedOrders.map((order, index) => {
+                const orderIndex = orders.indexOf(order);
+                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+                const itemsList = order.items.map(item => 
+                    `<li>
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-quantity">×${item.quantity}</span>
+                    </li>`
+                ).join('');
+                
+                let statusClass = '';
+                switch(order.status) {
+                    case 'en attente': statusClass = 'status-pending'; break;
+                    case 'en préparation': statusClass = 'status-preparing'; break;
+                    case 'prête': statusClass = 'status-ready'; break;
+                    case 'livrée': statusClass = 'status-delivered'; break;
+                    case 'annulée': statusClass = 'status-cancelled'; break;
+                    default: statusClass = 'status-pending';
+                }
+
+                return `
+                    <tr>
+                        <td class="order-id">${orderNumber}</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-name">${order.client?.name || 'Non spécifié'}</div>
+                                <div class="customer-phone">${order.client?.phone || 'Non spécifié'}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="items-list">
+                                ${itemsList}
+                            </ul>
+                        </td>
+                        <td class="order-total">${formatPrice(order.total)}</td>
+                        <td class="order-date">${formatDate(order.date)}</td>
+                        <td>
+                            <span class="status-badge ${statusClass}">${order.status}</span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Changer statut">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // ===== FONCTIONS DE FACTURATION AMÉLIORÉES =====
+        function generateInvoiceForOrder(orderIndex) {
+            if (!protectAccess()) return;
+            
+            orderIndex = parseInt(orderIndex);
+            
+            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const order = orders[orderIndex];
+            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+            const date = new Date(order.date);
+            const invoiceNumber = `FACT-${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(orderIndex + 1).padStart(4, '0')}`;
+            
+            currentInvoiceData = {
+                order,
+                orderNumber,
+                invoiceNumber,
+                orderIndex
+            };
+            
+            // Construire le contenu HTML de la facture avec design amélioré
+            const invoiceHTML = `
+                <div class="invoice-container">
+                    <div class="invoice-header">
+                        <div class="company-info">
+                            <div class="company-logo" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <div style="width: 50px; height: 50px; background: #FFC107; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-utensils" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: #FFC107; font-family: 'Playfair Display', serif;">Casa Mia Restaurant</div>
+                                    <div style="font-size: 14px; color: #666;">Restaurant Sénégalais - Cuisine Traditionnelle</div>
+                                </div>
+                            </div>
+                            <div>
+                                <strong>Casa Mia Restaurant</strong><br>
+                                Saint-Louis, Route de Khor, en face ARD<br>
+                                Téléphone: <strong>+221 33 123 45 67</strong><br>
+                                Email: contact@casamia.sn<br>
+                                NIF: 1234567890
+                            </div>
+                        </div>
+                        <div class="invoice-title">
+                            <h1 style="color: #FFA000; margin: 0; font-family: 'Playfair Display', serif; font-size: 28px;">FACTURE</h1>
+                            <div style="font-size: 14px; margin-top: 15px; background: #FFFDE7; padding: 10px; border-radius: 8px;">
+                                <div><strong>N°:</strong> ${invoiceNumber}</div>
+                                <div><strong>Date:</strong> ${formatDate(order.date)}</div>
+                                <div><strong>Commande:</strong> ${orderNumber}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="invoice-details">
+                        <div class="client-info">
+                            <div class="section-title">INFORMATIONS CLIENT</div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                <div style="margin-bottom: 8px;">
+                                    <strong style="color: #333;">${order.client?.name || 'Non spécifié'}</strong>
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <i class="fas fa-phone" style="color: #666; width: 16px;"></i>
+                                    <span style="margin-left: 8px;">${order.client?.phone || ''}</span>
+                                </div>
+                                ${order.client?.address ? `
+                                    <div style="margin-bottom: 5px;">
+                                        <i class="fas fa-map-marker-alt" style="color: #666; width: 16px;"></i>
+                                        <span style="margin-left: 8px;">${order.client.address}</span>
+                                    </div>
+                                ` : ''}
+                                ${order.client?.email ? `
+                                    <div style="margin-bottom: 5px;">
+                                        <i class="fas fa-envelope" style="color: #666; width: 16px;"></i>
+                                        <span style="margin-left: 8px;">${order.client.email}</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="invoice-info">
+                            <div class="section-title">DÉTAILS DE LA COMMANDE</div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                <div style="margin-bottom: 8px;">
+                                    <strong>Date de commande:</strong><br>
+                                    ${formatDate(order.date)}
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <strong>Statut:</strong><br>
+                                    <span style="display: inline-block; padding: 4px 12px; background: ${getStatusColor(order.status)}; color: white; border-radius: 4px; font-size: 12px;">
+                                        ${order.status.toUpperCase()}
+                                    </span>
+                                </div>
+                                <div>
+                                    <strong>Mode de paiement:</strong><br>
+                                    Paiement à la livraison
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">ARTICLES COMMANDÉS</div>
+                    <table class="invoice-table">
+                        <thead>
+                            <tr>
+                                <th width="50" style="text-align: center;">#</th>
+                                <th>Description</th>
+                                <th width="120" style="text-align: center;">Prix unitaire</th>
+                                <th width="80" style="text-align: center;">Quantité</th>
+                                <th width="120" style="text-align: right;">Montant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${order.items.map((item, index) => `
+                                <tr>
+                                    <td style="text-align: center;">${index + 1}</td>
+                                    <td>${item.name}</td>
+                                    <td style="text-align: center;">${formatPriceSimple(item.price)} FCFA</td>
+                                    <td style="text-align: center;">${item.quantity}</td>
+                                    <td style="text-align: right;">${formatPriceSimple(item.price * item.quantity)} FCFA</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    
+                    <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+                        <div style="width: 300px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                                <span>Sous-total:</span>
+                                <span><strong>${formatPriceSimple(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))} FCFA</strong></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                                <span>Livraison:</span>
+                                <span><strong>GRATUITE</strong></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #FFA000; padding-top: 15px; border-top: 2px solid #FFC107;">
+                                <span>TOTAL À PAYER:</span>
+                                <span>${formatPriceSimple(order.total)} FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="terms">
+                        <div class="section-title">CONDITIONS DE PAIEMENT</div>
+                        <div style="background: #FFFDE7; padding: 15px; border-radius: 8px;">
+                            <p style="margin: 0;">
+                                <strong>⚠️ Important :</strong><br>
+                                1. Paiement à la livraison uniquement<br>
+                                2. Accepté: Espèces, Mobile Money (Orange Money, Free Money)<br>
+                                3. Cette facture fait office de reçu officiel<br>
+                                4. TVA non applicable, article 262 du CGI
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <div class="stamp">
+                            <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">PAYÉ</div>
+                            <div style="font-size: 14px;">${new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+                            <div style="font-size: 12px; margin-top: 10px;">Signature & Cachet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer">
+                        <div style="text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 40px;">
+                            <p style="margin: 0; color: #666;">
+                                <strong>Merci pour votre confiance !</strong><br>
+                                Casa Mia Restaurant - La saveur de chez nous<br>
+                                <small>Tél: +221 33 123 45 67 | Email: contact@casamia.sn | Site: www.casamia.sn</small><br>
+                                <small style="font-size: 10px; color: #999;">Cette facture est générée automatiquement par le système de gestion Casa Mia - N° ${invoiceNumber}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Injecter le HTML dans le modal
+            document.getElementById('invoiceContent').innerHTML = invoiceHTML;
+            document.getElementById('invoiceModalNumber').textContent = invoiceNumber;
+            
+            // Afficher le modal
+            const modal = new bootstrap.Modal(document.getElementById('invoiceModal'));
+            modal.show();
+        }
+
+        function getStatusColor(status) {
+            switch(status) {
+                case 'en attente': return '#FFC107';
+                case 'en préparation': return '#17a2b8';
+                case 'prête': return '#28a745';
+                case 'livrée': return '#6c757d';
+                case 'annulée': return '#dc3545';
+                default: return '#FFC107';
+            }
+        }
+
+        function downloadInvoicePDF() {
+            if (!protectAccess()) return;
+            
+            if (!currentInvoiceData) {
+                showNotification('Aucune facture à télécharger', 'error');
+                return;
+            }
+            
+            showNotification('Génération du PDF en cours...', 'info');
+            
+            const invoiceElement = document.getElementById('invoiceContent');
+            
+            html2canvas(invoiceElement, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff',
+                letterRendering: true,
+                allowTaint: true
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png', 1.0);
+                const pdf = new jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                
+                // Calculer la position pour centrer verticalement
+                const margin = 10;
+                const contentWidth = pdfWidth - (2 * margin);
+                const contentHeight = (canvas.height * contentWidth) / canvas.width;
+                
+                // Ajouter l'image avec une meilleure qualité
+                pdf.addImage(imgData, 'PNG', margin, margin, contentWidth, contentHeight, undefined, 'FAST');
+                
+                const fileName = `facture-casamia-${currentInvoiceData.invoiceNumber}.pdf`;
+                pdf.save(fileName);
+                
+                showNotification('Facture téléchargée avec succès!', 'success');
+            }).catch(error => {
+                console.error('Erreur lors de la génération du PDF:', error);
+                showNotification('Erreur lors de la génération du PDF', 'error');
+            });
+        }
+
+        function printInvoice() {
+            if (!protectAccess()) return;
+            
+            if (!currentInvoiceData) {
+                showNotification('Aucune facture à imprimer', 'error');
+                return;
+            }
+            
+            const printContent = document.getElementById('invoiceContent').innerHTML;
+            const printWindow = window.open('', '_blank', 'width=800,height=600');
+            
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Facture Casa Mia - ${currentInvoiceData.invoiceNumber}</title>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        body { 
+                            font-family: 'Poppins', sans-serif; 
+                            margin: 0; 
+                            padding: 20px; 
+                            color: #333;
+                            background: white;
+                        }
+                        @media print {
+                            @page { 
+                                margin: 0; 
+                                size: A4;
+                            }
+                            body { 
+                                margin: 0;
+                                padding: 0;
+                            }
+                            .invoice-container {
+                                padding: 20px;
+                                max-width: 100%;
+                            }
+                        }
+                        .invoice-container {
+                            max-width: 800px;
+                            margin: 0 auto;
+                            background: white;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin: 20px 0;
+                        }
+                        th {
+                            background: #FFFDE7;
+                            padding: 10px;
+                            border-bottom: 2px solid #FFC107;
+                            text-align: left;
+                        }
+                        td {
+                            padding: 10px;
+                            border-bottom: 1px solid #eee;
+                        }
+                        .text-right { text-align: right; }
+                        .text-center { text-align: center; }
+                    </style>
+                </head>
+                <body onload="window.print();">
+                    ${printContent}
+                </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            
+            // Fermer la fenêtre après impression
+            printWindow.onafterprint = function() {
+                printWindow.close();
+            };
+        }
+
+        // ===== AUTRES FONCTIONS DE GESTION =====
+        function viewOrderDetails(orderIndex) {
+            if (!protectAccess()) return;
+            
+            orderIndex = parseInt(orderIndex);
+            
+            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const order = orders[orderIndex];
+            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+            
+            // Mettre à jour le modal
+            document.getElementById('modalOrderId').textContent = orderNumber;
+            document.getElementById('modalClientName').textContent = order.client?.name || 'Non spécifié';
+            document.getElementById('modalClientPhone').textContent = order.client?.phone || 'Non spécifié';
+            document.getElementById('modalClientAddress').textContent = order.client?.address || 'Non spécifiée';
+            document.getElementById('modalClientNotes').textContent = order.client?.notes || 'Aucune note';
+            document.getElementById('modalOrderDate').textContent = formatDate(order.date);
+            document.getElementById('modalOrderTotal').textContent = formatPrice(order.total);
+            
+            // Statut
+            let statusText = order.status;
+            let statusClass = '';
+            switch(order.status) {
+                case 'en attente': statusClass = 'text-warning'; break;
+                case 'en préparation': statusClass = 'text-primary'; break;
+                case 'prête': statusClass = 'text-success'; break;
+                case 'livrée': statusClass = 'text-secondary'; break;
+                case 'annulée': statusClass = 'text-danger'; break;
+            }
+            document.getElementById('modalOrderStatus').innerHTML = `<span class="${statusClass} fw-bold">${statusText}</span>`;
+            
+            // Articles
+            const itemsTable = document.getElementById('modalOrderItems');
+            itemsTable.innerHTML = order.items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${formatPrice(item.price)}</td>
+                    <td>${item.quantity}</td>
+                    <td>${formatPrice(item.price * item.quantity)}</td>
+                </tr>
+            `).join('');
+            
+            selectedOrderId = orderIndex;
+            
+            // Configurer les boutons
+            document.getElementById('btnChangeStatus').onclick = () => editOrderStatus(orderIndex);
+            document.getElementById('btnGenerateInvoice').onclick = () => generateInvoiceForOrder(orderIndex);
+            document.getElementById('btnCancelOrder').onclick = () => cancelOrder(orderIndex);
+            
+            // Afficher le modal
+            const modal = new bootstrap.Modal(document.getElementById('orderDetailsModal'));
+            modal.show();
+        }
+
+        function editOrderStatus(orderIndex) {
+            if (!protectAccess()) return;
+            
+            orderIndex = parseInt(orderIndex);
+            
+            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const order = orders[orderIndex];
+            
+            const newStatus = prompt(
+                'Changer le statut de la commande:\n\n' +
+                '1. en attente\n' +
+                '2. en préparation\n' +
+                '3. prête\n' +
+                '4. livrée\n' +
+                '5. annulée\n\n' +
+                'Statut actuel: ' + order.status,
+                order.status
+            );
+            
+            if (newStatus && newStatus !== order.status) {
+                orders[orderIndex].status = newStatus;
+                localStorage.setItem('orderHistory', JSON.stringify(orders));
+                updateOrdersTable();
+                loadAllOrders();
+                updateStatistics();
+                showNotification('Statut mis à jour!', 'success');
+                
+                // Fermer le modal si ouvert
+                const modal = bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal'));
+                if (modal) modal.hide();
+            }
+        }
+
+        function cancelOrder(orderIndex) {
+            if (!protectAccess()) return;
+            
+            orderIndex = parseInt(orderIndex);
+            
+            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+            
+            if (confirm(`Annuler la commande ${orderNumber}?`)) {
+                orders[orderIndex].status = 'annulée';
+                localStorage.setItem('orderHistory', JSON.stringify(orders));
+                updateOrdersTable();
+                loadAllOrders();
+                updateStatistics();
+                showNotification('Commande annulée!', 'success');
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal'));
+                if (modal) modal.hide();
+            }
+        }
+
+        function deleteOrder(orderIndex) {
+            if (!protectAccess()) return;
+            
+            orderIndex = parseInt(orderIndex);
+            
+            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+            
+            if (confirm(`Supprimer la commande ${orderNumber}?`)) {
+                orders.splice(orderIndex, 1);
+                localStorage.setItem('orderHistory', JSON.stringify(orders));
+                updateOrdersTable();
+                loadAllOrders();
+                updateStatistics();
+                showNotification('Commande supprimée!', 'success');
+            }
+        }
+
+        // ===== GESTION DU MENU =====
+        function updateMenuTable() {
+            if (!protectAccess()) return;
+            
+            const tbody = document.getElementById('menuTableBody');
+            
+            if (dishes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-utensils"></i>
+                                <h3>Aucun plat</h3>
+                                <p>Ajoutez des plats à votre menu</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = dishes.map(dish => `
+                <tr>
+                    <td>${dish.name}</td>
+                    <td>${dish.category}</td>
+                    <td>${dish.description}</td>
+                    <td>${formatPrice(dish.price)}</td>
+                    <td>
+                        <span class="badge ${dish.available ? 'bg-success' : 'bg-danger'}">
+                            ${dish.available ? 'Disponible' : 'Indisponible'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action btn-edit" onclick="editDish(${dish.id})" title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-action btn-delete" onclick="deleteDish(${dish.id})" title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openDishModal() {
+            if (!protectAccess()) return;
+            showNotification('Fonctionnalité à venir!', 'info');
+        }
+
+        function editDish(dishId) {
+            if (!protectAccess()) return;
+            showNotification('Modification du plat ID: ' + dishId, 'info');
+        }
+
+        function deleteDish(dishId) {
+            if (!protectAccess()) return;
+            
+            if (confirm('Supprimer ce plat du menu?')) {
+                dishes = dishes.filter(dish => dish.id !== dishId);
+                localStorage.setItem('menuItems', JSON.stringify(dishes));
+                updateMenuTable();
+                showNotification('Plat supprimé!', 'success');
+            }
+        }
+
+        // ===== GESTION DES CLIENTS =====
+        function updateCustomersTable() {
+            if (!protectAccess()) return;
+            
+            const tbody = document.getElementById('customersTableBody');
+            
+            // Extraire les clients des commandes
+            const customersMap = new Map();
+            
+            orders.forEach(order => {
+                if (order.client && order.client.phone) {
+                    const phone = order.client.phone;
+                    if (!customersMap.has(phone)) {
+                        customersMap.set(phone, {
+                            name: order.client.name || 'Client',
+                            phone: phone,
+                            email: order.client.email || '',
+                            totalOrders: 0,
+                            totalSpent: 0,
+                            lastOrder: order.date
+                        });
+                    }
+                    
+                    const customer = customersMap.get(phone);
+                    customer.totalOrders++;
+                    customer.totalSpent += parseFloat(order.total) || 0;
+                    
+                    // Mettre à jour la dernière commande si plus récente
+                    const orderDate = new Date(order.date);
+                    const lastOrderDate = new Date(customer.lastOrder || 0);
+                    if (orderDate > lastOrderDate) {
+                        customer.lastOrder = order.date;
+                    }
+                }
+            });
+            
+            const customers = Array.from(customersMap.values());
+            
+            if (customers.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-users"></i>
+                                <h3>Aucun client</h3>
+                                <p>Les clients apparaîtront après leur première commande</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = customers.map(customer => `
+                <tr>
+                    <td>${customer.name}</td>
+                    <td>${customer.phone}</td>
+                    <td>${customer.email || '-'}</td>
+                    <td>${customer.totalOrders}</td>
+                    <td>${formatPrice(customer.totalSpent)}</td>
+                    <td>${formatDate(customer.lastOrder)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action btn-view" onclick="viewCustomerDetails('${customer.phone}')" title="Voir détails">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-action btn-edit" onclick="contactCustomer('${customer.phone}')" title="Contacter">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function viewCustomerDetails(phone) {
+            if (!protectAccess()) return;
+            
+            const customerOrders = orders.filter(order => 
+                order.client && order.client.phone === phone
+            );
+            
+            if (customerOrders.length === 0) {
+                showNotification('Client non trouvé', 'error');
+                return;
+            }
+            
+            const customer = customerOrders[0].client;
+            let message = `Client: ${customer.name || 'Non spécifié'}\n`;
+            message += `Téléphone: ${phone}\n`;
+            message += `Email: ${customer.email || 'Non spécifié'}\n`;
+            message += `Total commandes: ${customerOrders.length}\n`;
+            message += `Total dépensé: ${formatPrice(customerOrders.reduce((sum, order) => sum + (parseFloat(order.total) || 0), 0))}\n\n`;
+            message += `Dernières commandes:\n`;
+            
+            customerOrders.slice(0, 3).forEach(order => {
+                const orderIndex = orders.indexOf(order);
+                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+                message += `- ${orderNumber}: ${formatPrice(order.total)} (${order.status})\n`;
+            });
+            
+            alert(message);
+        }
+
+        function contactCustomer(phone) {
+            if (!protectAccess()) return;
+            
+            if (confirm(`Appeler le client ${phone}?`)) {
+                window.location.href = `tel:${phone}`;
+            }
+        }
+
+        // ===== GESTION DE L'INVENTAIRE =====
+        function updateInventoryTable() {
+            if (!protectAccess()) return;
+            
+            const tbody = document.getElementById('inventoryTableBody');
+            
+            // Données d'exemple pour l'inventaire
+            const inventoryItems = [
+                {
+                    id: 1,
+                    name: "Poulet",
+                    category: "Viandes",
+                    stock: 50,
+                    minStock: 20,
+                    unit: "kg",
+                    status: "normal"
+                },
+                {
+                    id: 2,
+                    name: "Riz",
+                    category: "Céréales",
+                    stock: 100,
+                    minStock: 30,
+                    unit: "kg",
+                    status: "normal"
+                },
+                {
+                    id: 3,
+                    name: "Oignons",
+                    category: "Légumes",
+                    stock: 25,
+                    minStock: 10,
+                    unit: "kg",
+                    status: "normal"
+                },
+                {
+                    id: 4,
+                    name: "Huile",
+                    category: "Épicerie",
+                    stock: 15,
+                    minStock: 5,
+                    unit: "litres",
+                    status: "normal"
+                }
+            ];
+            
+            tbody.innerHTML = inventoryItems.map(item => {
+                let statusClass = 'bg-success';
+                let statusText = 'Normal';
+                
+                if (item.stock <= item.minStock) {
+                    statusClass = 'bg-danger';
+                    statusText = 'Stock faible';
+                } else if (item.stock <= item.minStock * 1.5) {
+                    statusClass = 'bg-warning';
+                    statusText = 'Attention';
+                }
+                
+                return `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.category}</td>
+                        <td>${item.stock} ${item.unit}</td>
+                        <td>${item.minStock} ${item.unit}</td>
+                        <td>${item.unit}</td>
+                        <td>
+                            <span class="badge ${statusClass}">
+                                ${statusText}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-edit" onclick="editInventoryItem(${item.id})" title="Modifier">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteInventoryItem(${item.id})" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function addInventoryItem() {
+            if (!protectAccess()) return;
+            showNotification('Ajout d\'article - Fonctionnalité à venir!', 'info');
+        }
+
+        function editInventoryItem(itemId) {
+            if (!protectAccess()) return;
+            showNotification('Modification de l\'article ID: ' + itemId, 'info');
+        }
+
+        function deleteInventoryItem(itemId) {
+            if (!protectAccess()) return;
+            
+            if (confirm('Supprimer cet article de l\'inventaire?')) {
+                showNotification('Article supprimé!', 'success');
+                updateInventoryTable();
+            }
+        }
+
+        // ===== FONCTIONS UTILITAIRES =====
+        function createSampleOrder() {
+            if (!protectAccess()) return;
+            
+            const sampleOrder = {
+                id: Date.now().toString(),
+                client: {
+                    name: "Client Test",
+                    phone: "77 123 45 67",
+                    address: "123 Avenue de la République, Saint-Louis",
+                    email: "client@test.com",
+                    notes: "Sans oignons s'il vous plaît"
+                },
+                items: [
+                    {
+                        name: "Poulet Yassa",
+                        price: 5000,
+                        quantity: 1
+                    },
+                    {
+                        name: "Thieboudienne",
+                        price: 6000,
+                        quantity: 2
+                    },
+                    {
+                        name: "Salade César",
+                        price: 3500,
+                        quantity: 1
+                    }
+                ],
+                total: 20500,
+                date: new Date().toISOString(),
+                status: "en attente"
+            };
+            
+            orders.push(sampleOrder);
+            localStorage.setItem('orderHistory', JSON.stringify(orders));
+            
+            updateStatistics();
+            updateOrdersTable();
+            updateCustomersTable();
+            
+            showNotification('Commande de test créée avec succès!', 'success');
+        }
+
+        function exportOrders() {
+            if (!protectAccess()) return;
+            
+            showNotification('Export des commandes en cours...', 'info');
+            
+            // Simuler l'export
+            setTimeout(() => {
+                const dataStr = JSON.stringify(orders, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                
+                const exportFileDefaultName = `commandes-casamia-${new Date().toISOString().slice(0,10)}.json`;
+                
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+                
+                showNotification('Export terminé!', 'success');
+            }, 1000);
+        }
+
+        function exportCustomers() {
+            if (!protectAccess()) return;
+            
+            showNotification('Export des clients en cours...', 'info');
+            
+            // Simuler l'export
+            setTimeout(() => {
+                showNotification('Export CSV des clients terminé!', 'success');
+            }, 1000);
+        }
+
+        // ===== NOTIFICATIONS =====
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                min-width: 300px;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            `;
+            
+            let icon = 'fa-info-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            if (type === 'error') icon = 'fa-exclamation-circle';
+            if (type === 'warning') icon = 'fa-exclamation-triangle';
+            
+            notification.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas ${icon} me-2 fs-5"></i>
+                    <div class="flex-grow-1">${message}</div>
+                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        // ===== PROTECTION RENFORCÉE =====
+        // Empêcher l'accès direct aux pages admin
+        window.addEventListener('load', function() {
+            // Vérifier si on est sur une page admin
+            if (window.location.pathname.includes('dashboard') || 
+                window.location.pathname.includes('admin')) {
+                
+                // Si l'utilisateur n'est pas authentifié, forcer la connexion
+                if (!isAuthenticated && !checkSession()) {
+                    console.log("Accès non autorisé - Redirection vers connexion");
+                    document.getElementById('loginOverlay').style.display = 'flex';
+                    document.getElementById('sidebar').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'none';
+                    document.getElementById('mainContent').classList.remove('show');
+                }
+            }
+        });
+
+        // Vérifier régulièrement la session
+        setInterval(() => {
+            if (isAuthenticated && !checkSession()) {
+                showNotification('Session expirée. Veuillez vous reconnecter.', 'warning');
+                manualLogout();
+            }
+        }, 60000); // Vérifier toutes les minutes
+
+        // Empêcher le contournement avec les outils de développement
+        window.addEventListener('beforeunload', function(e) {
+            if (isAuthenticated) {
+                // Ne rien faire - laisser l'utilisateur quitter normalement
+            }
+        });
+    </script>
+</body>
+</html>

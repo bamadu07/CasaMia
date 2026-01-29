@@ -1,0 +1,154 @@
+{
+  "categories": [
+    {
+      "id": "entrees",
+      "name": "Entrées",
+      "items": [
+        {
+          "id": 1,
+          "name": "Bruschetta Classique",
+          "description": "Pain grillé avec tomates fraîches, basilic et huile d'olive extra vierge",
+          "price": 3500,
+          "image": "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80",
+          "tags": ["végétarien", "recommandé"]
+        },
+        {
+          "id": 2,
+          "name": "Carpaccio de Bœuf",
+          "description": "Tranches fines de bœuf avec parmesan, roquette et huile de truffe",
+          "price": 6500,
+          "image": "https://images.unsplash.com/photo-1559314809-2b99056a8c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+          "tags": ["recommandé"]
+        },
+        {
+          "id": 3,
+          "name": "Salade César",
+          "description": "Laitue romaine, croûtons, parmesan et sauce césar maison",
+          "price": 4500,
+          "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+          "tags": ["végétarien"]
+        }
+      ]
+    },
+    {
+      "id": "pizzas",
+      "name": "Pizzas",
+      "items": [
+        {
+          "id": 4,
+          "name": "Pizza Margherita",
+          "description": "Sauce tomate, mozzarella di bufala, basilic frais",
+          "price": 5500,
+          "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1081&q=80",
+          "tags": ["végétarien", "recommandé"]
+        },
+        {
+          "id": 5,
+          "name": "Pizza Quattro Formaggi",
+          "description": "Mozzarella, gorgonzola, parmesan, chèvre",
+          "price": 6500,
+          "image": "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1466&q=80",
+          "tags": ["végétarien"]
+        },
+        {
+          "id": 6,
+          "name": "Pizza Diavola",
+          "description": "Sauce tomate, mozzarella, salami piquant, piments",
+          "price": 6800,
+          "image": "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+          "tags": ["épicé", "recommandé"]
+        }
+      ]
+    },
+    {
+      "id": "pates",
+      "name": "Pâtes",
+      "items": [
+        {
+          "id": 7,
+          "name": "Spaghetti Carbonara",
+          "description": "Spaghetti, œuf, pancetta, pecorino, poivre noir",
+          "price": 6800,
+          "image": "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+          "tags": ["recommandé"]
+        },
+        {
+          "id": 8,
+          "name": "Lasagne Bolognaise",
+          "description": "Feuilles de pâtes, bolognaise, béchamel, fromage",
+          "price": 7500,
+          "image": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1455&q=80",
+          "tags": []
+        },
+        {
+          "id": 9,
+          "name": "Penne Arrabbiata",
+          "description": "Penne, sauce tomate épicée, ail, basilic",
+          "price": 6200,
+          "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=1392&q=80",
+          "tags": ["épicé", "végétarien"]
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "name": "Desserts",
+      "items": [
+        {
+          "id": 10,
+          "name": "Tiramisu Classique",
+          "description": "Biscuits imbibés de café, crème mascarpone, cacao",
+          "price": 3200,
+          "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1365&q=80",
+          "tags": ["végétarien", "recommandé"]
+        },
+        {
+          "id": 11,
+          "name": "Panna Cotta",
+          "description": "Crème vanille avec coulis de fruits rouges",
+          "price": 2800,
+          "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+          "tags": ["végétarien"]
+        },
+        {
+          "id": 12,
+          "name": "Cannoli Siciliani",
+          "description": "Coques croustillantes fourrées à la ricotta sucrée",
+          "price": 3000,
+          "image": "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1370&q=80",
+          "tags": ["végétarien", "recommandé"]
+        }
+      ]
+    },
+    {
+      "id": "boissons",
+      "name": "Boissons",
+      "items": [
+        {
+          "id": 13,
+          "name": "Vin Rouge Chianti",
+          "description": "Bouteille de 75cl - Toscane, Italie",
+          "price": 12000,
+          "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+          "tags": []
+        },
+        {
+          "id": 14,
+          "name": "Eau Minérale San Pellegrino",
+          "description": "Bouteille de 75cl",
+          "price": 1500,
+          "image": "https://images.unsplash.com/photo-1560512823-829485b8bf24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+          "tags": ["végétarien"]
+        },
+        {
+          "id": 15,
+          "name": "Limonade Maison",
+          "description": "Pressée quotidiennement avec des citrons frais",
+          "price": 2000,
+          "image": "https://images.unsplash.com/photo-1621264968375-d0a2d7047e73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+          "tags": ["végétarien", "recommandé"]
+        }
+      ]
+    }
+  ]
+}

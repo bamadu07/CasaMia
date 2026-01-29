@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Mia - Restaurant Sénégalais à Saint Louis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Personnalisé -->
+    <style>
+        /* ===== VARIABLES JAUNE ===== */
+        :root {
+            --primary-color: #FFC107;
+            --primary-dark: #FFA000;
+            --primary-light: #FFD54F;
+            --secondary-color: #FF9800;
+            --dark-color: #333333;
+            --light-color: #FFFDE7;
+            --text-color: #333;
+            --text-light: #666;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(255, 193, 7, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 70px;
+            background-color: white;
+        }
+
+        /* ===== NAVBAR JAUNE ===== */
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            height: 70px;
+        }
+
+        .navbar-brand img {
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .brand-first {
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            margin: 0 0.3rem;
+            padding: 0.4rem 0.8rem !important;
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-dark) !important;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .btn-admin {
+            background-color: var(--primary-color);
+            color: var(--dark-color) !important;
+            border-radius: var(--border-radius);
+            padding: 0.4rem 1rem !important;
+            font-weight: 600;
+        }
+
+        .btn-admin:hover {
+            background-color: var(--primary-dark);
+            color: white !important;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            min-height: 350px;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-title .highlight {
+            color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            margin: 0.3rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: white;
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
+            color: var(--dark-color);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+        }
+
+        .highlight {
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        /* Section Présentation */
+        .presentation-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.8rem;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--box-shadow);
+            font-weight: bold;
+        }
+
+        .experience-years {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .experience-text {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background: white;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        /* Cartes Spécialités */
+        .specialty-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid rgba(255, 193, 7, 0.1);
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15);
+        }
+
+        .specialty-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .specialty-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .specialty-card:hover .specialty-image img {
+            transform: scale(1.05);
+        }
+
+        .specialty-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .specialty-content {
+            padding: 1rem;
+        }
+
+        .specialty-content h4 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .specialty-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .specialty-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .btn-order {
+            background: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.4rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-order:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* Section spécialités sénégalaises */
+        .section-specialties {
+            background-color: #FFFDE7;
+        }
+
+        /* Témoignages */
+        .section-testimonials {
+            background-color: white;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid var(--primary-color);
+        }
+
+        .testimonial-info h5 {
+            margin-bottom: 0.2rem;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-rating {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Cartes Infos */
+        .section-info {
+            background-color: #FFF9C4;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            color: var(--dark-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER RÉDUIT ===== */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 3px;
+        }
+
+        .footer-contact {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+
+        .footer-contact li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .footer-contact i {
+            margin-right: 8px;
+            color: var(--primary-color);
+            margin-top: 2px;
+            font-size: 0.9rem;
+        }
+
+        .newsletter {
+            margin-top: 1rem;
+        }
+
+        .newsletter h5 {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .newsletter p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.5rem 0.8rem;
+            border: none;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.85rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form button {
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border: none;
+            width: 40px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .heart-icon {
+            color: var(--primary-color);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .navbar {
+                height: 60px;
+            }
+            
+            .hero-section {
+                height: 40vh;
+                min-height: 300px;
+            }
+            
+            .hero-title {
+                font-size: 1.7rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            .footer-bottom .text-end {
+                text-align: left !important;
+                margin-top: 0.5rem;
+            }
+            
+            .experience-badge {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .experience-years {
+                font-size: 1.3rem;
+            }
+            
+            .experience-text {
+                font-size: 0.55rem;
+            }
+            
+            .specialty-image {
+                height: 160px;
+            }
+            
+            .footer-brand h3 {
+                font-size: 1.1rem;
+            }
+            
+            .footer-contact li {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 35vh;
+                min-height: 250px;
+            }
+            
+            .btn-hero {
+                display: block;
+                width: 100%;
+                margin: 0.3rem 0;
+                padding: 0.5rem;
+            }
+            
+            section {
+                padding: 1.5rem 0;
+            }
+            
+            .specialty-image {
+                height: 150px;
+            }
+            
+            .footer {
+                padding: 1.5rem 0 0.8rem;
+            }
+            
+            .info-card {
+                padding: 1.2rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logoo.png" alt="Logo Casa Mia" width="40" height="40" class="d-inline-block align-top me-2">
+                <span class="brand-name d-none d-md-inline"><span class="brand-first">Casa</span> Mia</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="apropos.html">À Propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-admin" href="login.html">
+                            <i class="fas fa-user-shield me-1"></i> Admin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Bienvenue à <span class="highlight">Casa Mia</span></h1>
+                    <p class="hero-subtitle">Saveurs authentiques du Sénégal au cœur de Saint Louis</p>
+                    <div class="hero-buttons">
+                        <a href="menu.html" class="btn btn-primary btn-hero">Voir Notre Menu</a>
+                        <a href="contact.html#reservation" class="btn btn-outline-light btn-hero">Réserver une Table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Présentation -->
+    <section class="section-presentation py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="presentation-image">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" 
+                             alt="Intérieur du restaurant Casa Mia" class="img-fluid rounded shadow">
+                        <div class="experience-badge">
+                            <div class="experience-years">10+</div>
+                            <div class="experience-text">Ans d'expérience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Une Expérience Culinaire <span class="highlight">Inoubliable</span></h2>
+                    <p class="lead">Installé à Saint Louis sur la route de Khor en face ARD, Casa Mia vous invite à découvrir les saveurs traditionnelles sénégalaises.</p>
+                    <p>Notre chef sélectionne avec soin les meilleurs ingrédients locaux pour créer des plats authentiques.</p>
+                    <div class="features-grid mt-3">
+                        <div class="feature-item">
+                            <i class="fas fa-utensils feature-icon"></i>
+                            <h5>Cuisine Traditionnelle</h5>
+                            <p>Recettes authentiques</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-leaf feature-icon"></i>
+                            <h5>Produits Locaux</h5>
+                            <p>Ingrédients frais</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-pepper-hot feature-icon"></i>
+                            <h5>Saveurs Authentiques</h5>
+                            <p>Épices traditionnelles</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users feature-icon"></i>
+                            <h5>Ambiance Familiale</h5>
+                            <p>Cadre accueillant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Spécialités Sénégalaises -->
+    <section class="section-specialties py-4">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Nos <span class="highlight">Spécialités</span></h2>
+                <p class="section-subtitle">Découvrez nos plats les plus appréciés</p>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="specialty-card">
+                        <div class="specialty-image">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80" 
+                                 alt="Thiebou Djeun" class="img-fluid">
+                            <div class="specialty-badge">Spécialité</div>
+                        </div>
+                        <div class="specialty-content">
+                            <h4>Thiebou Djeun</h4>
+                            <p>Riz au poisson avec légumes et sauce tomate traditionnelle</p>
+                            <div class="specialty-footer">
+                                <span class="price">4 500 FCFA</span>
+                                <a href="menu.html#senegalais" class="btn-order">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="specialty-card">
+                        <div class="specialty-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80" 
+                                 alt="Poulet Yassa" class="img-fluid">
+                            <div class="specialty-badge">Populaire</div>
+                        </div>
+                        <div class="specialty-content">
+                            <h4>Poulet Yassa</h4>
+                            <p>Poulet mariné au citron et oignons, servi avec riz blanc</p>
+                            <div class="specialty-footer">
+                                <span class="price">5 000 FCFA</span>
+                                <a href="menu.html#senegalais" class="btn-order">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="specialty-card">
+                        <div class="specialty-image">
+                            <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80" 
+                                 alt="Mafé" class="img-fluid">
+                            <div class="specialty-badge">Onctueux</div>
+                        </div>
+                        <div class="specialty-content">
+                            <h4>Mafé</h4>
+                            <p>Ragoût dans une sauce arachide, servi avec du riz</p>
+                            <div class="specialty-footer">
+                                <span class="price">4 800 FCFA</span>
+                                <a href="menu.html#senegalais" class="btn-order">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="menu.html" class="btn btn-primary">Voir Tout le Menu <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="section-testimonials py-4">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Témoignages <span class="highlight">Clients</span></h2>
+                <p class="section-subtitle">Ce que disent nos clients</p>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Amina Diop" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h5>Amina Diop</h5>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Le meilleur Thiebou Djeun de Saint Louis ! Saveurs authentiques et ingrédients frais."</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Jean Dupont" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h5>Jean Dupont</h5>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Un véritable voyage culinaire ! Le Mafé est délicieux. Je recommande !"</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Sophie Diallo" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h5>Sophie Diallo</h5>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Endroit parfait pour un dîner en famille. Ambiance chaleureuse."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Infos Pratiques -->
+    <section class="section-info py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Notre Adresse</h4>
+                        <p>Saint Louis, Route de Khor<br>En face de l'ARD</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Horaires</h4>
+                        <p>Lun-Ven: 11h30-22h00<br>Sam-Dim: 12h00-23h00</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4>Réservation</h4>
+                        <p><strong>77 206 81 81</strong></p>
+                        <a href="contact.html#reservation" class="btn btn-sm btn-primary mt-1">Réserver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer réduit -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="footer-brand mb-2">
+                        <img src="images/logoo.png" alt="Logo Casa Mia" class="me-2">
+                        <h3><span class="brand-first">Casa</span> Mia</h3>
+                    </div>
+                    <p class="footer-description">Restaurant sénégalais authentique à Saint Louis.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-3">
+                    <h4 class="footer-title">Menu</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="menu.html#thiebou">Thiebou Djeun</a></li>
+                        <li><a href="menu.html#yassa">Poulet Yassa</a></li>
+                        <li><a href="menu.html#mafe">Mafé</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Saint Louis, Route de Khor</li>
+                        <li><i class="fas fa-phone"></i> 77 206 81 81</li>
+                        <li><i class="fas fa-envelope"></i> tafa.wade@gmail.com</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="newsletter">
+                        <h5>Newsletter</h5>
+                        <p>Recevez nos offres</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 Casa Mia. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <p>Conçu avec <i class="fas fa-heart heart-icon"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS Personnalisé -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation active
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert(`Merci pour votre inscription !\nEmail: ${email}`);
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

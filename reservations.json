@@ -1,0 +1,75 @@
+{
+  "reservations": [
+    {
+      "id": 1001,
+      "client": "Awa Diop",
+      "email": "awa.diop@example.com",
+      "phone": "77 123 45 67",
+      "date": "2023-12-15",
+      "time": "19:30",
+      "guests": 4,
+      "type": "diner",
+      "notes": "Anniversaire de mariage",
+      "status": "confirmée",
+      "createdAt": "2023-12-14T10:30:00Z"
+    },
+    {
+      "id": 1002,
+      "client": "Jean Dupont",
+      "email": "jean.dupont@example.com",
+      "phone": "76 234 56 78",
+      "date": "2023-12-15",
+      "time": "20:00",
+      "guests": 2,
+      "type": "diner",
+      "notes": "",
+      "status": "confirmée",
+      "createdAt": "2023-12-14T11:15:00Z"
+    },
+    {
+      "id": 1003,
+      "client": "Sophie Diallo",
+      "email": "sophie.diallo@example.com",
+      "phone": "70 345 67 89",
+      "date": "2023-12-15",
+      "time": "21:00",
+      "guests": 6,
+      "type": "familial",
+      "notes": "Enfants: 2 (5 et 7 ans)",
+      "status": "en attente",
+      "createdAt": "2023-12-15T09:30:00Z"
+    },
+    {
+      "id": 1004,
+      "client": "Alioune Fall",
+      "email": "alioune.fall@example.com",
+      "phone": "77 456 78 90",
+      "date": "2023-12-16",
+      "time": "19:00",
+      "guests": 3,
+      "type": "business",
+      "notes": "Réunion d'affaires",
+      "status": "confirmée",
+      "createdAt": "2023-12-14T14:20:00Z"
+    },
+    {
+      "id": 1005,
+      "client": "Mariama Ndiaye",
+      "email": "mariama.ndiaye@example.com",
+      "phone": "76 567 89 01",
+      "date": "2023-12-16",
+      "time": "20:30",
+      "guests": 5,
+      "type": "anniversaire",
+      "notes": "Anniversaire de Mariama (25 ans)",
+      "status": "annulée",
+      "createdAt": "2023-12-13T16:45:00Z"
+    }
+  ],
+  "settings": {
+    "maxGuestsPerReservation": 10,
+    "advanceBookingDays": 30,
+    "cancellationPolicy": "Annulation gratuite jusqu'à 2 heures avant",
+    "depositRequired": false
+  }
+}
