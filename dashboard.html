@@ -2,7 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Dashboard Admin - Casa Mia Restaurant</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -860,183 +862,226 @@
             animation: fadeIn 0.5s ease;
         }
 
-        /* Styles pour le modal de facture */
-        #invoiceModal .modal-dialog {
-            max-width: 900px;
+        /* Styles pour le modal de gestion des produits */
+        #productModal .modal-dialog {
+            max-width: 500px;
         }
 
-        #invoiceContent {
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
             font-family: 'Poppins', sans-serif;
-            color: #333;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.2);
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-color);
+        }
+
+        /* NOUVEAUX STYLES POUR FACTURE PDF CLAIRE */
+        .invoice-pdf-clear {
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
-        }
-
-        /* Animation pour l'apparition de la facture */
-        @keyframes fadeInInvoice {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        #invoiceContent {
-            animation: fadeInInvoice 0.3s ease-out;
-        }
-
-        /* Styles de la facture */
-        .invoice-container {
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 25px;
             background: white;
+            font-family: 'Arial', sans-serif;
+            color: #000;
+            font-size: 14px;
+            line-height: 1.5;
         }
-        
-        .invoice-header {
+
+        .invoice-header-clear {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #FFC107;
+            margin-bottom: 30px;
             padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
         }
-        
-        .company-info {
+
+        .company-info-clear {
             flex: 1;
         }
-        
-        .invoice-title {
-            text-align: right;
-        }
-        
-        .company-logo {
+
+        .company-logo-clear {
             font-size: 24px;
             font-weight: bold;
-            color: #FFC107;
+            color: var(--primary-color);
             margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
         }
-        
-        .company-logo i {
-            color: #FFC107;
-            margin-right: 10px;
-        }
-        
-        .invoice-details {
-            margin: 30px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .client-info, .invoice-info {
-            width: 45%;
-        }
-        
-        .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #FFC107;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .invoice-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .invoice-table th {
-            background: #FFFDE7;
-            padding: 12px;
-            text-align: left;
-            border-bottom: 2px solid #FFC107;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .invoice-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .invoice-table tr:last-child td {
-            border-bottom: 2px solid #FFC107;
-        }
-        
-        .text-right {
+
+        .invoice-title-clear {
             text-align: right;
         }
-        
-        .totals-section {
-            margin-top: 30px;
-            width: 300px;
-            margin-left: auto;
+
+        .invoice-title-clear h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin: 0 0 10px 0;
         }
-        
-        .total-row {
+
+        .invoice-number-clear {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .invoice-details-clear {
+            margin: 25px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .client-info-clear, .order-info-clear {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title-clear {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .invoice-table-clear {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 13px;
+        }
+
+        .invoice-table-clear thead {
+            background: var(--primary-color);
+        }
+
+        .invoice-table-clear th {
+            padding: 12px 15px;
+            text-align: left;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        .invoice-table-clear td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .invoice-table-clear tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .invoice-table-clear .text-right {
+            text-align: right;
+        }
+
+        .invoice-table-clear .text-center {
+            text-align: center;
+        }
+
+        .totals-section-clear {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid var(--primary-light);
+        }
+
+        .total-row-clear {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
-            padding: 5px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
         }
-        
-        .grand-total {
+
+        .grand-total-clear {
             font-size: 18px;
             font-weight: bold;
-            color: #FFA000;
-            border-top: 2px solid #FFC107;
-            padding-top: 10px;
+            color: var(--primary-dark);
+            border-top: 2px solid var(--primary-color);
+            border-bottom: none;
+            padding-top: 12px;
             margin-top: 10px;
         }
-        
-        .footer {
-            margin-top: 50px;
+
+        .footer-clear {
+            margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 12px;
-            color: #666;
+            border-top: 1px solid #ddd;
             text-align: center;
-        }
-        
-        .terms {
-            margin-top: 30px;
             font-size: 12px;
             color: #666;
         }
-        
-        .stamp {
+
+        .stamp-clear {
             text-align: center;
-            margin-top: 30px;
+            margin: 30px auto;
             padding: 20px;
-            border: 2px dashed #FFC107;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
             display: inline-block;
-            font-style: italic;
-            color: #FFC107;
-            font-family: 'Playfair Display', serif;
+            transform: rotate(-5deg);
+            background: rgba(255, 193, 7, 0.05);
         }
-        
+
+        /* Styles spécifiques pour l'impression */
         @media print {
-            .invoice-container {
+            .invoice-pdf-clear {
+                padding: 15px !important;
+                margin: 0 !important;
                 max-width: 100% !important;
-                padding: 0 !important;
             }
+            
+            .invoice-table-clear {
+                font-size: 12px !important;
+            }
+            
+            .invoice-table-clear th,
+            .invoice-table-clear td {
+                padding: 8px 10px !important;
+            }
+            
             .sidebar, .page-header, .modal-footer {
                 display: none !important;
             }
             
             .modal-body {
-                padding: 0 !important;
-            }
-            
-            #invoiceContent {
-                max-width: 100% !important;
                 padding: 0 !important;
             }
         }
@@ -1069,6 +1114,15 @@
             .sidebar:hover + .main-content {
                 margin-left: 250px;
             }
+            
+            .invoice-header-clear {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .invoice-title-clear {
+                text-align: left;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1082,6 +1136,11 @@
                 height: auto;
                 position: relative;
                 margin-bottom: 1rem;
+                display: none;
+            }
+
+            .sidebar.active {
+                display: block;
             }
 
             .sidebar-menu {
@@ -1112,6 +1171,19 @@
                 overflow-x: auto;
                 flex-wrap: nowrap;
             }
+            
+            .invoice-details-clear {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .client-info-clear, .order-info-clear {
+                min-width: 100%;
+            }
+            
+            .invoice-pdf-clear {
+                padding: 15px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1130,18 +1202,13 @@
                 padding: 30px 20px;
             }
             
-            .invoice-header {
-                flex-direction: column;
-                gap: 20px;
+            .invoice-table-clear {
+                font-size: 12px;
             }
             
-            .client-info, .invoice-info {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            
-            .invoice-details {
-                flex-direction: column;
+            .invoice-table-clear th,
+            .invoice-table-clear td {
+                padding: 8px 10px;
             }
         }
     </style>
@@ -1237,7 +1304,9 @@
     <!-- Sidebar (CACHÉE initialement) -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <img src="images/logoo.png" alt="Logo Casa Mia" id="logo">
+            <div style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-utensils"></i>
+            </div>
             <h2><span class="brand-first">Casa</span> Mia</h2>
         </div>
         <ul class="sidebar-menu">
@@ -1438,8 +1507,8 @@
             <div class="dashboard-header">
                 <h1>Gestion du <span class="highlight">Menu</span></h1>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openDishModal()">
-                        <i class="fas fa-plus me-1"></i> Ajouter un plat
+                    <button class="btn btn-primary" onclick="openProductModal()">
+                        <i class="fas fa-plus me-1"></i> Ajouter un produit
                     </button>
                 </div>
             </div>
@@ -1616,7 +1685,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="invoiceContent" style="background: white; padding: 30px; max-width: 800px; margin: 0 auto;">
+                        <div id="invoiceContent" style="background: white; max-width: 800px; margin: 0 auto;">
                             <!-- Le contenu de la facture sera injecté ici -->
                         </div>
                     </div>
@@ -1630,6 +1699,56 @@
                         <button type="button" class="btn btn-success" onclick="printInvoice()">
                             <i class="fas fa-print me-1"></i> Imprimer
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="productModalTitle">Ajouter un produit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="productForm">
+                            <input type="hidden" id="productId">
+                            <div class="form-group">
+                                <label class="form-label" for="productName">Nom du produit *</label>
+                                <input type="text" class="form-control" id="productName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="productCategory">Catégorie *</label>
+                                <select class="form-control" id="productCategory" required>
+                                    <option value="">Sélectionner une catégorie</option>
+                                    <option value="Plats principaux">Plats principaux</option>
+                                    <option value="Entrées">Entrées</option>
+                                    <option value="Desserts">Desserts</option>
+                                    <option value="Boissons">Boissons</option>
+                                    <option value="Apéritifs">Apéritifs</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="productDescription">Description</label>
+                                <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="productPrice">Prix (FCFA) *</label>
+                                <input type="number" class="form-control" id="productPrice" min="0" step="100" required>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="productAvailable" checked>
+                                <label class="form-check-label" for="productAvailable">
+                                    Disponible à la vente
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" onclick="saveProduct()">Enregistrer</button>
                     </div>
                 </div>
             </div>
@@ -1651,19 +1770,24 @@
 
         // ===== GLOBAL VARIABLES =====
         let orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
-        let dishes = JSON.parse(localStorage.getItem('menuItems')) || [];
+        let products = JSON.parse(localStorage.getItem('menuItems')) || [];
         let selectedOrderId = null;
         let isAuthenticated = false;
         let currentInvoiceData = null;
 
-        // ===== INITIALISATION =====
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Page chargée - Écran de connexion requis");
-            
-            // FORCER l'affichage de l'écran de connexion
+        // ===== PROTECTION D'ACCÈS =====
+        // Empêcher l'accès avant connexion
+        if (!localStorage.getItem('adminToken') || 
+            parseInt(localStorage.getItem('tokenExpiry')) < Date.now()) {
+            // Force display login
             document.getElementById('loginOverlay').style.display = 'flex';
             document.getElementById('sidebar').style.display = 'none';
             document.getElementById('mainContent').style.display = 'none';
+        }
+
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page chargée - Vérification de session");
             
             // Vérifier s'il y a une session active
             checkSession();
@@ -1688,6 +1812,12 @@
                     clearAuthData();
                 }
             }
+            
+            // FORCER l'affichage de l'écran de connexion
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('sidebar').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'none';
+            
             return false;
         }
 
@@ -1836,15 +1966,11 @@
         // Empêcher l'accès direct aux pages admin
         function protectAccess() {
             if (!isAuthenticated) {
-                // Rediriger vers la page de connexion
-                window.location.href = window.location.pathname.includes('dashboard') 
-                    ? window.location.href 
-                    : window.location.href.split('?')[0];
-                
                 // Forcer l'affichage du login
                 document.getElementById('loginOverlay').style.display = 'flex';
                 document.getElementById('sidebar').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('show');
                 
                 return false;
             }
@@ -1882,8 +2008,11 @@
             
             orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
             
-            if (dishes.length === 0) {
-                dishes = [
+            // Charger les produits
+            products = JSON.parse(localStorage.getItem('menuItems')) || [];
+            if (products.length === 0) {
+                // Initialiser avec des produits par défaut
+                products = [
                     {
                         id: 1,
                         name: "Poulet Yassa",
@@ -1917,7 +2046,7 @@
                         available: true
                     }
                 ];
-                localStorage.setItem('menuItems', JSON.stringify(dishes));
+                localStorage.setItem('menuItems', JSON.stringify(products));
             }
             
             updateStatistics();
@@ -2313,7 +2442,7 @@
             }).join('');
         }
 
-        // ===== FONCTIONS DE FACTURATION AMÉLIORÉES =====
+        // ===== FACTURE PDF CLAIRE ET LISIBLE =====
         function generateInvoiceForOrder(orderIndex) {
             if (!protectAccess()) return;
             
@@ -2336,156 +2465,138 @@
                 orderIndex
             };
             
-            // Construire le contenu HTML de la facture avec design amélioré
+            // Construire le contenu HTML de la facture CLAIRE
             const invoiceHTML = `
-                <div class="invoice-container">
-                    <div class="invoice-header">
-                        <div class="company-info">
-                            <div class="company-logo" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <div style="width: 50px; height: 50px; background: #FFC107; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-utensils" style="color: white; font-size: 24px;"></i>
-                                </div>
-                                <div>
-                                    <div style="font-size: 24px; font-weight: bold; color: #FFC107; font-family: 'Playfair Display', serif;">Casa Mia Restaurant</div>
-                                    <div style="font-size: 14px; color: #666;">Restaurant Sénégalais - Cuisine Traditionnelle</div>
-                                </div>
+                <div class="invoice-pdf-clear">
+                    <div class="invoice-header-clear">
+                        <div class="company-info-clear">
+                            <div class="company-logo-clear">
+                                <i class="fas fa-utensils"></i> CASA MIA RESTAURANT
                             </div>
-                            <div>
-                                <strong>Casa Mia Restaurant</strong><br>
-                                Saint-Louis, Route de Khor, en face ARD<br>
-                                Téléphone: <strong>+221 33 123 45 67</strong><br>
-                                Email: contact@casamia.sn<br>
-                                NIF: 1234567890
+                            <div style="font-size: 13px; margin-top: 5px; line-height: 1.4;">
+                                <strong>Adresse:</strong> Saint-Louis, Route de Khor<br>
+                                <strong>Téléphone:</strong> +221 33 123 45 67<br>
+                                <strong>Email:</strong> contact@casamia.sn<br>
+                                <strong>NIF:</strong> 1234567890
                             </div>
                         </div>
-                        <div class="invoice-title">
-                            <h1 style="color: #FFA000; margin: 0; font-family: 'Playfair Display', serif; font-size: 28px;">FACTURE</h1>
-                            <div style="font-size: 14px; margin-top: 15px; background: #FFFDE7; padding: 10px; border-radius: 8px;">
-                                <div><strong>N°:</strong> ${invoiceNumber}</div>
-                                <div><strong>Date:</strong> ${formatDate(order.date)}</div>
-                                <div><strong>Commande:</strong> ${orderNumber}</div>
+                        <div class="invoice-title-clear">
+                            <h1>FACTURE</h1>
+                            <div class="invoice-number-clear">
+                                <strong>N° Facture:</strong> ${invoiceNumber}
+                            </div>
+                            <div style="font-size: 13px; margin-top: 5px;">
+                                <strong>Date:</strong> ${formatDate(order.date)}<br>
+                                <strong>Commande:</strong> ${orderNumber}
                             </div>
                         </div>
                     </div>
                     
-                    <div class="invoice-details">
-                        <div class="client-info">
-                            <div class="section-title">INFORMATIONS CLIENT</div>
-                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                                <div style="margin-bottom: 8px;">
-                                    <strong style="color: #333;">${order.client?.name || 'Non spécifié'}</strong>
-                                </div>
-                                <div style="margin-bottom: 5px;">
-                                    <i class="fas fa-phone" style="color: #666; width: 16px;"></i>
-                                    <span style="margin-left: 8px;">${order.client?.phone || ''}</span>
-                                </div>
-                                ${order.client?.address ? `
-                                    <div style="margin-bottom: 5px;">
-                                        <i class="fas fa-map-marker-alt" style="color: #666; width: 16px;"></i>
-                                        <span style="margin-left: 8px;">${order.client.address}</span>
-                                    </div>
-                                ` : ''}
-                                ${order.client?.email ? `
-                                    <div style="margin-bottom: 5px;">
-                                        <i class="fas fa-envelope" style="color: #666; width: 16px;"></i>
-                                        <span style="margin-left: 8px;">${order.client.email}</span>
-                                    </div>
-                                ` : ''}
+                    <div class="invoice-details-clear">
+                        <div class="client-info-clear">
+                            <div class="section-title-clear">INFORMATIONS CLIENT</div>
+                            <div style="font-size: 13px; line-height: 1.6;">
+                                <strong>${order.client?.name || 'Client non spécifié'}</strong><br>
+                                ${order.client?.phone ? `Tél: ${order.client.phone}<br>` : ''}
+                                ${order.client?.address ? `Adresse: ${order.client.address}<br>` : ''}
+                                ${order.client?.email ? `Email: ${order.client.email}<br>` : ''}
+                                ${order.client?.notes ? `Notes: ${order.client.notes}` : ''}
                             </div>
                         </div>
                         
-                        <div class="invoice-info">
-                            <div class="section-title">DÉTAILS DE LA COMMANDE</div>
-                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                                <div style="margin-bottom: 8px;">
-                                    <strong>Date de commande:</strong><br>
-                                    ${formatDate(order.date)}
-                                </div>
-                                <div style="margin-bottom: 8px;">
-                                    <strong>Statut:</strong><br>
-                                    <span style="display: inline-block; padding: 4px 12px; background: ${getStatusColor(order.status)}; color: white; border-radius: 4px; font-size: 12px;">
-                                        ${order.status.toUpperCase()}
-                                    </span>
-                                </div>
-                                <div>
-                                    <strong>Mode de paiement:</strong><br>
-                                    Paiement à la livraison
-                                </div>
+                        <div class="order-info-clear">
+                            <div class="section-title-clear">DÉTAILS DE LA COMMANDE</div>
+                            <div style="font-size: 13px; line-height: 1.6;">
+                                <strong>Date de commande:</strong> ${formatDate(order.date)}<br>
+                                <strong>Statut:</strong> <span style="color: ${getStatusColor(order.status)}; font-weight: bold;">${order.status.toUpperCase()}</span><br>
+                                <strong>Mode de paiement:</strong> À la livraison
                             </div>
                         </div>
                     </div>
                     
-                    <div class="section-title">ARTICLES COMMANDÉS</div>
-                    <table class="invoice-table">
+                    <div class="section-title-clear">ARTICLES COMMANDÉS</div>
+                    <table class="invoice-table-clear">
                         <thead>
                             <tr>
-                                <th width="50" style="text-align: center;">#</th>
-                                <th>Description</th>
-                                <th width="120" style="text-align: center;">Prix unitaire</th>
-                                <th width="80" style="text-align: center;">Quantité</th>
-                                <th width="120" style="text-align: right;">Montant</th>
+                                <th>N°</th>
+                                <th>ARTICLE</th>
+                                <th class="text-center">PRIX UNITAIRE</th>
+                                <th class="text-center">QUANTITÉ</th>
+                                <th class="text-right">MONTANT</th>
                             </tr>
                         </thead>
                         <tbody>
                             ${order.items.map((item, index) => `
                                 <tr>
-                                    <td style="text-align: center;">${index + 1}</td>
+                                    <td>${index + 1}</td>
                                     <td>${item.name}</td>
-                                    <td style="text-align: center;">${formatPriceSimple(item.price)} FCFA</td>
-                                    <td style="text-align: center;">${item.quantity}</td>
-                                    <td style="text-align: right;">${formatPriceSimple(item.price * item.quantity)} FCFA</td>
+                                    <td class="text-center">${formatPriceSimple(item.price)} FCFA</td>
+                                    <td class="text-center">${item.quantity}</td>
+                                    <td class="text-right">${formatPriceSimple(item.price * item.quantity)} FCFA</td>
                                 </tr>
                             `).join('')}
                         </tbody>
+                        <tfoot>
+                            <tr style="background: #f8f9fa;">
+                                <td colspan="4" class="text-right" style="font-weight: bold; padding: 12px 15px;">
+                                    Sous-total:
+                                </td>
+                                <td class="text-right" style="font-weight: bold; padding: 12px 15px;">
+                                    ${formatPriceSimple(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))} FCFA
+                                </td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td colspan="4" class="text-right" style="padding: 8px 15px;">
+                                    Frais de livraison:
+                                </td>
+                                <td class="text-right" style="padding: 8px 15px; color: #28a745;">
+                                    GRATUIT
+                                </td>
+                            </tr>
+                            <tr style="background: #FFFDE7; border-top: 2px solid #FFC107; border-bottom: 2px solid #FFC107;">
+                                <td colspan="4" class="text-right" style="font-weight: bold; padding: 15px; font-size: 14px;">
+                                    TOTAL À PAYER:
+                                </td>
+                                <td class="text-right" style="font-weight: bold; padding: 15px; font-size: 16px; color: #FFA000;">
+                                    ${formatPriceSimple(order.total)} FCFA
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                     
-                    <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
-                        <div style="width: 300px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-                                <span>Sous-total:</span>
-                                <span><strong>${formatPriceSimple(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))} FCFA</strong></span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-                                <span>Livraison:</span>
-                                <span><strong>GRATUITE</strong></span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #FFA000; padding-top: 15px; border-top: 2px solid #FFC107;">
-                                <span>TOTAL À PAYER:</span>
-                                <span>${formatPriceSimple(order.total)} FCFA</span>
-                            </div>
+                    <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #FFC107;">
+                        <div style="font-size: 13px; line-height: 1.6;">
+                            <strong><i class="fas fa-info-circle" style="color: #FFC107; margin-right: 8px;"></i>Conditions de paiement:</strong><br>
+                            • Paiement à la livraison uniquement<br>
+                            • Accepté: Espèces, Mobile Money (Orange Money, Free Money)<br>
+                            • Cette facture fait office de reçu officiel<br>
+                            • TVA non applicable, article 262 du CGI
                         </div>
                     </div>
                     
-                    <div class="terms">
-                        <div class="section-title">CONDITIONS DE PAIEMENT</div>
-                        <div style="background: #FFFDE7; padding: 15px; border-radius: 8px;">
-                            <p style="margin: 0;">
-                                <strong>⚠️ Important :</strong><br>
-                                1. Paiement à la livraison uniquement<br>
-                                2. Accepté: Espèces, Mobile Money (Orange Money, Free Money)<br>
-                                3. Cette facture fait office de reçu officiel<br>
-                                4. TVA non applicable, article 262 du CGI
-                            </p>
+                    <div class="stamp-clear">
+                        <div style="font-size: 16px; font-weight: bold; color: #FFA000; margin-bottom: 5px;">
+                            <i class="fas fa-stamp"></i> PAYÉ
+                        </div>
+                        <div style="font-size: 13px;">
+                            ${new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </div>
+                        <div style="font-size: 11px; margin-top: 8px; color: #666;">
+                            Signature & Cachet
                         </div>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 30px;">
-                        <div class="stamp">
-                            <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">PAYÉ</div>
-                            <div style="font-size: 14px;">${new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
-                            <div style="font-size: 12px; margin-top: 10px;">Signature & Cachet</div>
-                        </div>
-                    </div>
-                    
-                    <div class="footer">
-                        <div style="text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 40px;">
-                            <p style="margin: 0; color: #666;">
-                                <strong>Merci pour votre confiance !</strong><br>
-                                Casa Mia Restaurant - La saveur de chez nous<br>
-                                <small>Tél: +221 33 123 45 67 | Email: contact@casamia.sn | Site: www.casamia.sn</small><br>
-                                <small style="font-size: 10px; color: #999;">Cette facture est générée automatiquement par le système de gestion Casa Mia - N° ${invoiceNumber}</small>
-                            </p>
-                        </div>
+                    <div class="footer-clear">
+                        <p style="margin: 0 0 10px 0; font-size: 13px; font-weight: bold;">
+                            <i class="fas fa-heart" style="color: #FFC107;"></i> Merci pour votre confiance !
+                        </p>
+                        <p style="margin: 0; font-size: 12px;">
+                            Casa Mia Restaurant - La saveur de chez nous<br>
+                            Tél: +221 33 123 45 67 | Email: contact@casamia.sn | Site: www.casamia.sn
+                        </p>
+                        <p style="margin: 8px 0 0 0; font-size: 11px; color: #999;">
+                            Facture générée automatiquement • N° ${invoiceNumber}
+                        </p>
                     </div>
                 </div>
             `;
@@ -2522,14 +2633,61 @@
             
             const invoiceElement = document.getElementById('invoiceContent');
             
+            // Sauvegarder les styles originaux
+            const originalStyles = {
+                width: invoiceElement.style.width,
+                maxWidth: invoiceElement.style.maxWidth,
+                margin: invoiceElement.style.margin,
+                padding: invoiceElement.style.padding,
+                fontSize: invoiceElement.style.fontSize,
+                lineHeight: invoiceElement.style.lineHeight
+            };
+            
+            // Appliquer des styles optimisés pour le PDF
+            invoiceElement.style.width = '800px';
+            invoiceElement.style.maxWidth = '800px';
+            invoiceElement.style.margin = '0 auto';
+            invoiceElement.style.padding = '25px';
+            invoiceElement.style.fontSize = '14px';
+            invoiceElement.style.lineHeight = '1.5';
+            
+            // Optimisation pour une meilleure qualité
             html2canvas(invoiceElement, {
-                scale: 2,
+                scale: 3, // Haute résolution
                 useCORS: true,
                 logging: false,
                 backgroundColor: '#ffffff',
                 letterRendering: true,
-                allowTaint: true
+                allowTaint: true,
+                width: 800,
+                windowWidth: 800,
+                onclone: function(clonedDoc) {
+                    const clonedElement = clonedDoc.getElementById('invoiceContent');
+                    if (clonedElement) {
+                        clonedElement.style.width = '800px';
+                        clonedElement.style.maxWidth = '800px';
+                        clonedElement.style.boxSizing = 'border-box';
+                        clonedElement.style.fontSize = '14px';
+                        clonedElement.style.lineHeight = '1.5';
+                        clonedElement.style.padding = '25px';
+                        
+                        // Augmenter la taille des polices pour le PDF
+                        const allElements = clonedElement.querySelectorAll('*');
+                        allElements.forEach(el => {
+                            const currentSize = window.getComputedStyle(el).fontSize;
+                            const sizeNum = parseInt(currentSize);
+                            if (!isNaN(sizeNum) && sizeNum < 12) {
+                                el.style.fontSize = '12px';
+                            }
+                        });
+                    }
+                }
             }).then(canvas => {
+                // Restaurer les styles originaux
+                Object.keys(originalStyles).forEach(key => {
+                    invoiceElement.style[key] = originalStyles[key];
+                });
+                
                 const imgData = canvas.toDataURL('image/png', 1.0);
                 const pdf = new jspdf.jsPDF({
                     orientation: 'portrait',
@@ -2538,23 +2696,35 @@
                 });
                 
                 const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                const pdfHeight = pdf.internal.pageSize.getHeight();
                 
-                // Calculer la position pour centrer verticalement
-                const margin = 10;
-                const contentWidth = pdfWidth - (2 * margin);
-                const contentHeight = (canvas.height * contentWidth) / canvas.width;
+                // Calculer les dimensions pour une seule page
+                const imgWidth = pdfWidth - 20; // Marges de 10mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 
-                // Ajouter l'image avec une meilleure qualité
-                pdf.addImage(imgData, 'PNG', margin, margin, contentWidth, contentHeight, undefined, 'FAST');
+                // S'assurer que tout tient sur une page
+                let finalHeight = imgHeight;
+                if (finalHeight > pdfHeight - 20) {
+                    finalHeight = pdfHeight - 20;
+                    const finalWidth = (canvas.width * finalHeight) / canvas.height;
+                    pdf.addImage(imgData, 'PNG', 10, 10, finalWidth, finalHeight);
+                } else {
+                    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+                }
                 
                 const fileName = `facture-casamia-${currentInvoiceData.invoiceNumber}.pdf`;
                 pdf.save(fileName);
                 
-                showNotification('Facture téléchargée avec succès!', 'success');
+                showNotification('Facture PDF téléchargée avec succès!', 'success');
+                
             }).catch(error => {
                 console.error('Erreur lors de la génération du PDF:', error);
                 showNotification('Erreur lors de la génération du PDF', 'error');
+                
+                // Restaurer les styles en cas d'erreur
+                Object.keys(originalStyles).forEach(key => {
+                    invoiceElement.style[key] = originalStyles[key];
+                });
             });
         }
 
@@ -2577,63 +2747,218 @@
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+                        
                         body { 
-                            font-family: 'Poppins', sans-serif; 
+                            font-family: Arial, sans-serif;
                             margin: 0; 
                             padding: 20px; 
-                            color: #333;
+                            color: #000;
                             background: white;
+                            -webkit-print-color-adjust: exact !important;
+                            print-color-adjust: exact !important;
                         }
                         @media print {
                             @page { 
-                                margin: 0; 
+                                margin: 15mm; 
                                 size: A4;
                             }
                             body { 
                                 margin: 0;
                                 padding: 0;
                             }
-                            .invoice-container {
-                                padding: 20px;
-                                max-width: 100%;
+                            .invoice-pdf-clear {
+                                padding: 0 !important;
+                                max-width: 100% !important;
                             }
                         }
-                        .invoice-container {
+                        .invoice-pdf-clear {
+                            width: 100%;
                             max-width: 800px;
                             margin: 0 auto;
+                            padding: 25px;
                             background: white;
+                            font-family: Arial, sans-serif;
+                            color: #000;
+                            font-size: 14px !important;
+                            line-height: 1.5;
                         }
                         table {
                             width: 100%;
                             border-collapse: collapse;
                             margin: 20px 0;
+                            font-size: 13px !important;
                         }
                         th {
-                            background: #FFFDE7;
-                            padding: 10px;
-                            border-bottom: 2px solid #FFC107;
+                            background: #FFC107 !important;
+                            padding: 12px 15px !important;
                             text-align: left;
+                            color: white !important;
+                            font-weight: bold;
+                            border: none !important;
                         }
                         td {
-                            padding: 10px;
-                            border-bottom: 1px solid #eee;
+                            padding: 10px 15px !important;
+                            border-bottom: 1px solid #ddd !important;
                         }
-                        .text-right { text-align: right; }
-                        .text-center { text-align: center; }
+                        .text-right { text-align: right !important; }
+                        .text-center { text-align: center !important; }
                     </style>
                 </head>
-                <body onload="window.print();">
+                <body onload="window.print(); setTimeout(() => window.close(), 500);">
                     ${printContent}
                 </body>
                 </html>
             `);
             
             printWindow.document.close();
+        }
+
+        // ===== GESTION DES PRODUITS (MENU) =====
+        function updateMenuTable() {
+            if (!protectAccess()) return;
             
-            // Fermer la fenêtre après impression
-            printWindow.onafterprint = function() {
-                printWindow.close();
-            };
+            const tbody = document.getElementById('menuTableBody');
+            
+            if (products.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-utensils"></i>
+                                <h3>Aucun produit</h3>
+                                <p>Ajoutez des produits à votre menu</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = products.map(product => `
+                <tr>
+                    <td>${product.name}</td>
+                    <td>${product.category}</td>
+                    <td>${product.description || '-'}</td>
+                    <td>${formatPrice(product.price)}</td>
+                    <td>
+                        <span class="badge ${product.available ? 'bg-success' : 'bg-danger'}">
+                            ${product.available ? 'Disponible' : 'Indisponible'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action btn-edit" onclick="editProduct(${product.id})" title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-action btn-delete" onclick="deleteProduct(${product.id})" title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openProductModal(productId = null) {
+            if (!protectAccess()) return;
+            
+            const modal = new bootstrap.Modal(document.getElementById('productModal'));
+            const form = document.getElementById('productForm');
+            
+            if (productId) {
+                // Mode édition
+                document.getElementById('productModalTitle').textContent = 'Modifier le produit';
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    document.getElementById('productId').value = product.id;
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productCategory').value = product.category;
+                    document.getElementById('productDescription').value = product.description || '';
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productAvailable').checked = product.available;
+                }
+            } else {
+                // Mode ajout
+                document.getElementById('productModalTitle').textContent = 'Ajouter un produit';
+                form.reset();
+                document.getElementById('productId').value = '';
+            }
+            
+            modal.show();
+        }
+
+        function saveProduct() {
+            if (!protectAccess()) return;
+            
+            const form = document.getElementById('productForm');
+            const productId = document.getElementById('productId').value;
+            const name = document.getElementById('productName').value.trim();
+            const category = document.getElementById('productCategory').value;
+            const description = document.getElementById('productDescription').value.trim();
+            const price = parseFloat(document.getElementById('productPrice').value);
+            const available = document.getElementById('productAvailable').checked;
+            
+            // Validation
+            if (!name || !category || isNaN(price) || price < 0) {
+                showNotification('Veuillez remplir tous les champs obligatoires correctement', 'error');
+                return;
+            }
+            
+            if (productId) {
+                // Mettre à jour le produit existant
+                const index = products.findIndex(p => p.id === parseInt(productId));
+                if (index !== -1) {
+                    products[index] = {
+                        id: parseInt(productId),
+                        name,
+                        category,
+                        description,
+                        price,
+                        available
+                    };
+                }
+            } else {
+                // Ajouter un nouveau produit
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId,
+                    name,
+                    category,
+                    description,
+                    price,
+                    available
+                });
+            }
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('menuItems', JSON.stringify(products));
+            
+            // Mettre à jour l'affichage
+            updateMenuTable();
+            
+            // Fermer le modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+            modal.hide();
+            
+            // Afficher une notification
+            showNotification(productId ? 'Produit modifié avec succès!' : 'Produit ajouté avec succès!', 'success');
+        }
+
+        function editProduct(productId) {
+            if (!protectAccess()) return;
+            openProductModal(productId);
+        }
+
+        function deleteProduct(productId) {
+            if (!protectAccess()) return;
+            
+            if (confirm('Supprimer ce produit du menu?')) {
+                products = products.filter(product => product.id !== productId);
+                localStorage.setItem('menuItems', JSON.stringify(products));
+                updateMenuTable();
+                showNotification('Produit supprimé!', 'success');
+            }
         }
 
         // ===== AUTRES FONCTIONS DE GESTION =====
@@ -2776,73 +3101,6 @@
                 loadAllOrders();
                 updateStatistics();
                 showNotification('Commande supprimée!', 'success');
-            }
-        }
-
-        // ===== GESTION DU MENU =====
-        function updateMenuTable() {
-            if (!protectAccess()) return;
-            
-            const tbody = document.getElementById('menuTableBody');
-            
-            if (dishes.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="text-center py-5">
-                            <div class="empty-state">
-                                <i class="fas fa-utensils"></i>
-                                <h3>Aucun plat</h3>
-                                <p>Ajoutez des plats à votre menu</p>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            tbody.innerHTML = dishes.map(dish => `
-                <tr>
-                    <td>${dish.name}</td>
-                    <td>${dish.category}</td>
-                    <td>${dish.description}</td>
-                    <td>${formatPrice(dish.price)}</td>
-                    <td>
-                        <span class="badge ${dish.available ? 'bg-success' : 'bg-danger'}">
-                            ${dish.available ? 'Disponible' : 'Indisponible'}
-                        </span>
-                    </td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-action btn-edit" onclick="editDish(${dish.id})" title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-action btn-delete" onclick="deleteDish(${dish.id})" title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function openDishModal() {
-            if (!protectAccess()) return;
-            showNotification('Fonctionnalité à venir!', 'info');
-        }
-
-        function editDish(dishId) {
-            if (!protectAccess()) return;
-            showNotification('Modification du plat ID: ' + dishId, 'info');
-        }
-
-        function deleteDish(dishId) {
-            if (!protectAccess()) return;
-            
-            if (confirm('Supprimer ce plat du menu?')) {
-                dishes = dishes.filter(dish => dish.id !== dishId);
-                localStorage.setItem('menuItems', JSON.stringify(dishes));
-                updateMenuTable();
-                showNotification('Plat supprimé!', 'success');
             }
         }
 
@@ -3184,23 +3442,6 @@
         }
 
         // ===== PROTECTION RENFORCÉE =====
-        // Empêcher l'accès direct aux pages admin
-        window.addEventListener('load', function() {
-            // Vérifier si on est sur une page admin
-            if (window.location.pathname.includes('dashboard') || 
-                window.location.pathname.includes('admin')) {
-                
-                // Si l'utilisateur n'est pas authentifié, forcer la connexion
-                if (!isAuthenticated && !checkSession()) {
-                    console.log("Accès non autorisé - Redirection vers connexion");
-                    document.getElementById('loginOverlay').style.display = 'flex';
-                    document.getElementById('sidebar').style.display = 'none';
-                    document.getElementById('mainContent').style.display = 'none';
-                    document.getElementById('mainContent').classList.remove('show');
-                }
-            }
-        });
-
         // Vérifier régulièrement la session
         setInterval(() => {
             if (isAuthenticated && !checkSession()) {

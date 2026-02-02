@@ -556,37 +556,239 @@
         }
 
         /* Bouton retour en haut */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            z-index: 1000;
+        /* Background général pour mobile */
+@media (max-width: 768px) {
+    body {
+        background: linear-gradient(rgba(255, 253, 231, 0.95), rgba(255, 249, 196, 0.95)),
+                    url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 10px 5px;
+    }
+    
+    /* Conteneur principal pour bien structurer le contenu */
+    .container {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: var(--border-radius);
+        padding: 15px;
+        margin: 5px auto;
+        border: 1px solid rgba(255, 193, 7, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Transparence pour la navbar et footer sur mobile */
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+        margin: 0 5px;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .footer {
+        background-color: rgba(51, 51, 51, 0.98) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-top: 2px solid var(--primary-color);
+        margin: 0 5px;
+        border-radius: 0 0 10px 10px;
+    }
+    
+    /* Hero section améliorée pour mobile avec fond visible */
+    .hero-section {
+        border-radius: 12px;
+        margin: 5px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--primary-color);
+    }
+    
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 10px;
+    }
+    
+    /* Sections avec fond semi-transparent amélioré */
+    .section-specialties, 
+    .section-testimonials, 
+    .section-info {
+        background-color: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 12px;
+        margin: 10px 5px;
+        padding: 20px 15px;
+        border: 2px solid rgba(255, 193, 7, 0.25);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Amélioration des cartes spécialités */
+    .specialty-card {
+        background: linear-gradient(145deg, #ffffff, #fff9e6);
+        border: 2px solid var(--primary-light);
+        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+        transition: all 0.3s ease;
+    }
+    
+    .specialty-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(255, 193, 7, 0.25);
+    }
+    
+    /* Testimonial section améliorée */
+    .testimonials-carousel {
+        padding: 0 10px;
+    }
+    
+    .testimonial-card {
+        background: linear-gradient(145deg, #ffffff, #fffef0);
+        border: 2px solid var(--primary-light);
+        padding: 20px;
+    }
+    
+    /* Info cards améliorées */
+    .info-card {
+        background: linear-gradient(145deg, #ffffff, #fff9c4);
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
+    }
+    
+    /* Titres des sections avec fond */
+    .section-title {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding: 5px 0;
+        margin-bottom: 15px;
+    }
+    
+    /* Boutons avec fond amélioré */
+    .btn-primary, .btn-order {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        box-shadow: 0 4px 8px rgba(255, 153, 0, 0.3);
+    }
+    
+    .btn-primary:hover, .btn-order:hover {
+        background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(255, 153, 0, 0.4);
+    }
+    
+    /* Footer sections avec fond */
+    .footer .container {
+        background-color: rgba(51, 51, 51, 0.9);
+    }
+    
+    /* Liens du footer avec effet */
+    .footer-links a {
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    .footer-links a:hover {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: var(--primary-color) !important;
+    }
+    
+    /* Social links avec fond */
+    .social-link {
+        background: rgba(255, 193, 7, 0.2);
+        border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+    
+    .social-link:hover {
+        background: var(--primary-color);
+        transform: scale(1.1);
+    }
+    
+    /* Newsletter form avec fond */
+    .newsletter-form input {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+    
+    .newsletter-form button {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+}
+
+/* Améliorations pour très petits écrans */
+@media (max-width: 576px) {
+    .container {
+        padding: 12px;
+        margin: 3px auto;
+    }
+    
+    .section-specialties, 
+    .section-testimonials, 
+    .section-info {
+        margin: 8px 3px;
+        padding: 15px 12px;
+    }
+    
+    .hero-section {
+        margin: 3px;
+    }
+    
+    /* Cartes plus compactes */
+    .specialty-card, .testimonial-card, .info-card {
+        padding: 15px;
+    }
+    
+    /* Effet de relief sur les cartes */
+    .specialty-card, .testimonial-card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .specialty-card::before, .testimonial-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: 0.5s;
+    }
+    
+    .specialty-card:hover::before, .testimonial-card:hover::before {
+        left: 100%;
+    }
+}
+
+/* Animation d'entrée pour les éléments mobiles */
+@media (max-width: 768px) {
+    .section-specialties, 
+    .section-testimonials, 
+    .section-info,
+    .specialty-card,
+    .testimonial-card,
+    .info-card {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+        from {
             opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
-            border: 2px solid white;
+            transform: translateY(20px);
         }
-        
-        .back-to-top.active {
+        to {
             opacity: 1;
-            visibility: visible;
+            transform: translateY(0);
         }
-        
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            color: white;
-            transform: translateY(-3px);
-        }
+    }
+}
     </style>
 </head>
 <body>
@@ -623,6 +825,51 @@
             </div>
         </div>
     </nav>
+    <!-- Section Présentation 
+    <section class="section-presentation py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="presentation-image">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" 
+                             alt="Intérieur du restaurant Casa Mia" class="img-fluid rounded shadow">
+                        <div class="experience-badge">
+                            <div class="experience-years">10+</div>
+                            <div class="experience-text">Ans d'expérience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Une Expérience Culinaire <span class="highlight">Inoubliable</span></h2>
+                    <p class="lead">Installé à Saint Louis sur la route de Khor en face ARD, Casa Mia vous invite à découvrir les saveurs traditionnelles sénégalaises.</p>
+                    <p>Notre chef sélectionne avec soin les meilleurs ingrédients locaux pour créer des plats authentiques.</p>
+                    <div class="features-grid mt-3">
+                        <div class="feature-item">
+                            <i class="fas fa-utensils feature-icon"></i>
+                            <h5>Cuisine Traditionnelle</h5>
+                            <p>Recettes authentiques</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-leaf feature-icon"></i>
+                            <h5>Produits Locaux</h5>
+                            <p>Ingrédients frais</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-pepper-hot feature-icon"></i>
+                            <h5>Saveurs Authentiques</h5>
+                            <p>Épices traditionnelles</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users feature-icon"></i>
+                            <h5>Ambiance Familiale</h5>
+                            <p>Cadre accueillant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
 
     <!-- Hero Section -->
     <section class="about-hero">
