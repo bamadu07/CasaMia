@@ -36,8 +36,7 @@
             font-family: 'Poppins', sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            padding-top: 70px;
-            background-color: white;
+            background-color: #f8f9fa;
         }
 
         /* ===== NAVBAR JAUNE ===== */
@@ -46,7 +45,10 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 0.5rem 0;
             transition: var(--transition);
-            height: 70px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
         .navbar-brand img {
@@ -102,11 +104,12 @@
             background-size: cover;
             background-position: center;
             height: 40vh;
-            min-height: 300px;
+            min-height: 250px;
             position: relative;
-            margin-top: -80px;
             display: flex;
             align-items: center;
+            margin-top: 70px;
+            border-bottom: 3px solid var(--primary-color);
         }
 
         .hero-content {
@@ -140,7 +143,7 @@
             margin-bottom: 0.8rem;
             color: var(--secondary-color);
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: 10px;
         }
 
         .section-title::after {
@@ -170,7 +173,7 @@
 
         /* ===== SECTIONS ===== */
         section {
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
 
         /* Contact Grid */
@@ -512,240 +515,235 @@
             color: var(--primary-color);
         }
 
-        /* ===== RESPONSIVE ===== */
-        /* Background général pour mobile */
-@media (max-width: 768px) {
-    body {
-        background: linear-gradient(rgba(255, 253, 231, 0.95), rgba(255, 249, 196, 0.95)),
-                    url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        padding: 10px 5px;
-    }
-    
-    /* Conteneur principal pour bien structurer le contenu */
-    .container {
-        background-color: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: var(--border-radius);
-        padding: 15px;
-        margin: 5px auto;
-        border: 1px solid rgba(255, 193, 7, 0.2);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    }
-    
-    /* Transparence pour la navbar et footer sur mobile */
-    .navbar {
-        background-color: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255, 193, 7, 0.2);
-        margin: 0 5px;
-        border-radius: 10px 10px 0 0;
-    }
-    
-    .footer {
-        background-color: rgba(51, 51, 51, 0.98) !important;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-top: 2px solid var(--primary-color);
-        margin: 0 5px;
-        border-radius: 0 0 10px 10px;
-    }
-    
-    /* Hero section améliorée pour mobile avec fond visible */
-    .hero-section {
-        border-radius: 12px;
-        margin: 5px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        border: 2px solid var(--primary-color);
-    }
-    
-    .hero-overlay {
-        background: rgba(0, 0, 0, 0.75);
-        border-radius: 10px;
-    }
-    
-    /* Sections avec fond semi-transparent amélioré */
-    .section-specialties, 
-    .section-testimonials, 
-    .section-info {
-        background-color: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 12px;
-        margin: 10px 5px;
-        padding: 20px 15px;
-        border: 2px solid rgba(255, 193, 7, 0.25);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Amélioration des cartes spécialités */
-    .specialty-card {
-        background: linear-gradient(145deg, #ffffff, #fff9e6);
-        border: 2px solid var(--primary-light);
-        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
-        transition: all 0.3s ease;
-    }
-    
-    .specialty-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(255, 193, 7, 0.25);
-    }
-    
-    /* Testimonial section améliorée */
-    .testimonials-carousel {
-        padding: 0 10px;
-    }
-    
-    .testimonial-card {
-        background: linear-gradient(145deg, #ffffff, #fffef0);
-        border: 2px solid var(--primary-light);
-        padding: 20px;
-    }
-    
-    /* Info cards améliorées */
-    .info-card {
-        background: linear-gradient(145deg, #ffffff, #fff9c4);
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
-    }
-    
-    /* Titres des sections avec fond */
-    .section-title {
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        padding: 5px 0;
-        margin-bottom: 15px;
-    }
-    
-    /* Boutons avec fond amélioré */
-    .btn-primary, .btn-order {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        border: none;
-        box-shadow: 0 4px 8px rgba(255, 153, 0, 0.3);
-    }
-    
-    .btn-primary:hover, .btn-order:hover {
-        background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(255, 153, 0, 0.4);
-    }
-    
-    /* Footer sections avec fond */
-    .footer .container {
-        background-color: rgba(51, 51, 51, 0.9);
-    }
-    
-    /* Liens du footer avec effet */
-    .footer-links a {
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-        display: block;
-    }
-    
-    .footer-links a:hover {
-        background-color: rgba(255, 193, 7, 0.2);
-        color: var(--primary-color) !important;
-    }
-    
-    /* Social links avec fond */
-    .social-link {
-        background: rgba(255, 193, 7, 0.2);
-        border: 1px solid rgba(255, 193, 7, 0.3);
-    }
-    
-    .social-link:hover {
-        background: var(--primary-color);
-        transform: scale(1.1);
-    }
-    
-    /* Newsletter form avec fond */
-    .newsletter-form input {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 193, 7, 0.3);
-    }
-    
-    .newsletter-form button {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        border: 1px solid rgba(255, 193, 7, 0.3);
-    }
-}
-
-/* Améliorations pour très petits écrans */
-@media (max-width: 576px) {
-    .container {
-        padding: 12px;
-        margin: 3px auto;
-    }
-    
-    .section-specialties, 
-    .section-testimonials, 
-    .section-info {
-        margin: 8px 3px;
-        padding: 15px 12px;
-    }
-    
-    .hero-section {
-        margin: 3px;
-    }
-    
-    /* Cartes plus compactes */
-    .specialty-card, .testimonial-card, .info-card {
-        padding: 15px;
-    }
-    
-    /* Effet de relief sur les cartes */
-    .specialty-card, .testimonial-card {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .specialty-card::before, .testimonial-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transition: 0.5s;
-    }
-    
-    .specialty-card:hover::before, .testimonial-card:hover::before {
-        left: 100%;
-    }
-}
-
-/* Animation d'entrée pour les éléments mobiles */
-@media (max-width: 768px) {
-    .section-specialties, 
-    .section-testimonials, 
-    .section-info,
-    .specialty-card,
-    .testimonial-card,
-    .info-card {
-        animation: fadeInUp 0.6s ease-out;
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+        /* ===== AMÉLIORATIONS RESPONSIVE MOBILE ===== */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+                background-color: #f8f9fa;
+            }
+            
+            .navbar {
+                padding: 0.5rem;
+            }
+            
+            .navbar-collapse {
+                background-color: white;
+                padding: 1rem;
+                border-radius: var(--border-radius);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                margin-top: 0.5rem;
+            }
+            
+            .contact-hero {
+                height: 30vh;
+                min-height: 200px;
+                margin-top: 70px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem 0;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .contact-form-section {
+                padding: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            .section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+            
+            .form-control, .form-select {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+            
+            .submit-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .map-container {
+                height: 250px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .map-placeholder {
+                padding: 1rem;
+            }
+            
+            .map-placeholder i {
+                font-size: 2rem;
+            }
+            
+            .faq-section {
+                margin-top: 2rem;
+            }
+            
+            .faq-item {
+                margin-bottom: 0.5rem;
+            }
+            
+            .faq-question {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .faq-answer {
+                padding: 0 0.8rem;
+            }
+            
+            .faq-answer.active {
+                padding: 0.8rem;
+            }
+            
+            /* Footer mobile */
+            .footer {
+                padding: 1.5rem 0 1rem;
+                margin-top: 1.5rem;
+            }
+            
+            .footer-brand {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-brand h3 {
+                margin-top: 0.5rem;
+            }
+            
+            .footer-description {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-title {
+                text-align: center;
+            }
+            
+            .footer-links {
+                text-align: center;
+            }
+            
+            .footer-contact {
+                text-align: center;
+            }
+            
+            .footer-contact li {
+                justify-content: center;
+            }
+            
+            .newsletter {
+                text-align: center;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .footer-bottom {
+                text-align: center;
+            }
+            
+            .footer-bottom .row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        @media (max-width: 576px) {
+            .contact-hero {
+                height: 25vh;
+                min-height: 180px;
+            }
+            
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+            
+            .contact-card {
+                padding: 1rem;
+            }
+            
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .contact-form-section {
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .map-container {
+                height: 200px;
+            }
+            
+            .map-placeholder h4 {
+                font-size: 1.1rem;
+            }
+            
+            /* Pour les très petits écrans */
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
         }
-    }
-}
+
+        @media (min-width: 769px) and (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
         /* Notification */
         .notification {
@@ -773,6 +771,17 @@
                 opacity: 1;
             }
         }
+
+        @media (max-width: 768px) {
+            .notification {
+                top: 70px;
+                right: 10px;
+                left: 10px;
+                max-width: calc(100% - 20px);
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -783,7 +792,7 @@
                 <img src="images/logoo.png" alt="Logo Casa Mia" width="40" height="40" class="d-inline-block align-top me-2">
                 <span class="brand-name d-none d-md-inline"><span class="brand-first">Casa</span> Mia</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -930,7 +939,7 @@
             
             <!-- FAQ Section -->
             <div class="faq-section">
-                <h2 class="section-title mb-3">Questions <span class="highlight">Fréquentes</span></h2>
+                <h2 class="section-title mb-3 text-center">Questions <span class="highlight">Fréquentes</span></h2>
                 
                 <div class="faq-item">
                     <button class="faq-question">
@@ -1038,7 +1047,7 @@
                     <div class="col-md-6">
                         <p>&copy; 2023 Casa Mia. Tous droits réservés.</p>
                     </div>
-                    <div class="col-md-6 text-end">
+                    <div class="col-md-6 text-md-end">
                         <p>Conçu avec <i class="fas fa-heart heart-icon"></i></p>
                     </div>
                 </div>
@@ -1140,6 +1149,31 @@
             // Clear pending order if user navigated away
             localStorage.removeItem('pendingOrder');
         });
+        
+        // Animation pour les éléments mobiles
+        if (window.innerWidth <= 768) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les sections
+            document.querySelectorAll('.contact-card, .contact-form-section, .faq-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
     </script>
 </body>
 </html>

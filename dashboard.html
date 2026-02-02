@@ -44,7 +44,7 @@
             background-color: #f8f9fa;
         }
 
-        /* ===== CONNEXION OVERLAY ===== */
+        /* ===== CONNEXION OBLIGATOIRE ===== */
         #loginOverlay {
             position: fixed;
             top: 0;
@@ -57,29 +57,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            animation: fadeIn 0.6s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { 
-                opacity: 0;
-                transform: translateY(-30px); 
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0); 
-            }
         }
 
         #loginContainer {
             width: 100%;
             max-width: 420px;
-            animation: slideIn 0.6s ease-out;
         }
 
         .login-card {
@@ -90,25 +72,6 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark), var(--primary-color));
-            background-size: 200% 100%;
-            animation: gradientMove 3s ease infinite;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 0%; }
-            100% { background-position: 0% 0%; }
         }
 
         .login-header {
@@ -127,25 +90,6 @@
             justify-content: center;
             font-size: 2.2rem;
             color: white;
-            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.5);
-            animation: pulse 3s infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-logo::after {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(45deg) translate(-50%, -50%);
-            animation: shine 5s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(45deg) translate(-100%, -100%); }
-            100% { transform: rotate(45deg) translate(100%, 100%); }
         }
 
         .login-title {
@@ -154,20 +98,6 @@
             font-weight: 700;
             color: var(--secondary-color);
             margin-bottom: 8px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .login-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
         }
 
         .login-subtitle {
@@ -225,11 +155,6 @@
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .input-with-icon input:valid {
-            border-color: #d1d1d1;
         }
 
         .password-toggle {
@@ -241,35 +166,7 @@
             border: none;
             color: #999;
             cursor: pointer;
-            transition: all 0.3s ease;
             padding: 5px;
-            border-radius: 5px;
-        }
-
-        .password-toggle:hover {
-            color: var(--primary-color);
-            background: rgba(255, 193, 7, 0.1);
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .remember-me input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-right: 10px;
-            cursor: pointer;
-            accent-color: var(--primary-color);
-        }
-
-        .remember-me label {
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            user-select: none;
         }
 
         .login-btn {
@@ -287,40 +184,16 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: 0.5s;
-        }
-
-        .login-btn:hover::before {
-            left: 100%;
         }
 
         .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.4);
-        }
-
-        .login-btn:active {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
         }
 
         .login-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
 
         .login-btn .spinner-border {
@@ -357,25 +230,12 @@
             font-weight: 600;
         }
 
-        .demo-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .demo-title i {
-            color: var(--primary-color);
-            font-size: 1rem;
-        }
-
         /* Alert Messages */
         .alert {
             border: none;
             border-radius: 12px;
             padding: 15px;
             margin-bottom: 20px;
-            animation: slideIn 0.3s ease;
         }
 
         .alert-danger {
@@ -398,7 +258,6 @@
             background: var(--secondary-color);
             color: white;
             padding: 1.5rem 0;
-            transition: var(--transition);
             z-index: 1000;
             overflow-y: auto;
             display: none;
@@ -411,12 +270,6 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
-        }
-
-        .sidebar-brand img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
         }
 
         .sidebar-brand h2 {
@@ -467,11 +320,6 @@
             padding: 1.5rem;
             min-height: 100vh;
             display: none;
-        }
-
-        .main-content.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
         }
 
         /* Dashboard Header */
@@ -639,10 +487,6 @@
             font-size: 0.85rem;
         }
 
-        .order-items {
-            max-width: 200px;
-        }
-
         .items-list {
             list-style: none;
             padding: 0;
@@ -654,14 +498,6 @@
             margin-bottom: 0.3rem;
             display: flex;
             justify-content: space-between;
-        }
-
-        .item-name {
-            color: var(--text-color);
-        }
-
-        .item-quantity {
-            color: var(--text-light);
         }
 
         .order-total {
@@ -805,7 +641,6 @@
 
         .loading-overlay.active {
             display: flex;
-            animation: fadeIn 0.3s ease;
         }
 
         .spinner {
@@ -859,7 +694,6 @@
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
 
         /* Styles pour le modal de gestion des produits */
@@ -907,240 +741,188 @@
             accent-color: var(--primary-color);
         }
 
-        /* NOUVEAUX STYLES POUR FACTURE PDF CLAIRE */
-        .invoice-pdf-clear {
+        /* FACTURE PDF OPTIMISÉE POUR MOBILE */
+        .invoice-pdf-mobile {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            padding: 25px;
+            padding: 20px;
             background: white;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             color: #000;
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 12px;
+            line-height: 1.4;
         }
 
-        .invoice-header-clear {
+        .invoice-header-mobile {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid var(--primary-color);
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
         }
 
-        .company-info-clear {
-            flex: 1;
+        .company-info-mobile {
+            width: 100%;
         }
 
-        .company-logo-clear {
-            font-size: 24px;
+        .company-logo-mobile {
+            font-size: 18px;
             font-weight: bold;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .invoice-title-clear {
-            text-align: right;
+        .company-contact-mobile {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.3;
         }
 
-        .invoice-title-clear h1 {
-            font-size: 28px;
+        .invoice-title-mobile {
+            width: 100%;
+        }
+
+        .invoice-title-mobile h1 {
+            font-size: 22px;
             font-weight: bold;
             color: var(--primary-dark);
             margin: 0 0 10px 0;
         }
 
-        .invoice-number-clear {
-            font-size: 16px;
+        .invoice-number-mobile {
+            font-size: 13px;
             font-weight: bold;
             margin-bottom: 5px;
         }
 
-        .invoice-details-clear {
-            margin: 25px 0;
+        .invoice-details-mobile {
+            margin: 15px 0;
             display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .client-info-clear, .order-info-clear {
-            flex: 1;
-            min-width: 300px;
+        .client-info-mobile, .order-info-mobile {
+            width: 100%;
         }
 
-        .section-title-clear {
-            font-size: 16px;
+        .section-title-mobile {
+            font-size: 13px;
             font-weight: bold;
             color: var(--primary-color);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-light);
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #eee;
         }
 
-        .invoice-table-clear {
+        .invoice-table-mobile {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 13px;
+            margin: 15px 0;
+            font-size: 10px;
         }
 
-        .invoice-table-clear thead {
+        .invoice-table-mobile thead {
             background: var(--primary-color);
         }
 
-        .invoice-table-clear th {
-            padding: 12px 15px;
+        .invoice-table-mobile th {
+            padding: 8px 6px;
             text-align: left;
             color: white;
             font-weight: bold;
             border: none;
+            font-size: 10px;
         }
 
-        .invoice-table-clear td {
-            padding: 10px 15px;
+        .invoice-table-mobile td {
+            padding: 6px;
             border-bottom: 1px solid #ddd;
+            font-size: 10px;
         }
 
-        .invoice-table-clear tbody tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        .invoice-table-clear .text-right {
+        .invoice-table-mobile .text-right {
             text-align: right;
         }
 
-        .invoice-table-clear .text-center {
+        .invoice-table-mobile .text-center {
             text-align: center;
         }
 
-        .totals-section-clear {
-            margin-top: 30px;
-            padding: 20px;
+        .totals-section-mobile {
+            margin-top: 20px;
+            padding: 15px;
             background: #f8f9fa;
-            border-radius: 8px;
-            border: 2px solid var(--primary-light);
+            border-radius: 5px;
+            border: 1px solid var(--primary-light);
         }
 
-        .total-row-clear {
+        .total-row-mobile {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding: 8px 0;
-            border-bottom: 1px solid #ddd;
+            margin-bottom: 5px;
+            padding: 4px 0;
+            font-size: 11px;
         }
 
-        .grand-total-clear {
-            font-size: 18px;
+        .grand-total-mobile {
+            font-size: 14px;
             font-weight: bold;
             color: var(--primary-dark);
             border-top: 2px solid var(--primary-color);
             border-bottom: none;
-            padding-top: 12px;
-            margin-top: 10px;
+            padding-top: 8px;
+            margin-top: 8px;
         }
 
-        .footer-clear {
-            margin-top: 40px;
-            padding-top: 20px;
+        .footer-mobile {
+            margin-top: 25px;
+            padding-top: 15px;
             border-top: 1px solid #ddd;
             text-align: center;
-            font-size: 12px;
+            font-size: 9px;
             color: #666;
+            line-height: 1.3;
         }
 
-        .stamp-clear {
+        .stamp-mobile {
             text-align: center;
-            margin: 30px auto;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 15px 25px;
             border: 2px solid var(--primary-color);
-            border-radius: 5px;
+            border-radius: 3px;
             display: inline-block;
             transform: rotate(-5deg);
             background: rgba(255, 193, 7, 0.05);
+            font-size: 10px;
         }
 
-        /* Styles spécifiques pour l'impression */
-        @media print {
-            .invoice-pdf-clear {
-                padding: 15px !important;
-                margin: 0 !important;
-                max-width: 100% !important;
-            }
-            
-            .invoice-table-clear {
-                font-size: 12px !important;
-            }
-            
-            .invoice-table-clear th,
-            .invoice-table-clear td {
-                padding: 8px 10px !important;
-            }
-            
-            .sidebar, .page-header, .modal-footer {
-                display: none !important;
-            }
-            
-            .modal-body {
-                padding: 0 !important;
-            }
+        .conditions-mobile {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 3px;
+            font-size: 9px;
+            line-height: 1.3;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 70px;
-                overflow: hidden;
-            }
-
-            .sidebar:hover {
-                width: 250px;
-            }
-
-            .sidebar-brand h2,
-            .sidebar-menu span {
-                display: none;
-            }
-
-            .sidebar:hover .sidebar-brand h2,
-            .sidebar:hover .sidebar-menu span {
-                display: block;
-            }
-
-            .main-content {
-                margin-left: 70px;
-            }
-
-            .sidebar:hover + .main-content {
-                margin-left: 250px;
-            }
-            
-            .invoice-header-clear {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .invoice-title-clear {
-                text-align: left;
-            }
-        }
-
+        /* Responsive pour mobile */
         @media (max-width: 768px) {
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-
             .sidebar {
                 width: 100%;
                 height: auto;
                 position: relative;
                 margin-bottom: 1rem;
-                display: none;
             }
 
-            .sidebar.active {
-                display: block;
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
             }
 
             .sidebar-menu {
@@ -1172,17 +954,23 @@
                 flex-wrap: nowrap;
             }
             
-            .invoice-details-clear {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .client-info-clear, .order-info-clear {
-                min-width: 100%;
-            }
-            
-            .invoice-pdf-clear {
+            .invoice-pdf-mobile {
                 padding: 15px;
+                font-size: 11px;
+            }
+            
+            .invoice-table-mobile {
+                font-size: 9px;
+            }
+            
+            .invoice-table-mobile th,
+            .invoice-table-mobile td {
+                padding: 5px 4px;
+                font-size: 9px;
+            }
+            
+            .invoice-title-mobile h1 {
+                font-size: 20px;
             }
         }
 
@@ -1199,22 +987,54 @@
             }
             
             .login-card {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
             
-            .invoice-table-clear {
-                font-size: 12px;
+            .invoice-pdf-mobile {
+                padding: 10px;
+                font-size: 10px;
             }
             
-            .invoice-table-clear th,
-            .invoice-table-clear td {
-                padding: 8px 10px;
+            .invoice-table-mobile {
+                font-size: 8px;
+            }
+            
+            .invoice-title-mobile h1 {
+                font-size: 18px;
+            }
+        }
+
+        /* Styles spécifiques pour l'impression */
+        @media print {
+            .invoice-pdf-mobile {
+                padding: 10mm !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+                font-size: 10px !important;
+            }
+            
+            .invoice-table-mobile {
+                font-size: 9px !important;
+            }
+            
+            .invoice-table-mobile th,
+            .invoice-table-mobile td {
+                padding: 4px 3px !important;
+                font-size: 9px !important;
+            }
+            
+            .sidebar, .page-header, .modal-footer {
+                display: none !important;
+            }
+            
+            .modal-body {
+                padding: 0 !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Login Overlay - TOUJOURS VISIBLE AU DÉPART -->
+    <!-- Login Overlay - OBLIGATOIRE -->
     <div id="loginOverlay">
         <div id="loginContainer">
             <div class="login-card">
@@ -1267,11 +1087,6 @@
                         </div>
                     </div>
 
-                    <div class="remember-me">
-                        <input type="checkbox" id="rememberMe">
-                        <label for="rememberMe">Se souvenir de moi</label>
-                    </div>
-
                     <button type="submit" class="login-btn" id="loginBtn">
                         <i class="fas fa-sign-in-alt"></i>
                         <span>Se connecter</span>
@@ -1282,7 +1097,7 @@
 
                     <div class="login-footer">
                         <div class="demo-credentials">
-                            <div class="demo-title">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
                                 <strong>Identifiants de démonstration</strong>
                                 <i class="fas fa-key"></i>
                             </div>
@@ -1763,7 +1578,7 @@
         const CONFIG = {
             ADMIN_CREDENTIALS: {
                 username: "admin",
-                password: "CasaMia2023"
+                password: "CasaMia2023" // MOT DE PASSE OBLIGATOIRE
             },
             SESSION_DURATION: 2 * 60 * 60 * 1000 // 2 heures
         };
@@ -1775,52 +1590,40 @@
         let isAuthenticated = false;
         let currentInvoiceData = null;
 
-        // ===== PROTECTION D'ACCÈS =====
-        // Empêcher l'accès avant connexion
-        if (!localStorage.getItem('adminToken') || 
-            parseInt(localStorage.getItem('tokenExpiry')) < Date.now()) {
-            // Force display login
-            document.getElementById('loginOverlay').style.display = 'flex';
-            document.getElementById('sidebar').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'none';
-        }
-
-        // ===== INITIALISATION =====
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Page chargée - Vérification de session");
-            
-            // Vérifier s'il y a une session active
-            checkSession();
-            
-            // Configurer le formulaire de connexion
-            setupLoginForm();
-        });
-
-        // ===== AUTHENTICATION OBLIGATOIRE =====
-        function checkSession() {
+        // ===== VÉRIFICATION DE SESSION AU DÉMARRAGE =====
+        function checkSessionOnLoad() {
             const token = localStorage.getItem('adminToken');
             const tokenExpiry = localStorage.getItem('tokenExpiry');
             
             if (token && tokenExpiry) {
                 const now = new Date().getTime();
                 if (now < parseInt(tokenExpiry)) {
-                    console.log("Session valide détectée");
+                    // Session valide
                     authenticateUser();
                     return true;
                 } else {
-                    console.log("Session expirée");
+                    // Session expirée
                     clearAuthData();
                 }
             }
             
-            // FORCER l'affichage de l'écran de connexion
+            // Afficher l'écran de connexion
             document.getElementById('loginOverlay').style.display = 'flex';
             document.getElementById('sidebar').style.display = 'none';
             document.getElementById('mainContent').style.display = 'none';
-            
             return false;
         }
 
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier la session au chargement
+            checkSessionOnLoad();
+            
+            // Configurer le formulaire de connexion
+            setupLoginForm();
+        });
+
+        // ===== AUTHENTICATION OBLIGATOIRE =====
         function setupLoginForm() {
             const loginForm = document.getElementById('loginForm');
             const togglePassword = document.getElementById('togglePassword');
@@ -1844,7 +1647,7 @@
                 });
             }
             
-            // Focus automatique
+            // Focus automatique sur le champ username
             setTimeout(() => {
                 const usernameInput = document.getElementById('username');
                 if (usernameInput) {
@@ -1862,7 +1665,7 @@
             const loginSpinner = document.getElementById('loginSpinner');
             const loginError = document.getElementById('loginError');
             
-            // Cacher les erreurs
+            // Cacher les erreurs précédentes
             loginError.style.display = 'none';
             
             // Validation
@@ -1876,7 +1679,7 @@
             loginSpinner.style.display = 'inline-block';
             
             // Simuler un délai réseau
-            await new Promise(resolve => setTimeout(resolve, 800));
+            await new Promise(resolve => setTimeout(resolve, 500));
             
             // Vérifier les identifiants
             if (username === CONFIG.ADMIN_CREDENTIALS.username && 
@@ -1919,7 +1722,7 @@
         }
 
         function authenticateUser() {
-            console.log("Authentification réussie - Accès au dashboard");
+            console.log("Authentification réussie");
             isAuthenticated = true;
             
             // Cacher l'écran de connexion
@@ -1928,7 +1731,6 @@
             // Afficher le dashboard
             document.getElementById('sidebar').style.display = 'block';
             document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('mainContent').classList.add('show');
             
             // Initialiser
             initDashboard();
@@ -1946,7 +1748,6 @@
                 // Cacher le dashboard
                 document.getElementById('sidebar').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'none';
-                document.getElementById('mainContent').classList.remove('show');
                 
                 // Afficher l'écran de connexion
                 document.getElementById('loginOverlay').style.display = 'flex';
@@ -1963,15 +1764,12 @@
         }
 
         // ===== PROTECTION DES ACCÈS =====
-        // Empêcher l'accès direct aux pages admin
         function protectAccess() {
             if (!isAuthenticated) {
-                // Forcer l'affichage du login
+                // Rediriger vers la connexion
                 document.getElementById('loginOverlay').style.display = 'flex';
                 document.getElementById('sidebar').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'none';
-                document.getElementById('mainContent').classList.remove('show');
-                
                 return false;
             }
             return true;
@@ -1979,7 +1777,6 @@
 
         // ===== FONCTIONS DU DASHBOARD =====
         function initDashboard() {
-            // Vérifier l'authentification
             if (!protectAccess()) return;
             
             // Mettre à jour la date
@@ -2028,22 +1825,6 @@
                         description: "Riz au poisson et légumes",
                         price: 6000,
                         available: true
-                    },
-                    {
-                        id: 3,
-                        name: "Mafé",
-                        category: "Plats principaux",
-                        description: "Ragoût de viande à la sauce arachide",
-                        price: 5500,
-                        available: true
-                    },
-                    {
-                        id: 4,
-                        name: "Salade César",
-                        category: "Entrées",
-                        description: "Salade avec poulet grillé et sauce césar",
-                        price: 3500,
-                        available: true
                     }
                 ];
                 localStorage.setItem('menuItems', JSON.stringify(products));
@@ -2056,7 +1837,6 @@
         }
 
         function setupEventListeners() {
-            // Vérifier l'authentification
             if (!protectAccess()) return;
             
             // Navigation par onglets
@@ -2073,31 +1853,26 @@
             // Navigation sidebar
             document.getElementById('dashboardLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                if (!protectAccess()) return;
                 showTab('dashboard');
             });
             
             document.getElementById('ordersLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                if (!protectAccess()) return;
                 showTab('orders');
             });
             
             document.getElementById('menuLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                if (!protectAccess()) return;
                 showTab('menu');
             });
             
             document.getElementById('customersLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                if (!protectAccess()) return;
                 showTab('customers');
             });
             
             document.getElementById('inventoryLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                if (!protectAccess()) return;
                 showTab('inventory');
             });
             
@@ -2108,7 +1883,6 @@
             
             // Bouton d'actualisation
             document.getElementById('refreshOrders').addEventListener('click', function() {
-                if (!protectAccess()) return;
                 loadData();
                 showNotification('Données actualisées!', 'success');
             });
@@ -2118,7 +1892,6 @@
             
             // Filtre des commandes
             document.getElementById('filterStatus').addEventListener('change', function() {
-                if (!protectAccess()) return;
                 filterAllOrders(this.value);
             });
         }
@@ -2196,253 +1969,7 @@
             document.getElementById('ordersBadge').textContent = pendingOrders;
         }
 
-        // ===== GESTION DES COMMANDES =====
-        function updateOrdersTable() {
-            if (!protectAccess()) return;
-            
-            const tbody = document.getElementById('ordersTableBody');
-            const emptyState = document.getElementById('emptyState');
-
-            if (orders.length === 0) {
-                tbody.innerHTML = '';
-                emptyState.style.display = 'block';
-                return;
-            }
-
-            emptyState.style.display = 'none';
-            
-            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-            
-            tbody.innerHTML = sortedOrders.map((order, index) => {
-                const orderIndex = orders.indexOf(order);
-                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-                const itemsList = order.items.map(item => 
-                    `<li>
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-quantity">×${item.quantity}</span>
-                    </li>`
-                ).join('');
-                
-                let statusClass = '';
-                switch(order.status) {
-                    case 'en attente': statusClass = 'status-pending'; break;
-                    case 'en préparation': statusClass = 'status-preparing'; break;
-                    case 'prête': statusClass = 'status-ready'; break;
-                    case 'livrée': statusClass = 'status-delivered'; break;
-                    case 'annulée': statusClass = 'status-cancelled'; break;
-                    default: statusClass = 'status-pending';
-                }
-
-                return `
-                    <tr>
-                        <td class="order-id">${orderNumber}</td>
-                        <td>
-                            <div class="customer-info">
-                                <div class="customer-name">${order.client?.name || 'Non spécifié'}</div>
-                                <div class="customer-phone">${order.client?.phone || 'Non spécifié'}</div>
-                            </div>
-                        </td>
-                        <td>
-                            <ul class="items-list">
-                                ${itemsList}
-                            </ul>
-                        </td>
-                        <td class="order-total">${formatPrice(order.total)}</td>
-                        <td class="order-date">${formatDate(order.date)}</td>
-                        <td>
-                            <span class="status-badge ${statusClass}">${order.status}</span>
-                        </td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
-                                    <i class="fas fa-file-pdf"></i>
-                                </button>
-                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Changer statut">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function loadAllOrders() {
-            if (!protectAccess()) return;
-            
-            const tbody = document.getElementById('allOrdersTable');
-            
-            if (orders.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="7" class="text-center py-5">
-                            <div class="empty-state">
-                                <i class="fas fa-shopping-cart"></i>
-                                <h3>Aucune commande</h3>
-                                <p>Les commandes passées par les clients apparaîtront ici</p>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            tbody.innerHTML = sortedOrders.map((order, index) => {
-                const orderIndex = orders.indexOf(order);
-                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-                const itemsList = order.items.map(item => 
-                    `<li>
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-quantity">×${item.quantity}</span>
-                    </li>`
-                ).join('');
-                
-                let statusClass = '';
-                switch(order.status) {
-                    case 'en attente': statusClass = 'status-pending'; break;
-                    case 'en préparation': statusClass = 'status-preparing'; break;
-                    case 'prête': statusClass = 'status-ready'; break;
-                    case 'livrée': statusClass = 'status-delivered'; break;
-                    case 'annulée': statusClass = 'status-cancelled'; break;
-                    default: statusClass = 'status-pending';
-                }
-
-                return `
-                    <tr>
-                        <td class="order-id">${orderNumber}</td>
-                        <td>
-                            <div class="customer-info">
-                                <div class="customer-name">${order.client?.name || 'Non spécifié'}</div>
-                                <div class="customer-phone">${order.client?.phone || 'Non spécifié'}</div>
-                            </div>
-                        </td>
-                        <td>
-                            <ul class="items-list">
-                                ${itemsList}
-                            </ul>
-                        </td>
-                        <td class="order-total">${formatPrice(order.total)}</td>
-                        <td class="order-date">${formatDate(order.date)}</td>
-                        <td>
-                            <span class="status-badge ${statusClass}">${order.status}</span>
-                        </td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
-                                    <i class="fas fa-file-pdf"></i>
-                                </button>
-                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Changer statut">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function filterAllOrders(status) {
-            if (!protectAccess()) return;
-            
-            const tbody = document.getElementById('allOrdersTable');
-            
-            let filteredOrders = orders;
-            if (status !== 'all') {
-                filteredOrders = orders.filter(order => order.status === status);
-            }
-            
-            if (filteredOrders.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="7" class="text-center py-5">
-                            <div class="empty-state">
-                                <i class="fas fa-shopping-cart"></i>
-                                <h3>Aucune commande</h3>
-                                <p>Aucune commande trouvée avec ce statut</p>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            const sortedOrders = [...filteredOrders].sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            tbody.innerHTML = sortedOrders.map((order, index) => {
-                const orderIndex = orders.indexOf(order);
-                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-                const itemsList = order.items.map(item => 
-                    `<li>
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-quantity">×${item.quantity}</span>
-                    </li>`
-                ).join('');
-                
-                let statusClass = '';
-                switch(order.status) {
-                    case 'en attente': statusClass = 'status-pending'; break;
-                    case 'en préparation': statusClass = 'status-preparing'; break;
-                    case 'prête': statusClass = 'status-ready'; break;
-                    case 'livrée': statusClass = 'status-delivered'; break;
-                    case 'annulée': statusClass = 'status-cancelled'; break;
-                    default: statusClass = 'status-pending';
-                }
-
-                return `
-                    <tr>
-                        <td class="order-id">${orderNumber}</td>
-                        <td>
-                            <div class="customer-info">
-                                <div class="customer-name">${order.client?.name || 'Non spécifié'}</div>
-                                <div class="customer-phone">${order.client?.phone || 'Non spécifié'}</div>
-                            </div>
-                        </td>
-                        <td>
-                            <ul class="items-list">
-                                ${itemsList}
-                            </ul>
-                        </td>
-                        <td class="order-total">${formatPrice(order.total)}</td>
-                        <td class="order-date">${formatDate(order.date)}</td>
-                        <td>
-                            <span class="status-badge ${statusClass}">${order.status}</span>
-                        </td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
-                                    <i class="fas fa-file-pdf"></i>
-                                </button>
-                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Changer statut">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        // ===== FACTURE PDF CLAIRE ET LISIBLE =====
+        // ===== FACTURE PDF OPTIMISÉE POUR MOBILE =====
         function generateInvoiceForOrder(orderIndex) {
             if (!protectAccess()) return;
             
@@ -2465,63 +1992,63 @@
                 orderIndex
             };
             
-            // Construire le contenu HTML de la facture CLAIRE
+            // Construire le contenu HTML de la facture OPTIMISÉ POUR MOBILE
             const invoiceHTML = `
-                <div class="invoice-pdf-clear">
-                    <div class="invoice-header-clear">
-                        <div class="company-info-clear">
-                            <div class="company-logo-clear">
-                                <i class="fas fa-utensils"></i> CASA MIA RESTAURANT
+                <div class="invoice-pdf-mobile">
+                    <div class="invoice-header-mobile">
+                        <div class="company-info-mobile">
+                            <div class="company-logo-mobile">
+                                <i class="fas fa-utensils"></i> CASA MIA
                             </div>
-                            <div style="font-size: 13px; margin-top: 5px; line-height: 1.4;">
-                                <strong>Adresse:</strong> Saint-Louis, Route de Khor<br>
-                                <strong>Téléphone:</strong> +221 33 123 45 67<br>
-                                <strong>Email:</strong> contact@casamia.sn<br>
+                            <div class="company-contact-mobile">
+                                <strong>Restaurant Sénégalais</strong><br>
+                                Saint-Louis, Route de Khor<br>
+                                <strong>Téléphone:</strong> 77 206 81 81<br>
+                                <strong>Email:</strong> tafa.wade@gmail.com<br>
                                 <strong>NIF:</strong> 1234567890
                             </div>
                         </div>
-                        <div class="invoice-title-clear">
+                        <div class="invoice-title-mobile">
                             <h1>FACTURE</h1>
-                            <div class="invoice-number-clear">
-                                <strong>N° Facture:</strong> ${invoiceNumber}
+                            <div class="invoice-number-mobile">
+                                <strong>N°:</strong> ${invoiceNumber}
                             </div>
-                            <div style="font-size: 13px; margin-top: 5px;">
+                            <div style="font-size: 11px;">
                                 <strong>Date:</strong> ${formatDate(order.date)}<br>
                                 <strong>Commande:</strong> ${orderNumber}
                             </div>
                         </div>
                     </div>
                     
-                    <div class="invoice-details-clear">
-                        <div class="client-info-clear">
-                            <div class="section-title-clear">INFORMATIONS CLIENT</div>
-                            <div style="font-size: 13px; line-height: 1.6;">
-                                <strong>${order.client?.name || 'Client non spécifié'}</strong><br>
+                    <div class="invoice-details-mobile">
+                        <div class="client-info-mobile">
+                            <div class="section-title-mobile">INFORMATIONS CLIENT</div>
+                            <div style="font-size: 11px; line-height: 1.4;">
+                                <strong>${order.client?.name || 'Client'}</strong><br>
                                 ${order.client?.phone ? `Tél: ${order.client.phone}<br>` : ''}
                                 ${order.client?.address ? `Adresse: ${order.client.address}<br>` : ''}
                                 ${order.client?.email ? `Email: ${order.client.email}<br>` : ''}
-                                ${order.client?.notes ? `Notes: ${order.client.notes}` : ''}
                             </div>
                         </div>
                         
-                        <div class="order-info-clear">
-                            <div class="section-title-clear">DÉTAILS DE LA COMMANDE</div>
-                            <div style="font-size: 13px; line-height: 1.6;">
-                                <strong>Date de commande:</strong> ${formatDate(order.date)}<br>
-                                <strong>Statut:</strong> <span style="color: ${getStatusColor(order.status)}; font-weight: bold;">${order.status.toUpperCase()}</span><br>
-                                <strong>Mode de paiement:</strong> À la livraison
+                        <div class="order-info-mobile">
+                            <div class="section-title-mobile">DÉTAILS COMMANDE</div>
+                            <div style="font-size: 11px; line-height: 1.4;">
+                                <strong>Date:</strong> ${formatDate(order.date)}<br>
+                                <strong>Statut:</strong> <span style="color: ${getStatusColor(order.status)};">${order.status}</span><br>
+                                <strong>Paiement:</strong> À la livraison
                             </div>
                         </div>
                     </div>
                     
-                    <div class="section-title-clear">ARTICLES COMMANDÉS</div>
-                    <table class="invoice-table-clear">
+                    <div class="section-title-mobile">ARTICLES COMMANDÉS</div>
+                    <table class="invoice-table-mobile">
                         <thead>
                             <tr>
                                 <th>N°</th>
                                 <th>ARTICLE</th>
-                                <th class="text-center">PRIX UNITAIRE</th>
-                                <th class="text-center">QUANTITÉ</th>
+                                <th class="text-center">PRIX</th>
+                                <th class="text-center">QTE</th>
                                 <th class="text-right">MONTANT</th>
                             </tr>
                         </thead>
@@ -2530,71 +2057,69 @@
                                 <tr>
                                     <td>${index + 1}</td>
                                     <td>${item.name}</td>
-                                    <td class="text-center">${formatPriceSimple(item.price)} FCFA</td>
+                                    <td class="text-center">${formatPriceSimple(item.price)}</td>
                                     <td class="text-center">${item.quantity}</td>
-                                    <td class="text-right">${formatPriceSimple(item.price * item.quantity)} FCFA</td>
+                                    <td class="text-right">${formatPriceSimple(item.price * item.quantity)}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
                         <tfoot>
                             <tr style="background: #f8f9fa;">
-                                <td colspan="4" class="text-right" style="font-weight: bold; padding: 12px 15px;">
+                                <td colspan="4" class="text-right" style="font-weight: bold;">
                                     Sous-total:
                                 </td>
-                                <td class="text-right" style="font-weight: bold; padding: 12px 15px;">
-                                    ${formatPriceSimple(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))} FCFA
+                                <td class="text-right" style="font-weight: bold;">
+                                    ${formatPriceSimple(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))}
                                 </td>
                             </tr>
                             <tr style="background: #f8f9fa;">
-                                <td colspan="4" class="text-right" style="padding: 8px 15px;">
-                                    Frais de livraison:
+                                <td colspan="4" class="text-right">
+                                    Livraison:
                                 </td>
-                                <td class="text-right" style="padding: 8px 15px; color: #28a745;">
+                                <td class="text-right" style="color: #28a745;">
                                     GRATUIT
                                 </td>
                             </tr>
-                            <tr style="background: #FFFDE7; border-top: 2px solid #FFC107; border-bottom: 2px solid #FFC107;">
-                                <td colspan="4" class="text-right" style="font-weight: bold; padding: 15px; font-size: 14px;">
+                            <tr style="background: #FFFDE7; border-top: 2px solid #FFC107;">
+                                <td colspan="4" class="text-right" style="font-weight: bold; font-size: 12px;">
                                     TOTAL À PAYER:
                                 </td>
-                                <td class="text-right" style="font-weight: bold; padding: 15px; font-size: 16px; color: #FFA000;">
+                                <td class="text-right" style="font-weight: bold; font-size: 13px; color: #FFA000;">
                                     ${formatPriceSimple(order.total)} FCFA
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
                     
-                    <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #FFC107;">
-                        <div style="font-size: 13px; line-height: 1.6;">
-                            <strong><i class="fas fa-info-circle" style="color: #FFC107; margin-right: 8px;"></i>Conditions de paiement:</strong><br>
-                            • Paiement à la livraison uniquement<br>
-                            • Accepté: Espèces, Mobile Money (Orange Money, Free Money)<br>
-                            • Cette facture fait office de reçu officiel<br>
-                            • TVA non applicable, article 262 du CGI
-                        </div>
+                    <div class="conditions-mobile">
+                        <strong>Conditions de paiement:</strong><br>
+                        • Paiement à la livraison<br>
+                        • Accepté: Espèces, Mobile Money<br>
+                        • Facture = Reçu officiel<br>
+                        • TVA non applicable
                     </div>
                     
-                    <div class="stamp-clear">
-                        <div style="font-size: 16px; font-weight: bold; color: #FFA000; margin-bottom: 5px;">
+                    <div class="stamp-mobile">
+                        <div style="font-size: 12px; font-weight: bold; color: #FFA000;">
                             <i class="fas fa-stamp"></i> PAYÉ
                         </div>
-                        <div style="font-size: 13px;">
-                            ${new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        <div style="font-size: 10px; margin-top: 3px;">
+                            ${new Date().toLocaleDateString('fr-FR')}
                         </div>
-                        <div style="font-size: 11px; margin-top: 8px; color: #666;">
+                        <div style="font-size: 9px; margin-top: 5px; color: #666;">
                             Signature & Cachet
                         </div>
                     </div>
                     
-                    <div class="footer-clear">
-                        <p style="margin: 0 0 10px 0; font-size: 13px; font-weight: bold;">
-                            <i class="fas fa-heart" style="color: #FFC107;"></i> Merci pour votre confiance !
+                    <div class="footer-mobile">
+                        <p style="margin: 0 0 5px 0; font-size: 10px; font-weight: bold;">
+                            Merci pour votre confiance !
                         </p>
-                        <p style="margin: 0; font-size: 12px;">
+                        <p style="margin: 0;">
                             Casa Mia Restaurant - La saveur de chez nous<br>
-                            Tél: +221 33 123 45 67 | Email: contact@casamia.sn | Site: www.casamia.sn
+                            Tél: 77 206 81 81 | Email: tafa.wade@gmail.com
                         </p>
-                        <p style="margin: 8px 0 0 0; font-size: 11px; color: #999;">
+                        <p style="margin: 5px 0 0 0; color: #999;">
                             Facture générée automatiquement • N° ${invoiceNumber}
                         </p>
                     </div>
@@ -2643,17 +2168,17 @@
                 lineHeight: invoiceElement.style.lineHeight
             };
             
-            // Appliquer des styles optimisés pour le PDF
+            // Appliquer des styles optimisés pour le PDF mobile
             invoiceElement.style.width = '800px';
             invoiceElement.style.maxWidth = '800px';
             invoiceElement.style.margin = '0 auto';
-            invoiceElement.style.padding = '25px';
-            invoiceElement.style.fontSize = '14px';
-            invoiceElement.style.lineHeight = '1.5';
+            invoiceElement.style.padding = '20px';
+            invoiceElement.style.fontSize = '12px';
+            invoiceElement.style.lineHeight = '1.4';
             
-            // Optimisation pour une meilleure qualité
+            // Options optimisées pour mobile
             html2canvas(invoiceElement, {
-                scale: 3, // Haute résolution
+                scale: 3, // Haute résolution pour mobile
                 useCORS: true,
                 logging: false,
                 backgroundColor: '#ffffff',
@@ -2667,28 +2192,21 @@
                         clonedElement.style.width = '800px';
                         clonedElement.style.maxWidth = '800px';
                         clonedElement.style.boxSizing = 'border-box';
-                        clonedElement.style.fontSize = '14px';
-                        clonedElement.style.lineHeight = '1.5';
-                        clonedElement.style.padding = '25px';
-                        
-                        // Augmenter la taille des polices pour le PDF
-                        const allElements = clonedElement.querySelectorAll('*');
-                        allElements.forEach(el => {
-                            const currentSize = window.getComputedStyle(el).fontSize;
-                            const sizeNum = parseInt(currentSize);
-                            if (!isNaN(sizeNum) && sizeNum < 12) {
-                                el.style.fontSize = '12px';
-                            }
-                        });
+                        clonedElement.style.fontSize = '12px';
+                        clonedElement.style.lineHeight = '1.4';
+                        clonedElement.style.fontFamily = 'Arial, sans-serif';
                     }
                 }
             }).then(canvas => {
                 // Restaurer les styles originaux
-                Object.keys(originalStyles).forEach(key => {
-                    invoiceElement.style[key] = originalStyles[key];
-                });
+                invoiceElement.style.width = originalStyles.width;
+                invoiceElement.style.maxWidth = originalStyles.maxWidth;
+                invoiceElement.style.margin = originalStyles.margin;
+                invoiceElement.style.padding = originalStyles.padding;
+                invoiceElement.style.fontSize = originalStyles.fontSize;
+                invoiceElement.style.lineHeight = originalStyles.lineHeight;
                 
-                const imgData = canvas.toDataURL('image/png', 1.0);
+                const imgData = canvas.toDataURL('image/png');
                 const pdf = new jspdf.jsPDF({
                     orientation: 'portrait',
                     unit: 'mm',
@@ -2698,33 +2216,28 @@
                 const pdfWidth = pdf.internal.pageSize.getWidth();
                 const pdfHeight = pdf.internal.pageSize.getHeight();
                 
-                // Calculer les dimensions pour une seule page
-                const imgWidth = pdfWidth - 20; // Marges de 10mm
+                // Calculer la hauteur de l'image pour qu'elle s'adapte à la page
+                const imgWidth = 190; // Largeur fixe pour mobile
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 
-                // S'assurer que tout tient sur une page
-                let finalHeight = imgHeight;
-                if (finalHeight > pdfHeight - 20) {
-                    finalHeight = pdfHeight - 20;
-                    const finalWidth = (canvas.width * finalHeight) / canvas.height;
-                    pdf.addImage(imgData, 'PNG', 10, 10, finalWidth, finalHeight);
-                } else {
-                    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-                }
+                // Ajouter l'image au PDF
+                pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
                 
-                const fileName = `facture-casamia-${currentInvoiceData.invoiceNumber}.pdf`;
-                pdf.save(fileName);
+                // Télécharger le PDF
+                pdf.save(`Facture-${currentInvoiceData.invoiceNumber}.pdf`);
                 
-                showNotification('Facture PDF téléchargée avec succès!', 'success');
-                
+                showNotification('PDF téléchargé avec succès!', 'success');
             }).catch(error => {
                 console.error('Erreur lors de la génération du PDF:', error);
                 showNotification('Erreur lors de la génération du PDF', 'error');
                 
-                // Restaurer les styles en cas d'erreur
-                Object.keys(originalStyles).forEach(key => {
-                    invoiceElement.style[key] = originalStyles[key];
-                });
+                // Restaurer les styles originaux en cas d'erreur
+                invoiceElement.style.width = originalStyles.width;
+                invoiceElement.style.maxWidth = originalStyles.maxWidth;
+                invoiceElement.style.margin = originalStyles.margin;
+                invoiceElement.style.padding = originalStyles.padding;
+                invoiceElement.style.fontSize = originalStyles.fontSize;
+                invoiceElement.style.lineHeight = originalStyles.lineHeight;
             });
         }
 
@@ -2736,77 +2249,121 @@
                 return;
             }
             
-            const printContent = document.getElementById('invoiceContent').innerHTML;
-            const printWindow = window.open('', '_blank', 'width=800,height=600');
+            const printWindow = window.open('', '_blank');
+            const invoiceContent = document.getElementById('invoiceContent').innerHTML;
             
             printWindow.document.write(`
                 <!DOCTYPE html>
-                <html>
+                <html lang="fr">
                 <head>
-                    <title>Facture Casa Mia - ${currentInvoiceData.invoiceNumber}</title>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Facture ${currentInvoiceData.invoiceNumber}</title>
                     <style>
-                        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-                        
-                        body { 
+                        body {
                             font-family: Arial, sans-serif;
-                            margin: 0; 
-                            padding: 20px; 
+                            margin: 0;
+                            padding: 20px;
                             color: #000;
-                            background: white;
-                            -webkit-print-color-adjust: exact !important;
-                            print-color-adjust: exact !important;
+                            font-size: 12px;
+                            line-height: 1.4;
                         }
-                        @media print {
-                            @page { 
-                                margin: 15mm; 
-                                size: A4;
-                            }
-                            body { 
-                                margin: 0;
-                                padding: 0;
-                            }
-                            .invoice-pdf-clear {
-                                padding: 0 !important;
-                                max-width: 100% !important;
-                            }
-                        }
-                        .invoice-pdf-clear {
+                        
+                        .invoice-pdf-mobile {
                             width: 100%;
                             max-width: 800px;
                             margin: 0 auto;
-                            padding: 25px;
+                            padding: 20px;
                             background: white;
-                            font-family: Arial, sans-serif;
-                            color: #000;
-                            font-size: 14px !important;
-                            line-height: 1.5;
                         }
-                        table {
+                        
+                        .invoice-header-mobile {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 15px;
+                            margin-bottom: 20px;
+                            padding-bottom: 15px;
+                            border-bottom: 2px solid #FFC107;
+                        }
+                        
+                        .company-logo-mobile {
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: #FFC107;
+                            margin-bottom: 8px;
+                        }
+                        
+                        .invoice-title-mobile h1 {
+                            font-size: 22px;
+                            font-weight: bold;
+                            color: #FFA000;
+                            margin: 0 0 10px 0;
+                        }
+                        
+                        .invoice-table-mobile {
                             width: 100%;
                             border-collapse: collapse;
-                            margin: 20px 0;
-                            font-size: 13px !important;
+                            margin: 15px 0;
+                            font-size: 10px;
                         }
-                        th {
-                            background: #FFC107 !important;
-                            padding: 12px 15px !important;
+                        
+                        .invoice-table-mobile th {
+                            background: #FFC107;
+                            color: white;
+                            padding: 8px 6px;
                             text-align: left;
-                            color: white !important;
                             font-weight: bold;
-                            border: none !important;
                         }
-                        td {
-                            padding: 10px 15px !important;
-                            border-bottom: 1px solid #ddd !important;
+                        
+                        .invoice-table-mobile td {
+                            padding: 6px;
+                            border-bottom: 1px solid #ddd;
                         }
-                        .text-right { text-align: right !important; }
-                        .text-center { text-align: center !important; }
+                        
+                        .text-right {
+                            text-align: right;
+                        }
+                        
+                        .text-center {
+                            text-align: center;
+                        }
+                        
+                        .stamp-mobile {
+                            text-align: center;
+                            margin: 20px auto;
+                            padding: 15px 25px;
+                            border: 2px solid #FFC107;
+                            border-radius: 3px;
+                            display: inline-block;
+                            transform: rotate(-5deg);
+                            background: rgba(255, 193, 7, 0.05);
+                        }
+                        
+                        @media print {
+                            body {
+                                padding: 0;
+                            }
+                            .invoice-pdf-mobile {
+                                padding: 10mm !important;
+                                margin: 0 !important;
+                                max-width: 100% !important;
+                            }
+                            .stamp-mobile {
+                                transform: rotate(-5deg) !important;
+                            }
+                        }
                     </style>
                 </head>
-                <body onload="window.print(); setTimeout(() => window.close(), 500);">
-                    ${printContent}
+                <body>
+                    ${invoiceContent}
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            setTimeout(function() {
+                                window.close();
+                            }, 1000);
+                        };
+                    <\/script>
                 </body>
                 </html>
             `);
@@ -2814,20 +2371,85 @@
             printWindow.document.close();
         }
 
-        // ===== GESTION DES PRODUITS (MENU) =====
-        function updateMenuTable() {
+        // ===== GESTION DES COMMANDES =====
+        function updateOrdersTable() {
             if (!protectAccess()) return;
             
-            const tbody = document.getElementById('menuTableBody');
+            const tableBody = document.getElementById('ordersTableBody');
+            const emptyState = document.getElementById('emptyState');
             
-            if (products.length === 0) {
-                tbody.innerHTML = `
+            if (orders.length === 0) {
+                tableBody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            // Trier par date (plus récent d'abord)
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Prendre les 10 dernières commandes
+            const recentOrders = sortedOrders.slice(0, 10);
+            
+            tableBody.innerHTML = recentOrders.map((order, index) => {
+                const orderIndex = orders.indexOf(order);
+                const itemsList = order.items.map(item => 
+                    `<li><span>${item.name}</span> <span>${item.quantity}x</span></li>`
+                ).join('');
+                
+                return `
                     <tr>
-                        <td colspan="6" class="text-center py-5">
+                        <td><span class="order-id">CMD-${String(orderIndex + 1).padStart(4, '0')}</span></td>
+                        <td>
+                            <div class="customer-info">
+                                <span class="customer-name">${order.client?.name || 'Client'}</span>
+                                <span class="customer-phone">${order.client?.phone || ''}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="items-list">
+                                ${itemsList}
+                            </ul>
+                        </td>
+                        <td><span class="order-total">${formatPrice(order.total)}</span></td>
+                        <td><span class="order-date">${formatDate(order.date)}</span></td>
+                        <td>
+                            <span class="status-badge status-${getStatusClass(order.status)}">
+                                ${order.status}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Modifier statut">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
+                                    <i class="fas fa-file-invoice"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function loadAllOrders() {
+            if (!protectAccess()) return;
+            
+            const tableBody = document.getElementById('allOrdersTable');
+            
+            if (orders.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
                             <div class="empty-state">
-                                <i class="fas fa-utensils"></i>
-                                <h3>Aucun produit</h3>
-                                <p>Ajoutez des produits à votre menu</p>
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Aucune commande</h3>
+                                <p>Les commandes passées par les clients apparaîtront ici</p>
                             </div>
                         </td>
                     </tr>
@@ -2835,29 +2457,300 @@
                 return;
             }
             
-            tbody.innerHTML = products.map(product => `
+            // Trier par date (plus récent d'abord)
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            tableBody.innerHTML = sortedOrders.map((order, index) => {
+                const orderIndex = orders.indexOf(order);
+                const itemsList = order.items.map(item => 
+                    `<li><span>${item.name}</span> <span>${item.quantity}x</span></li>`
+                ).join('');
+                
+                return `
+                    <tr>
+                        <td><span class="order-id">CMD-${String(orderIndex + 1).padStart(4, '0')}</span></td>
+                        <td>
+                            <div class="customer-info">
+                                <span class="customer-name">${order.client?.name || 'Client'}</span>
+                                <span class="customer-phone">${order.client?.phone || ''}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="items-list">
+                                ${itemsList}
+                            </ul>
+                        </td>
+                        <td><span class="order-total">${formatPrice(order.total)}</span></td>
+                        <td><span class="order-date">${formatDate(order.date)}</span></td>
+                        <td>
+                            <span class="status-badge status-${getStatusClass(order.status)}">
+                                ${order.status}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewOrderDetails(${orderIndex})" title="Voir détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-edit" onclick="editOrderStatus(${orderIndex})" title="Modifier statut">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-invoice" onclick="generateInvoiceForOrder(${orderIndex})" title="Générer facture">
+                                    <i class="fas fa-file-invoice"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteOrder(${orderIndex})" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function getStatusClass(status) {
+            const statusMap = {
+                'en attente': 'pending',
+                'en préparation': 'preparing',
+                'prête': 'ready',
+                'livrée': 'delivered',
+                'annulée': 'cancelled'
+            };
+            return statusMap[status] || 'pending';
+        }
+
+        function viewOrderDetails(orderIndex) {
+            if (!protectAccess()) return;
+            
+            if (orderIndex < 0 || orderIndex >= orders.length) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const order = orders[orderIndex];
+            selectedOrderId = orderIndex;
+            
+            // Mettre à jour le modal
+            document.getElementById('modalOrderId').textContent = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
+            document.getElementById('modalClientName').textContent = order.client?.name || 'Client';
+            document.getElementById('modalClientPhone').textContent = order.client?.phone || 'Non spécifié';
+            document.getElementById('modalClientAddress').textContent = order.client?.address || 'Non spécifié';
+            document.getElementById('modalClientNotes').textContent = order.client?.notes || 'Aucune';
+            document.getElementById('modalOrderDate').textContent = formatDate(order.date);
+            document.getElementById('modalOrderStatus').textContent = order.status;
+            document.getElementById('modalOrderTotal').textContent = formatPrice(order.total);
+            
+            // Mettre à jour les articles
+            const itemsBody = document.getElementById('modalOrderItems');
+            itemsBody.innerHTML = order.items.map(item => `
                 <tr>
-                    <td>${product.name}</td>
-                    <td>${product.category}</td>
-                    <td>${product.description || '-'}</td>
-                    <td>${formatPrice(product.price)}</td>
-                    <td>
-                        <span class="badge ${product.available ? 'bg-success' : 'bg-danger'}">
-                            ${product.available ? 'Disponible' : 'Indisponible'}
-                        </span>
-                    </td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-action btn-edit" onclick="editProduct(${product.id})" title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-action btn-delete" onclick="deleteProduct(${product.id})" title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
+                    <td>${item.name}</td>
+                    <td>${formatPrice(item.price)}</td>
+                    <td>${item.quantity}</td>
+                    <td>${formatPrice(item.price * item.quantity)}</td>
                 </tr>
             `).join('');
+            
+            // Configurer les boutons d'action
+            document.getElementById('btnChangeStatus').onclick = function() {
+                changeOrderStatus(orderIndex);
+            };
+            
+            document.getElementById('btnCancelOrder').onclick = function() {
+                cancelOrder(orderIndex);
+            };
+            
+            // Afficher le modal
+            const modal = new bootstrap.Modal(document.getElementById('orderDetailsModal'));
+            modal.show();
+        }
+
+        function changeOrderStatus(orderIndex) {
+            if (!protectAccess()) return;
+            
+            if (orderIndex < 0 || orderIndex >= orders.length) {
+                showNotification('Commande non trouvée', 'error');
+                return;
+            }
+            
+            const order = orders[orderIndex];
+            const statuses = ['en attente', 'en préparation', 'prête', 'livrée', 'annulée'];
+            
+            const currentIndex = statuses.indexOf(order.status);
+            const nextIndex = (currentIndex + 1) % statuses.length;
+            
+            // Sauter "annulée" si ce n'est pas déjà le statut
+            if (order.status !== 'annulée' && statuses[nextIndex] === 'annulée') {
+                order.status = 'livrée';
+            } else {
+                order.status = statuses[nextIndex];
+            }
+            
+            // Sauvegarder
+            localStorage.setItem('orderHistory', JSON.stringify(orders));
+            
+            // Mettre à jour l'affichage
+            updateStatistics();
+            updateOrdersTable();
+            loadAllOrders();
+            
+            // Mettre à jour le modal
+            document.getElementById('modalOrderStatus').textContent = order.status;
+            
+            showNotification(`Statut changé en: ${order.status}`, 'success');
+        }
+
+        function editOrderStatus(orderIndex) {
+            if (!protectAccess()) return;
+            
+            const newStatus = prompt('Changer le statut de la commande (en attente, en préparation, prête, livrée, annulée):', orders[orderIndex].status);
+            
+            if (newStatus && ['en attente', 'en préparation', 'prête', 'livrée', 'annulée'].includes(newStatus.toLowerCase())) {
+                orders[orderIndex].status = newStatus.toLowerCase();
+                localStorage.setItem('orderHistory', JSON.stringify(orders));
+                
+                updateStatistics();
+                updateOrdersTable();
+                loadAllOrders();
+                
+                showNotification('Statut mis à jour!', 'success');
+            } else if (newStatus) {
+                showNotification('Statut invalide', 'error');
+            }
+        }
+
+        function cancelOrder(orderIndex) {
+            if (!protectAccess()) return;
+            
+            if (confirm('Êtes-vous sûr de vouloir annuler cette commande?')) {
+                orders[orderIndex].status = 'annulée';
+                localStorage.setItem('orderHistory', JSON.stringify(orders));
+                
+                updateStatistics();
+                updateOrdersTable();
+                loadAllOrders();
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal'));
+                if (modal) modal.hide();
+                
+                showNotification('Commande annulée', 'info');
+            }
+        }
+
+        function deleteOrder(orderIndex) {
+            if (!protectAccess()) return;
+            
+            if (confirm('Êtes-vous sûr de vouloir supprimer définitivement cette commande?')) {
+                orders.splice(orderIndex, 1);
+                localStorage.setItem('orderHistory', JSON.stringify(orders));
+                
+                updateStatistics();
+                updateOrdersTable();
+                loadAllOrders();
+                
+                showNotification('Commande supprimée', 'info');
+            }
+        }
+
+        function filterAllOrders(status) {
+            if (!protectAccess()) return;
+            
+            const rows = document.querySelectorAll('#allOrdersTable tr');
+            
+            rows.forEach(row => {
+                if (row.cells[5]) {
+                    const rowStatus = row.cells[5].querySelector('.status-badge').textContent.trim();
+                    if (status === 'all' || rowStatus === status) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function exportOrders() {
+            if (!protectAccess()) return;
+            
+            if (orders.length === 0) {
+                showNotification('Aucune commande à exporter', 'warning');
+                return;
+            }
+            
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "ID,Client,Téléphone,Total,Date,Statut\n"
+                + orders.map((order, index) => {
+                    return [
+                        `CMD-${String(index + 1).padStart(4, '0')}`,
+                        `"${order.client?.name || ''}"`,
+                        `"${order.client?.phone || ''}"`,
+                        order.total,
+                        `"${formatDate(order.date)}"`,
+                        order.status
+                    ].join(',');
+                }).join('\n');
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `commandes_casa_mia_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('Commandes exportées en CSV!', 'success');
+        }
+
+        // ===== GESTION DU MENU =====
+        function updateMenuTable() {
+            if (!protectAccess()) return;
+            
+            const tableBody = document.getElementById('menuTableBody');
+            
+            if (products.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <div class="empty-state">
+                                <i class="fas fa-utensils"></i>
+                                <h3>Aucun produit</h3>
+                                <p>Ajoutez votre premier produit au menu</p>
+                                <button class="btn btn-primary mt-3" onclick="openProductModal()">
+                                    <i class="fas fa-plus me-1"></i> Ajouter un produit
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tableBody.innerHTML = products.map((product, index) => {
+                return `
+                    <tr>
+                        <td><strong>${product.name}</strong></td>
+                        <td><span class="badge bg-warning">${product.category}</span></td>
+                        <td>${product.description || '-'}</td>
+                        <td><strong>${formatPrice(product.price)}</strong></td>
+                        <td>
+                            ${product.available ? 
+                                '<span class="badge bg-success">Disponible</span>' : 
+                                '<span class="badge bg-danger">Indisponible</span>'}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-edit" onclick="editProduct(${product.id})" title="Modifier">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteProduct(${product.id})" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         function openProductModal(productId = null) {
@@ -2865,12 +2758,15 @@
             
             const modal = new bootstrap.Modal(document.getElementById('productModal'));
             const form = document.getElementById('productForm');
+            const modalTitle = document.getElementById('productModalTitle');
+            
+            form.reset();
             
             if (productId) {
                 // Mode édition
-                document.getElementById('productModalTitle').textContent = 'Modifier le produit';
                 const product = products.find(p => p.id === productId);
                 if (product) {
+                    modalTitle.textContent = 'Modifier le produit';
                     document.getElementById('productId').value = product.id;
                     document.getElementById('productName').value = product.name;
                     document.getElementById('productCategory').value = product.category;
@@ -2880,8 +2776,7 @@
                 }
             } else {
                 // Mode ajout
-                document.getElementById('productModalTitle').textContent = 'Ajouter un produit';
-                form.reset();
+                modalTitle.textContent = 'Ajouter un produit';
                 document.getElementById('productId').value = '';
             }
             
@@ -2893,214 +2788,72 @@
             
             const form = document.getElementById('productForm');
             const productId = document.getElementById('productId').value;
-            const name = document.getElementById('productName').value.trim();
-            const category = document.getElementById('productCategory').value;
-            const description = document.getElementById('productDescription').value.trim();
-            const price = parseFloat(document.getElementById('productPrice').value);
-            const available = document.getElementById('productAvailable').checked;
+            const productName = document.getElementById('productName').value.trim();
+            const productCategory = document.getElementById('productCategory').value;
+            const productDescription = document.getElementById('productDescription').value.trim();
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+            const productAvailable = document.getElementById('productAvailable').checked;
             
             // Validation
-            if (!name || !category || isNaN(price) || price < 0) {
+            if (!productName || !productCategory || isNaN(productPrice) || productPrice < 0) {
                 showNotification('Veuillez remplir tous les champs obligatoires correctement', 'error');
                 return;
             }
             
             if (productId) {
-                // Mettre à jour le produit existant
+                // Édition
                 const index = products.findIndex(p => p.id === parseInt(productId));
                 if (index !== -1) {
                     products[index] = {
-                        id: parseInt(productId),
-                        name,
-                        category,
-                        description,
-                        price,
-                        available
+                        ...products[index],
+                        name: productName,
+                        category: productCategory,
+                        description: productDescription,
+                        price: productPrice,
+                        available: productAvailable
                     };
                 }
             } else {
-                // Ajouter un nouveau produit
+                // Ajout
                 const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
                     id: newId,
-                    name,
-                    category,
-                    description,
-                    price,
-                    available
+                    name: productName,
+                    category: productCategory,
+                    description: productDescription,
+                    price: productPrice,
+                    available: productAvailable
                 });
             }
             
-            // Sauvegarder dans localStorage
+            // Sauvegarder
             localStorage.setItem('menuItems', JSON.stringify(products));
+            
+            // Fermer le modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+            if (modal) modal.hide();
             
             // Mettre à jour l'affichage
             updateMenuTable();
             
-            // Fermer le modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
-            modal.hide();
-            
-            // Afficher une notification
-            showNotification(productId ? 'Produit modifié avec succès!' : 'Produit ajouté avec succès!', 'success');
+            showNotification(productId ? 'Produit modifié!' : 'Produit ajouté!', 'success');
         }
 
         function editProduct(productId) {
-            if (!protectAccess()) return;
             openProductModal(productId);
         }
 
         function deleteProduct(productId) {
             if (!protectAccess()) return;
             
-            if (confirm('Supprimer ce produit du menu?')) {
-                products = products.filter(product => product.id !== productId);
-                localStorage.setItem('menuItems', JSON.stringify(products));
-                updateMenuTable();
-                showNotification('Produit supprimé!', 'success');
-            }
-        }
-
-        // ===== AUTRES FONCTIONS DE GESTION =====
-        function viewOrderDetails(orderIndex) {
-            if (!protectAccess()) return;
-            
-            orderIndex = parseInt(orderIndex);
-            
-            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
-                showNotification('Commande non trouvée', 'error');
-                return;
-            }
-            
-            const order = orders[orderIndex];
-            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-            
-            // Mettre à jour le modal
-            document.getElementById('modalOrderId').textContent = orderNumber;
-            document.getElementById('modalClientName').textContent = order.client?.name || 'Non spécifié';
-            document.getElementById('modalClientPhone').textContent = order.client?.phone || 'Non spécifié';
-            document.getElementById('modalClientAddress').textContent = order.client?.address || 'Non spécifiée';
-            document.getElementById('modalClientNotes').textContent = order.client?.notes || 'Aucune note';
-            document.getElementById('modalOrderDate').textContent = formatDate(order.date);
-            document.getElementById('modalOrderTotal').textContent = formatPrice(order.total);
-            
-            // Statut
-            let statusText = order.status;
-            let statusClass = '';
-            switch(order.status) {
-                case 'en attente': statusClass = 'text-warning'; break;
-                case 'en préparation': statusClass = 'text-primary'; break;
-                case 'prête': statusClass = 'text-success'; break;
-                case 'livrée': statusClass = 'text-secondary'; break;
-                case 'annulée': statusClass = 'text-danger'; break;
-            }
-            document.getElementById('modalOrderStatus').innerHTML = `<span class="${statusClass} fw-bold">${statusText}</span>`;
-            
-            // Articles
-            const itemsTable = document.getElementById('modalOrderItems');
-            itemsTable.innerHTML = order.items.map(item => `
-                <tr>
-                    <td>${item.name}</td>
-                    <td>${formatPrice(item.price)}</td>
-                    <td>${item.quantity}</td>
-                    <td>${formatPrice(item.price * item.quantity)}</td>
-                </tr>
-            `).join('');
-            
-            selectedOrderId = orderIndex;
-            
-            // Configurer les boutons
-            document.getElementById('btnChangeStatus').onclick = () => editOrderStatus(orderIndex);
-            document.getElementById('btnGenerateInvoice').onclick = () => generateInvoiceForOrder(orderIndex);
-            document.getElementById('btnCancelOrder').onclick = () => cancelOrder(orderIndex);
-            
-            // Afficher le modal
-            const modal = new bootstrap.Modal(document.getElementById('orderDetailsModal'));
-            modal.show();
-        }
-
-        function editOrderStatus(orderIndex) {
-            if (!protectAccess()) return;
-            
-            orderIndex = parseInt(orderIndex);
-            
-            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
-                showNotification('Commande non trouvée', 'error');
-                return;
-            }
-            
-            const order = orders[orderIndex];
-            
-            const newStatus = prompt(
-                'Changer le statut de la commande:\n\n' +
-                '1. en attente\n' +
-                '2. en préparation\n' +
-                '3. prête\n' +
-                '4. livrée\n' +
-                '5. annulée\n\n' +
-                'Statut actuel: ' + order.status,
-                order.status
-            );
-            
-            if (newStatus && newStatus !== order.status) {
-                orders[orderIndex].status = newStatus;
-                localStorage.setItem('orderHistory', JSON.stringify(orders));
-                updateOrdersTable();
-                loadAllOrders();
-                updateStatistics();
-                showNotification('Statut mis à jour!', 'success');
-                
-                // Fermer le modal si ouvert
-                const modal = bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal'));
-                if (modal) modal.hide();
-            }
-        }
-
-        function cancelOrder(orderIndex) {
-            if (!protectAccess()) return;
-            
-            orderIndex = parseInt(orderIndex);
-            
-            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
-                showNotification('Commande non trouvée', 'error');
-                return;
-            }
-            
-            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-            
-            if (confirm(`Annuler la commande ${orderNumber}?`)) {
-                orders[orderIndex].status = 'annulée';
-                localStorage.setItem('orderHistory', JSON.stringify(orders));
-                updateOrdersTable();
-                loadAllOrders();
-                updateStatistics();
-                showNotification('Commande annulée!', 'success');
-                
-                // Fermer le modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal'));
-                if (modal) modal.hide();
-            }
-        }
-
-        function deleteOrder(orderIndex) {
-            if (!protectAccess()) return;
-            
-            orderIndex = parseInt(orderIndex);
-            
-            if (orderIndex < 0 || orderIndex >= orders.length || isNaN(orderIndex)) {
-                showNotification('Commande non trouvée', 'error');
-                return;
-            }
-            
-            const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-            
-            if (confirm(`Supprimer la commande ${orderNumber}?`)) {
-                orders.splice(orderIndex, 1);
-                localStorage.setItem('orderHistory', JSON.stringify(orders));
-                updateOrdersTable();
-                loadAllOrders();
-                updateStatistics();
-                showNotification('Commande supprimée!', 'success');
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce produit?')) {
+                const index = products.findIndex(p => p.id === productId);
+                if (index !== -1) {
+                    products.splice(index, 1);
+                    localStorage.setItem('menuItems', JSON.stringify(products));
+                    updateMenuTable();
+                    showNotification('Produit supprimé', 'info');
+                }
             }
         }
 
@@ -3108,44 +2861,42 @@
         function updateCustomersTable() {
             if (!protectAccess()) return;
             
-            const tbody = document.getElementById('customersTableBody');
+            const tableBody = document.getElementById('customersTableBody');
             
-            // Extraire les clients des commandes
-            const customersMap = new Map();
+            // Analyser les commandes pour extraire les clients
+            const clientsMap = new Map();
             
             orders.forEach(order => {
                 if (order.client && order.client.phone) {
                     const phone = order.client.phone;
-                    if (!customersMap.has(phone)) {
-                        customersMap.set(phone, {
+                    if (!clientsMap.has(phone)) {
+                        clientsMap.set(phone, {
                             name: order.client.name || 'Client',
                             phone: phone,
                             email: order.client.email || '',
-                            totalOrders: 0,
+                            orderCount: 0,
                             totalSpent: 0,
-                            lastOrder: order.date
+                            lastOrder: null
                         });
                     }
                     
-                    const customer = customersMap.get(phone);
-                    customer.totalOrders++;
-                    customer.totalSpent += parseFloat(order.total) || 0;
+                    const client = clientsMap.get(phone);
+                    client.orderCount += 1;
+                    client.totalSpent += parseFloat(order.total) || 0;
                     
-                    // Mettre à jour la dernière commande si plus récente
                     const orderDate = new Date(order.date);
-                    const lastOrderDate = new Date(customer.lastOrder || 0);
-                    if (orderDate > lastOrderDate) {
-                        customer.lastOrder = order.date;
+                    if (!client.lastOrder || orderDate > new Date(client.lastOrder)) {
+                        client.lastOrder = order.date;
                     }
                 }
             });
             
-            const customers = Array.from(customersMap.values());
+            const clients = Array.from(clientsMap.values());
             
-            if (customers.length === 0) {
-                tbody.innerHTML = `
+            if (clients.length === 0) {
+                tableBody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="text-center py-5">
+                        <td colspan="7" class="text-center py-4">
                             <div class="empty-state">
                                 <i class="fas fa-users"></i>
                                 <h3>Aucun client</h3>
@@ -3157,135 +2908,169 @@
                 return;
             }
             
-            tbody.innerHTML = customers.map(customer => `
-                <tr>
-                    <td>${customer.name}</td>
-                    <td>${customer.phone}</td>
-                    <td>${customer.email || '-'}</td>
-                    <td>${customer.totalOrders}</td>
-                    <td>${formatPrice(customer.totalSpent)}</td>
-                    <td>${formatDate(customer.lastOrder)}</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-action btn-view" onclick="viewCustomerDetails('${customer.phone}')" title="Voir détails">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="btn-action btn-edit" onclick="contactCustomer('${customer.phone}')" title="Contacter">
-                                <i class="fas fa-phone"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
+            // Trier par dernière commande (plus récente d'abord)
+            clients.sort((a, b) => new Date(b.lastOrder) - new Date(a.lastOrder));
+            
+            tableBody.innerHTML = clients.map(client => {
+                return `
+                    <tr>
+                        <td><strong>${client.name}</strong></td>
+                        <td>${client.phone}</td>
+                        <td>${client.email || '-'}</td>
+                        <td><span class="badge bg-primary">${client.orderCount} commande(s)</span></td>
+                        <td><strong>${formatPrice(client.totalSpent)}</strong></td>
+                        <td>${client.lastOrder ? formatDate(client.lastOrder) : '-'}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewClientDetails('${client.phone}')" title="Voir détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-edit" title="Modifier" disabled>
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
 
-        function viewCustomerDetails(phone) {
+        function viewClientDetails(phone) {
             if (!protectAccess()) return;
             
-            const customerOrders = orders.filter(order => 
+            // Filtrer les commandes de ce client
+            const clientOrders = orders.filter(order => 
                 order.client && order.client.phone === phone
             );
             
-            if (customerOrders.length === 0) {
-                showNotification('Client non trouvé', 'error');
-                return;
-            }
+            if (clientOrders.length === 0) return;
             
-            const customer = customerOrders[0].client;
-            let message = `Client: ${customer.name || 'Non spécifié'}\n`;
-            message += `Téléphone: ${phone}\n`;
-            message += `Email: ${customer.email || 'Non spécifié'}\n`;
-            message += `Total commandes: ${customerOrders.length}\n`;
-            message += `Total dépensé: ${formatPrice(customerOrders.reduce((sum, order) => sum + (parseFloat(order.total) || 0), 0))}\n\n`;
-            message += `Dernières commandes:\n`;
+            const client = clientOrders[0].client;
+            let message = `Client: ${client.name}\n`;
+            message += `Téléphone: ${client.phone}\n`;
+            message += `Email: ${client.email || 'Non spécifié'}\n`;
+            message += `Adresse: ${client.address || 'Non spécifiée'}\n`;
+            message += `\nCommandes: ${clientOrders.length}\n`;
+            message += `Total dépensé: ${formatPrice(clientOrders.reduce((sum, order) => sum + (parseFloat(order.total) || 0), 0))}\n\n`;
+            message += 'Dernières commandes:\n';
             
-            customerOrders.slice(0, 3).forEach(order => {
+            clientOrders.slice(0, 5).forEach((order, index) => {
                 const orderIndex = orders.indexOf(order);
-                const orderNumber = `CMD-${String(orderIndex + 1).padStart(4, '0')}`;
-                message += `- ${orderNumber}: ${formatPrice(order.total)} (${order.status})\n`;
+                message += `${index + 1}. CMD-${String(orderIndex + 1).padStart(4, '0')} - ${formatDate(order.date)} - ${order.status} - ${formatPrice(order.total)}\n`;
             });
             
             alert(message);
         }
 
-        function contactCustomer(phone) {
+        function exportCustomers() {
             if (!protectAccess()) return;
             
-            if (confirm(`Appeler le client ${phone}?`)) {
-                window.location.href = `tel:${phone}`;
+            // Analyser les commandes pour extraire les clients
+            const clientsMap = new Map();
+            
+            orders.forEach(order => {
+                if (order.client && order.client.phone) {
+                    const phone = order.client.phone;
+                    if (!clientsMap.has(phone)) {
+                        clientsMap.set(phone, {
+                            name: order.client.name || 'Client',
+                            phone: phone,
+                            email: order.client.email || '',
+                            orderCount: 0,
+                            totalSpent: 0,
+                            lastOrder: null
+                        });
+                    }
+                    
+                    const client = clientsMap.get(phone);
+                    client.orderCount += 1;
+                    client.totalSpent += parseFloat(order.total) || 0;
+                    
+                    const orderDate = new Date(order.date);
+                    if (!client.lastOrder || orderDate > new Date(client.lastOrder)) {
+                        client.lastOrder = order.date;
+                    }
+                }
+            });
+            
+            const clients = Array.from(clientsMap.values());
+            
+            if (clients.length === 0) {
+                showNotification('Aucun client à exporter', 'warning');
+                return;
             }
+            
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "Nom,Téléphone,Email,Commandes,Total dépensé,Dernière commande\n"
+                + clients.map(client => {
+                    return [
+                        `"${client.name}"`,
+                        `"${client.phone}"`,
+                        `"${client.email}"`,
+                        client.orderCount,
+                        client.totalSpent,
+                        `"${client.lastOrder ? formatDate(client.lastOrder) : ''}"`
+                    ].join(',');
+                }).join('\n');
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `clients_casa_mia_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('Clients exportés en CSV!', 'success');
         }
 
         // ===== GESTION DE L'INVENTAIRE =====
         function updateInventoryTable() {
             if (!protectAccess()) return;
             
-            const tbody = document.getElementById('inventoryTableBody');
+            const tableBody = document.getElementById('inventoryTableBody');
             
-            // Données d'exemple pour l'inventaire
-            const inventoryItems = [
-                {
-                    id: 1,
-                    name: "Poulet",
-                    category: "Viandes",
-                    stock: 50,
-                    minStock: 20,
-                    unit: "kg",
-                    status: "normal"
-                },
-                {
-                    id: 2,
-                    name: "Riz",
-                    category: "Céréales",
-                    stock: 100,
-                    minStock: 30,
-                    unit: "kg",
-                    status: "normal"
-                },
-                {
-                    id: 3,
-                    name: "Oignons",
-                    category: "Légumes",
-                    stock: 25,
-                    minStock: 10,
-                    unit: "kg",
-                    status: "normal"
-                },
-                {
-                    id: 4,
-                    name: "Huile",
-                    category: "Épicerie",
-                    stock: 15,
-                    minStock: 5,
-                    unit: "litres",
-                    status: "normal"
-                }
+            // Récupérer l'inventaire depuis localStorage ou initialiser
+            let inventory = JSON.parse(localStorage.getItem('inventory')) || [
+                { id: 1, name: "Riz", category: "Céréales", currentStock: 50, minStock: 10, unit: "kg", status: "bon" },
+                { id: 2, name: "Poulet", category: "Viandes", currentStock: 20, minStock: 5, unit: "kg", status: "bon" },
+                { id: 3, name: "Poisson", category: "Poissons", currentStock: 15, minStock: 8, unit: "kg", status: "attention" },
+                { id: 4, name: "Huile", category: "Condiments", currentStock: 8, minStock: 3, unit: "L", status: "bon" },
+                { id: 5, name: "Oignons", category: "Légumes", currentStock: 30, minStock: 10, unit: "kg", status: "bon" }
             ];
             
-            tbody.innerHTML = inventoryItems.map(item => {
-                let statusClass = 'bg-success';
-                let statusText = 'Normal';
-                
-                if (item.stock <= item.minStock) {
-                    statusClass = 'bg-danger';
-                    statusText = 'Stock faible';
-                } else if (item.stock <= item.minStock * 1.5) {
-                    statusClass = 'bg-warning';
-                    statusText = 'Attention';
+            localStorage.setItem('inventory', JSON.stringify(inventory));
+            
+            tableBody.innerHTML = inventory.map(item => {
+                let statusBadge = '';
+                if (item.status === 'bon') {
+                    statusBadge = '<span class="badge bg-success">Bon stock</span>';
+                } else if (item.status === 'attention') {
+                    statusBadge = '<span class="badge bg-warning">Attention</span>';
+                } else {
+                    statusBadge = '<span class="badge bg-danger">Urgent</span>';
                 }
                 
                 return `
                     <tr>
-                        <td>${item.name}</td>
-                        <td>${item.category}</td>
-                        <td>${item.stock} ${item.unit}</td>
-                        <td>${item.minStock} ${item.unit}</td>
-                        <td>${item.unit}</td>
+                        <td><strong>${item.name}</strong></td>
+                        <td><span class="badge bg-secondary">${item.category}</span></td>
                         <td>
-                            <span class="badge ${statusClass}">
-                                ${statusText}
-                            </span>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.1rem; font-weight: bold;">${item.currentStock}</span>
+                                <div style="flex-grow: 1;">
+                                    <div class="progress" style="height: 10px;">
+                                        <div class="progress-bar ${item.currentStock <= item.minStock ? 'bg-danger' : 'bg-success'}" 
+                                             role="progressbar" 
+                                             style="width: ${Math.min(100, (item.currentStock / (item.minStock * 2)) * 100)}%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
+                        <td><span style="color: #666;">${item.minStock}</span></td>
+                        <td><span class="badge bg-light text-dark">${item.unit}</span></td>
+                        <td>${statusBadge}</td>
                         <td>
                             <div class="action-buttons">
                                 <button class="btn-action btn-edit" onclick="editInventoryItem(${item.id})" title="Modifier">
@@ -3303,20 +3088,99 @@
 
         function addInventoryItem() {
             if (!protectAccess()) return;
-            showNotification('Ajout d\'article - Fonctionnalité à venir!', 'info');
+            
+            const name = prompt('Nom de l\'article:');
+            if (!name) return;
+            
+            const category = prompt('Catégorie (Céréales, Viandes, Légumes, etc.):');
+            if (!category) return;
+            
+            const currentStock = parseFloat(prompt('Stock actuel:'));
+            if (isNaN(currentStock)) return;
+            
+            const minStock = parseFloat(prompt('Stock minimum:'));
+            if (isNaN(minStock)) return;
+            
+            const unit = prompt('Unité (kg, L, unité, etc.):');
+            if (!unit) return;
+            
+            // Calculer le statut
+            let status = 'bon';
+            if (currentStock <= minStock * 0.3) {
+                status = 'urgent';
+            } else if (currentStock <= minStock) {
+                status = 'attention';
+            }
+            
+            // Récupérer l'inventaire
+            let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+            
+            // Ajouter le nouvel article
+            const newId = inventory.length > 0 ? Math.max(...inventory.map(i => i.id)) + 1 : 1;
+            inventory.push({
+                id: newId,
+                name,
+                category,
+                currentStock,
+                minStock,
+                unit,
+                status
+            });
+            
+            // Sauvegarder
+            localStorage.setItem('inventory', JSON.stringify(inventory));
+            
+            // Mettre à jour l'affichage
+            updateInventoryTable();
+            
+            showNotification('Article ajouté à l\'inventaire!', 'success');
         }
 
         function editInventoryItem(itemId) {
             if (!protectAccess()) return;
-            showNotification('Modification de l\'article ID: ' + itemId, 'info');
+            
+            let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+            const item = inventory.find(i => i.id === itemId);
+            
+            if (!item) return;
+            
+            const newStock = parseFloat(prompt(`Nouveau stock pour ${item.name} (${item.unit}):`, item.currentStock));
+            
+            if (!isNaN(newStock)) {
+                item.currentStock = newStock;
+                
+                // Recalculer le statut
+                if (newStock <= item.minStock * 0.3) {
+                    item.status = 'urgent';
+                } else if (newStock <= item.minStock) {
+                    item.status = 'attention';
+                } else {
+                    item.status = 'bon';
+                }
+                
+                // Sauvegarder
+                localStorage.setItem('inventory', JSON.stringify(inventory));
+                
+                // Mettre à jour l'affichage
+                updateInventoryTable();
+                
+                showNotification('Stock mis à jour!', 'success');
+            }
         }
 
         function deleteInventoryItem(itemId) {
             if (!protectAccess()) return;
             
-            if (confirm('Supprimer cet article de l\'inventaire?')) {
-                showNotification('Article supprimé!', 'success');
-                updateInventoryTable();
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet article de l\'inventaire?')) {
+                let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+                const index = inventory.findIndex(i => i.id === itemId);
+                
+                if (index !== -1) {
+                    inventory.splice(index, 1);
+                    localStorage.setItem('inventory', JSON.stringify(inventory));
+                    updateInventoryTable();
+                    showNotification('Article supprimé', 'info');
+                }
             }
         }
 
@@ -3324,138 +3188,128 @@
         function createSampleOrder() {
             if (!protectAccess()) return;
             
-            const sampleOrder = {
-                id: Date.now().toString(),
-                client: {
-                    name: "Client Test",
-                    phone: "77 123 45 67",
-                    address: "123 Avenue de la République, Saint-Louis",
-                    email: "client@test.com",
-                    notes: "Sans oignons s'il vous plaît"
-                },
-                items: [
-                    {
-                        name: "Poulet Yassa",
-                        price: 5000,
-                        quantity: 1
-                    },
-                    {
-                        name: "Thieboudienne",
-                        price: 6000,
-                        quantity: 2
-                    },
-                    {
-                        name: "Salade César",
-                        price: 3500,
-                        quantity: 1
-                    }
-                ],
-                total: 20500,
+            const sampleClients = [
+                { name: "Moussa Diop", phone: "771234567", address: "Soprim, Saint-Louis" },
+                { name: "Aminata Fall", phone: "776543210", address: "Pikine, Saint-Louis" },
+                { name: "Ibrahima Ndiaye", phone: "778901234", address: "Goxu Mbacc, Saint-Louis" },
+                { name: "Fatou Bâ", phone: "775678901", address: "Khor, Saint-Louis" },
+                { name: "Abdoulaye Sow", phone: "773456789", address: "NDiébène Gandiole, Saint-Louis" }
+            ];
+            
+            const sampleItems = [
+                { name: "Poulet Yassa", price: 5000, quantity: 2 },
+                { name: "Thieboudienne", price: 6000, quantity: 1 },
+                { name: "Maffe", price: 4500, quantity: 1 },
+                { name: "Coca-Cola", price: 1000, quantity: 3 },
+                { name: "Salade", price: 2000, quantity: 2 }
+            ];
+            
+            const client = sampleClients[Math.floor(Math.random() * sampleClients.length)];
+            const itemCount = Math.floor(Math.random() * 3) + 1;
+            const selectedItems = [];
+            let total = 0;
+            
+            for (let i = 0; i < itemCount; i++) {
+                const itemIndex = Math.floor(Math.random() * sampleItems.length);
+                const item = { ...sampleItems[itemIndex] };
+                item.quantity = Math.floor(Math.random() * 2) + 1;
+                selectedItems.push(item);
+                total += item.price * item.quantity;
+            }
+            
+            const statuses = ['en attente', 'en préparation', 'prête', 'livrée'];
+            const status = statuses[Math.floor(Math.random() * 3)]; // Exclure "livrée" pour le test
+            
+            const newOrder = {
+                client: client,
+                items: selectedItems,
+                total: total,
                 date: new Date().toISOString(),
-                status: "en attente"
+                status: status,
+                notes: "Commande de test générée automatiquement"
             };
             
-            orders.push(sampleOrder);
+            orders.push(newOrder);
             localStorage.setItem('orderHistory', JSON.stringify(orders));
             
             updateStatistics();
             updateOrdersTable();
-            updateCustomersTable();
+            loadAllOrders();
             
-            showNotification('Commande de test créée avec succès!', 'success');
+            showNotification('Commande test créée avec succès!', 'success');
         }
 
-        function exportOrders() {
-            if (!protectAccess()) return;
+        function showNotification(message, type = 'info') {
+            // Créer une notification toast
+            const toast = document.createElement('div');
+            toast.className = `position-fixed top-0 end-0 p-3`;
+            toast.style.zIndex = '9999';
             
-            showNotification('Export des commandes en cours...', 'info');
+            const toastId = 'toast-' + Date.now();
+            const bgColor = type === 'success' ? 'bg-success' : 
+                           type === 'error' ? 'bg-danger' : 
+                           type === 'warning' ? 'bg-warning' : 'bg-info';
             
-            // Simuler l'export
-            setTimeout(() => {
-                const dataStr = JSON.stringify(orders, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                
-                const exportFileDefaultName = `commandes-casamia-${new Date().toISOString().slice(0,10)}.json`;
-                
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportFileDefaultName);
-                linkElement.click();
-                
-                showNotification('Export terminé!', 'success');
-            }, 1000);
-        }
-
-        function exportCustomers() {
-            if (!protectAccess()) return;
-            
-            showNotification('Export des clients en cours...', 'info');
-            
-            // Simuler l'export
-            setTimeout(() => {
-                showNotification('Export CSV des clients terminé!', 'success');
-            }, 1000);
-        }
-
-        // ===== NOTIFICATIONS =====
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 9999;
-                min-width: 300px;
-                animation: slideIn 0.3s ease;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            `;
-            
-            let icon = 'fa-info-circle';
-            if (type === 'success') icon = 'fa-check-circle';
-            if (type === 'error') icon = 'fa-exclamation-circle';
-            if (type === 'warning') icon = 'fa-exclamation-triangle';
-            
-            notification.innerHTML = `
-                <div class="d-flex align-items-center">
-                    <i class="fas ${icon} me-2 fs-5"></i>
-                    <div class="flex-grow-1">${message}</div>
-                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert"></button>
+            toast.innerHTML = `
+                <div id="${toastId}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header ${bgColor} text-white">
+                        <strong class="me-auto">
+                            ${type === 'success' ? 'Succès' : 
+                              type === 'error' ? 'Erreur' : 
+                              type === 'warning' ? 'Attention' : 'Information'}
+                        </strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
                 </div>
             `;
             
-            document.body.appendChild(notification);
+            document.body.appendChild(toast);
             
+            // Supprimer automatiquement après 3 secondes
             setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
+                const toastElement = document.getElementById(toastId);
+                if (toastElement) {
+                    toastElement.classList.remove('show');
+                    setTimeout(() => {
+                        if (toast.parentNode) {
+                            toast.parentNode.removeChild(toast);
+                        }
+                    }, 300);
                 }
             }, 3000);
         }
 
-        function showLoading() {
-            document.getElementById('loadingOverlay').classList.add('active');
+        // ===== INITIALISATION AUTOMATIQUE =====
+        // Démarrer le dashboard si déjà connecté
+        if (localStorage.getItem('adminToken')) {
+            const tokenExpiry = localStorage.getItem('tokenExpiry');
+            const now = new Date().getTime();
+            
+            if (now < parseInt(tokenExpiry)) {
+                authenticateUser();
+            } else {
+                clearAuthData();
+            }
         }
 
-        function hideLoading() {
-            document.getElementById('loadingOverlay').classList.remove('active');
-        }
-
-        // ===== PROTECTION RENFORCÉE =====
-        // Vérifier régulièrement la session
+        // Vérifier l'expiration de session toutes les minutes
         setInterval(() => {
-            if (isAuthenticated && !checkSession()) {
-                showNotification('Session expirée. Veuillez vous reconnecter.', 'warning');
-                manualLogout();
+            const tokenExpiry = localStorage.getItem('tokenExpiry');
+            if (tokenExpiry) {
+                const now = new Date().getTime();
+                if (now >= parseInt(tokenExpiry)) {
+                    // Session expirée
+                    clearAuthData();
+                    if (isAuthenticated) {
+                        manualLogout();
+                        showNotification('Session expirée, veuillez vous reconnecter', 'warning');
+                    }
+                }
             }
         }, 60000); // Vérifier toutes les minutes
-
-        // Empêcher le contournement avec les outils de développement
-        window.addEventListener('beforeunload', function(e) {
-            if (isAuthenticated) {
-                // Ne rien faire - laisser l'utilisateur quitter normalement
-            }
-        });
     </script>
 </body>
 </html>

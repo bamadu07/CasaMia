@@ -47,10 +47,17 @@
             padding: 0.5rem 0;
             transition: var(--transition);
             height: 70px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
         }
 
         .navbar-brand img {
             transition: var(--transition);
+            height: 40px;
+            width: auto;
         }
 
         .navbar-brand:hover img {
@@ -88,6 +95,7 @@
             border-radius: var(--border-radius);
             padding: 0.4rem 1rem !important;
             font-weight: 600;
+            border: none;
         }
 
         .btn-admin:hover {
@@ -101,25 +109,25 @@
                         url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80');
             background-size: cover;
             background-position: center;
-            height: 40vh;
-            min-height: 300px;
-            position: relative;
-            margin-top: -80px;
+            min-height: 250px;
+            margin: 0;
             display: flex;
             align-items: center;
+            padding: 2rem 0;
         }
 
         .hero-content {
             text-align: center;
             color: white;
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
 
         .hero-title .highlight {
@@ -127,20 +135,25 @@
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
             opacity: 0.9;
         }
 
         /* ===== SECTION TITRE ===== */
+        section {
+            padding: 2.5rem 0;
+        }
+
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 0.8rem;
             color: var(--secondary-color);
             position: relative;
             padding-bottom: 0.5rem;
+            display: inline-block;
         }
 
         .section-title::after {
@@ -148,7 +161,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
             background-color: var(--primary-color);
         }
@@ -165,27 +178,26 @@
         .section-subtitle {
             color: var(--text-light);
             margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        /* ===== SECTIONS ===== */
-        section {
-            padding: 3rem 0;
+            font-size: 0.95rem;
         }
 
         .section-bg-light {
             background-color: var(--light-color);
         }
 
-        /* Section Histoire */
+        /* ===== SECTION HISTOIRE ===== */
         .history-image {
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--box-shadow);
             border: 1px solid rgba(255, 193, 7, 0.1);
+            margin-bottom: 1.5rem;
         }
 
         .history-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
@@ -196,38 +208,49 @@
         /* Timeline épurée */
         .timeline {
             position: relative;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(255, 193, 7, 0.3);
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 2rem;
-            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 0.5rem;
+            left: 4px;
+            top: 1rem;
             width: 12px;
             height: 12px;
             background-color: var(--primary-color);
             border-radius: 50%;
+            z-index: 1;
         }
 
         .timeline-year {
             font-weight: bold;
             color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
             display: inline-block;
         }
 
         .timeline-content {
             background-color: white;
             border-radius: var(--border-radius);
-            padding: 1.2rem;
+            padding: 1rem;
             box-shadow: var(--box-shadow);
             border: 1px solid rgba(255, 193, 7, 0.1);
         }
@@ -235,18 +258,36 @@
         .timeline-content h4 {
             color: var(--secondary-color);
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        /* Section Équipe */
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        /* ===== SECTION ÉQUIPE ===== */
         .team-member {
             text-align: center;
             margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15);
         }
 
         .team-photo {
-            width: 140px;
-            height: 140px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             margin: 0 auto 1rem;
@@ -267,17 +308,23 @@
             font-size: 0.9rem;
         }
 
-        /* Section Valeurs */
+        .team-member p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        /* ===== SECTION VALEURS ===== */
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
 
         .value-card {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem;
             background-color: white;
             border-radius: var(--border-radius);
             transition: var(--transition);
@@ -291,12 +338,11 @@
         }
 
         .value-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            height: 60px;
-            width: 60px;
-            line-height: 60px;
+            height: 50px;
+            width: 50px;
+            line-height: 50px;
             background-color: rgba(255, 193, 7, 0.1);
             border-radius: 50%;
             margin: 0 auto 1rem;
@@ -306,6 +352,13 @@
             color: var(--secondary-color);
             margin-bottom: 0.8rem;
             font-size: 1.1rem;
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+            line-height: 1.5;
         }
 
         /* ===== FOOTER RÉDUIT ===== */
@@ -333,7 +386,7 @@
             font-weight: 700;
             color: white;
             font-size: 1.2rem;
-            margin: 0;
+            margin: 0 0 0 10px;
         }
 
         .footer-description {
@@ -366,6 +419,7 @@
         .social-link:hover {
             background: var(--primary-color);
             color: var(--secondary-color);
+            transform: translateY(-3px);
         }
 
         .footer-title {
@@ -373,6 +427,18 @@
             font-size: 1rem;
             margin-bottom: 0.8rem;
             font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 25px;
+            height: 2px;
+            background: var(--primary-color);
         }
 
         .footer-links {
@@ -390,11 +456,12 @@
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.85rem;
+            display: inline-block;
         }
 
         .footer-links a:hover {
             color: var(--primary-color);
-            padding-left: 3px;
+            transform: translateX(5px);
         }
 
         .footer-contact {
@@ -417,6 +484,7 @@
             color: var(--primary-color);
             margin-top: 2px;
             font-size: 0.9rem;
+            min-width: 18px;
         }
 
         .newsletter {
@@ -443,11 +511,18 @@
         .newsletter-form input {
             flex: 1;
             padding: 0.5rem 0.8rem;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--border-radius);
             background: rgba(255, 255, 255, 0.1);
             color: white;
             font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .newsletter-form input::placeholder {
@@ -463,11 +538,15 @@
             cursor: pointer;
             transition: var(--transition);
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .newsletter-form button:hover {
             background: var(--primary-dark);
             color: white;
+            transform: translateY(-2px);
         }
 
         .footer-bottom {
@@ -480,70 +559,48 @@
 
         .heart-icon {
             color: var(--primary-color);
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 60px;
-            }
-            
-            .navbar {
-                height: 60px;
-            }
-            
-            .about-hero {
-                height: 30vh;
-                min-height: 250px;
-            }
-            
-            .hero-title {
-                font-size: 1.7rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .timeline-item {
-                padding-left: 1.5rem;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .team-photo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .footer-brand h3 {
-                font-size: 1.1rem;
-            }
-            
-            .footer-contact li {
-                font-size: 0.8rem;
-            }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        @media (max-width: 576px) {
-            .about-hero {
-                height: 25vh;
-                min-height: 200px;
-            }
-            
-            .section-title {
-                font-size: 1.3rem;
-            }
-            
-            .footer {
-                padding: 1.5rem 0 0.8rem;
-            }
+        /* ===== BOUTON RETOUR EN HAUT ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
         }
 
-        /* Animation */
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 160, 0, 0.4);
+        }
+
+        /* ===== ANIMATIONS ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -555,240 +612,590 @@
             transform: translateY(0);
         }
 
-        /* Bouton retour en haut */
-        /* Background général pour mobile */
-@media (max-width: 768px) {
-    body {
-        background: linear-gradient(rgba(255, 253, 231, 0.95), rgba(255, 249, 196, 0.95)),
-                    url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        padding: 10px 5px;
-    }
-    
-    /* Conteneur principal pour bien structurer le contenu */
-    .container {
-        background-color: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: var(--border-radius);
-        padding: 15px;
-        margin: 5px auto;
-        border: 1px solid rgba(255, 193, 7, 0.2);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    }
-    
-    /* Transparence pour la navbar et footer sur mobile */
-    .navbar {
-        background-color: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255, 193, 7, 0.2);
-        margin: 0 5px;
-        border-radius: 10px 10px 0 0;
-    }
-    
-    .footer {
-        background-color: rgba(51, 51, 51, 0.98) !important;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-top: 2px solid var(--primary-color);
-        margin: 0 5px;
-        border-radius: 0 0 10px 10px;
-    }
-    
-    /* Hero section améliorée pour mobile avec fond visible */
-    .hero-section {
-        border-radius: 12px;
-        margin: 5px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        border: 2px solid var(--primary-color);
-    }
-    
-    .hero-overlay {
-        background: rgba(0, 0, 0, 0.75);
-        border-radius: 10px;
-    }
-    
-    /* Sections avec fond semi-transparent amélioré */
-    .section-specialties, 
-    .section-testimonials, 
-    .section-info {
-        background-color: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 12px;
-        margin: 10px 5px;
-        padding: 20px 15px;
-        border: 2px solid rgba(255, 193, 7, 0.25);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Amélioration des cartes spécialités */
-    .specialty-card {
-        background: linear-gradient(145deg, #ffffff, #fff9e6);
-        border: 2px solid var(--primary-light);
-        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
-        transition: all 0.3s ease;
-    }
-    
-    .specialty-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(255, 193, 7, 0.25);
-    }
-    
-    /* Testimonial section améliorée */
-    .testimonials-carousel {
-        padding: 0 10px;
-    }
-    
-    .testimonial-card {
-        background: linear-gradient(145deg, #ffffff, #fffef0);
-        border: 2px solid var(--primary-light);
-        padding: 20px;
-    }
-    
-    /* Info cards améliorées */
-    .info-card {
-        background: linear-gradient(145deg, #ffffff, #fff9c4);
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
-    }
-    
-    /* Titres des sections avec fond */
-    .section-title {
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        padding: 5px 0;
-        margin-bottom: 15px;
-    }
-    
-    /* Boutons avec fond amélioré */
-    .btn-primary, .btn-order {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        border: none;
-        box-shadow: 0 4px 8px rgba(255, 153, 0, 0.3);
-    }
-    
-    .btn-primary:hover, .btn-order:hover {
-        background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(255, 153, 0, 0.4);
-    }
-    
-    /* Footer sections avec fond */
-    .footer .container {
-        background-color: rgba(51, 51, 51, 0.9);
-    }
-    
-    /* Liens du footer avec effet */
-    .footer-links a {
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-        display: block;
-    }
-    
-    .footer-links a:hover {
-        background-color: rgba(255, 193, 7, 0.2);
-        color: var(--primary-color) !important;
-    }
-    
-    /* Social links avec fond */
-    .social-link {
-        background: rgba(255, 193, 7, 0.2);
-        border: 1px solid rgba(255, 193, 7, 0.3);
-    }
-    
-    .social-link:hover {
-        background: var(--primary-color);
-        transform: scale(1.1);
-    }
-    
-    /* Newsletter form avec fond */
-    .newsletter-form input {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 193, 7, 0.3);
-    }
-    
-    .newsletter-form button {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        border: 1px solid rgba(255, 193, 7, 0.3);
-    }
-}
+        /* ===== RESPONSIVE MOBILE - VERSION AMÉLIORÉE ===== */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+                background: linear-gradient(135deg, #FFFDE7 0%, #FFF8E1 100%);
+            }
 
-/* Améliorations pour très petits écrans */
-@media (max-width: 576px) {
-    .container {
-        padding: 12px;
-        margin: 3px auto;
-    }
-    
-    .section-specialties, 
-    .section-testimonials, 
-    .section-info {
-        margin: 8px 3px;
-        padding: 15px 12px;
-    }
-    
-    .hero-section {
-        margin: 3px;
-    }
-    
-    /* Cartes plus compactes */
-    .specialty-card, .testimonial-card, .info-card {
-        padding: 15px;
-    }
-    
-    /* Effet de relief sur les cartes */
-    .specialty-card, .testimonial-card {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .specialty-card::before, .testimonial-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transition: 0.5s;
-    }
-    
-    .specialty-card:hover::before, .testimonial-card:hover::before {
-        left: 100%;
-    }
-}
+            main {
+                padding: 60px 0 0;
+            }
 
-/* Animation d'entrée pour les éléments mobiles */
-@media (max-width: 768px) {
-    .section-specialties, 
-    .section-testimonials, 
-    .section-info,
-    .specialty-card,
-    .testimonial-card,
-    .info-card {
-        animation: fadeInUp 0.6s ease-out;
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+            /* Navbar mobile améliorée */
+            .navbar {
+                height: 60px;
+                padding: 0.3rem 0;
+                background: linear-gradient(to right, white, #FFFDE7) !important;
+                border-bottom: 2px solid rgba(255, 193, 7, 0.2);
+                box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1030;
+            }
+
+            .navbar-brand img {
+                height: 35px;
+            }
+
+            .brand-name {
+                font-size: 1.3rem;
+            }
+
+            /* Menu mobile corrigé */
+            .navbar-collapse {
+                background: linear-gradient(135deg, white 0%, #FFFDE7 100%);
+                border-radius: 12px;
+                margin-top: 10px;
+                padding: 15px !important;
+                border: 2px solid rgba(255, 193, 7, 0.15);
+                box-shadow: 0 10px 30px rgba(255, 193, 7, 0.15);
+                position: absolute;
+                top: 60px;
+                left: 15px;
+                right: 15px;
+                z-index: 1000;
+            }
+
+            .navbar-nav .nav-link {
+                background: rgba(255, 193, 7, 0.08);
+                margin: 5px 0 !important;
+                border-radius: 8px;
+                padding: 12px 15px !important;
+                text-align: center;
+                display: block;
+                width: 100%;
+            }
+
+            .navbar-nav .nav-link.active {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+                color: var(--secondary-color) !important;
+                font-weight: 600;
+            }
+
+            .btn-admin {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+                margin-top: 10px !important;
+                text-align: center;
+                display: block;
+                width: 100%;
+                box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+                padding: 12px 15px !important;
+            }
+
+            /* Hero section mobile */
+            .about-hero {
+                min-height: 220px;
+                background-attachment: scroll;
+                margin: 0 10px;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 2px solid rgba(255, 193, 7, 0.2);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                line-height: 1.3;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            /* Sections générales */
+            section {
+                padding: 2rem 0 !important;
+                margin: 10px;
+                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.92);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 193, 7, 0.2);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            .section-bg-light {
+                background: linear-gradient(135deg, #FFF9C4 0%, #FFF8E1 100%);
+            }
+
+            .container {
+                padding: 0 15px !important;
+            }
+
+            /* Titres de section mobile */
+            .section-title {
+                font-size: 1.4rem !important;
+                text-align: center;
+                display: block !important;
+                margin-bottom: 1.2rem !important;
+                background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, transparent 100%);
+                padding: 10px 20px !important;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 193, 7, 0.15);
+                width: fit-content;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .section-title::after {
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+            }
+
+            .section-subtitle {
+                text-align: center;
+                padding: 0 1rem 1.2rem !important;
+                margin-bottom: 1rem !important;
+                background: rgba(255, 253, 231, 0.6);
+                padding: 12px !important;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 193, 7, 0.1);
+                margin-top: 0.5rem !important;
+            }
+
+            /* Section Histoire mobile */
+            .history-image {
+                margin: 0 auto 1.5rem;
+                max-width: 100%;
+                border: 2px solid rgba(255, 193, 7, 0.2);
+                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15);
+            }
+
+            .history-image img {
+                height: 200px;
+            }
+
+            /* Timeline mobile */
+            .timeline {
+                padding: 1rem 0;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 2.8rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .timeline-item::before {
+                left: 9px;
+                top: 1.2rem;
+                width: 14px;
+                height: 14px;
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+                box-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
+            }
+
+            .timeline-content {
+                background: linear-gradient(135deg, white 0%, #FFFDE7 100%);
+                padding: 1rem;
+                border: 2px solid rgba(255, 193, 7, 0.15);
+                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15);
+            }
+
+            /* Section Équipe mobile */
+            .team-member {
+                margin-bottom: 1.5rem;
+                padding: 1.2rem;
+                background: linear-gradient(135deg, white 0%, #FFFDE7 100%);
+                border: 2px solid rgba(255, 193, 7, 0.2);
+                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15);
+            }
+
+            .team-photo {
+                width: 100px;
+                height: 100px;
+                border: 3px solid white;
+                box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            }
+
+            .team-member h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .team-member .position {
+                font-size: 0.9rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .team-member p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            /* Section Valeurs mobile */
+            .value-card {
+                padding: 1.2rem;
+                background: linear-gradient(135deg, white 0%, #FFF8E1 100%);
+                border: 2px solid rgba(255, 193, 7, 0.2);
+                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15);
+                margin-bottom: 1rem;
+            }
+
+            .value-icon {
+                font-size: 1.6rem;
+                height: 45px;
+                width: 45px;
+                line-height: 45px;
+                background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 152, 0, 0.2) 100%);
+                border: 2px solid rgba(255, 193, 7, 0.3);
+            }
+
+            .value-card h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .value-card p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            /* Footer mobile */
+            .footer {
+                background: linear-gradient(135deg, #333333 0%, #222222 100%);
+                padding: 2rem 0 1rem;
+                margin-top: 1.5rem;
+                border-top: 3px solid var(--primary-color);
+                margin: 10px;
+                border-radius: 12px;
+            }
+
+            .footer .col-lg-4, 
+            .footer .col-lg-3, 
+            .footer .col-lg-2, 
+            .footer .col-md-6 {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 15px;
+                border: 1px solid rgba(255, 193, 7, 0.1);
+            }
+
+            .footer-brand {
+                margin-bottom: 1rem;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.1rem;
+                margin: 0 0 0 10px;
+            }
+
+            .footer-description {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-bottom: 1rem;
+            }
+
+            .social-links {
+                justify-content: flex-start;
+                gap: 0.8rem;
+            }
+
+            .social-link {
+                width: 35px;
+                height: 35px;
+                background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 152, 0, 0.2) 100%);
+                border: 1px solid rgba(255, 193, 7, 0.3);
+            }
+
+            .footer-title {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .footer-links a {
+                font-size: 0.85rem;
+            }
+
+            .footer-contact li {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .newsletter {
+                background: rgba(255, 255, 255, 0.08);
+                padding: 15px;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 193, 7, 0.15);
+            }
+
+            .newsletter h5 {
+                font-size: 0.95rem;
+            }
+
+            .newsletter p {
+                font-size: 0.8rem;
+            }
+
+            .newsletter-form input {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+                background: rgba(255, 255, 255, 0.15);
+                border: 1px solid rgba(255, 193, 7, 0.3);
+            }
+
+            .newsletter-form button {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+                width: 40px;
+            }
+
+            .footer-bottom {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                text-align: center;
+                background: transparent;
+                padding: 15px;
+            }
+
+            .footer-bottom .row {
+                flex-direction: column;
+            }
+
+            .footer-bottom .col-md-6 {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-bottom .text-end {
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            /* Bouton retour en haut mobile */
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+                box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+            }
+
+            /* Correction des marges et paddings */
+            .row {
+                margin-left: -6px !important;
+                margin-right: -6px !important;
+            }
+
+            .col-md-4, .col-lg-4, .col-lg-2, .col-lg-3, .col-md-6 {
+                padding-left: 6px !important;
+                padding-right: 6px !important;
+            }
+
+            /* Animation fade-in-up pour mobile */
+            .fade-in {
+                animation: fadeInUp 0.5s ease-out !important;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(15px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Correction pour les effets hover sur mobile */
+            .team-member:hover,
+            .value-card:hover,
+            .timeline-content:hover {
+                transform: translateY(-5px) !important;
+                transition: all 0.3s ease !important;
+            }
+
+            .btn-admin:hover,
+            .social-link:hover,
+            .back-to-top:hover,
+            .newsletter-form button:hover {
+                transform: translateY(-2px) scale(1.02) !important;
+            }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* ===== VERSION TRÈS MOBILE (PETITS ÉCRANS) ===== */
+        @media (max-width: 576px) {
+            body {
+                padding-top: 55px;
+            }
+
+            main {
+                padding-top: 55px;
+            }
+
+            .navbar {
+                height: 55px;
+            }
+
+            .navbar-brand img {
+                height: 30px;
+            }
+
+            .brand-name {
+                font-size: 1.1rem;
+            }
+
+            /* Hero section */
+            .about-hero {
+                min-height: 200px;
+                margin: 0 5px;
+            }
+
+            .hero-title {
+                font-size: 1.4rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                padding: 0 0.5rem;
+            }
+
+            /* Sections */
+            section {
+                padding: 1.5rem 0 !important;
+                margin: 5px;
+            }
+
+            .section-title {
+                font-size: 1.3rem !important;
+                padding: 8px 16px !important;
+            }
+
+            .section-subtitle {
+                padding: 10px !important;
+                font-size: 0.9rem !important;
+            }
+
+            /* Histoire */
+            .history-image img {
+                height: 180px;
+            }
+
+            /* Timeline */
+            .timeline-item {
+                padding-left: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .timeline-item::before {
+                left: 7px;
+                top: 1rem;
+                width: 12px;
+                height: 12px;
+            }
+
+            .timeline-content {
+                padding: 0.9rem;
+            }
+
+            /* Équipe */
+            .team-member {
+                padding: 1rem;
+            }
+
+            .team-photo {
+                width: 90px;
+                height: 90px;
+            }
+
+            .team-member h4 {
+                font-size: 1rem;
+            }
+
+            .team-member .position {
+                font-size: 0.85rem;
+            }
+
+            .team-member p {
+                font-size: 0.8rem;
+            }
+
+            /* Valeurs */
+            .value-card {
+                padding: 1rem;
+            }
+
+            .value-icon {
+                font-size: 1.5rem;
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+            }
+
+            .value-card h4 {
+                font-size: 1rem;
+            }
+
+            .value-card p {
+                font-size: 0.8rem;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 1.5rem 0 1rem;
+                margin: 5px;
+            }
+
+            .footer .col-lg-4, 
+            .footer .col-lg-3, 
+            .footer .col-lg-2, 
+            .footer .col-md-6 {
+                padding: 12px;
+            }
+
+            .footer-brand h3 {
+                font-size: 1rem;
+            }
+
+            .footer-description {
+                font-size: 0.8rem;
+            }
+
+            /* Bouton retour en haut */
+            .back-to-top {
+                bottom: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
         }
-    }
-}
+
+        /* ===== VERSION TRÈS PETITS ÉCRANS ===== */
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem !important;
+            }
+
+            .timeline-item {
+                padding-left: 2.2rem;
+            }
+
+            .timeline-item::before {
+                left: 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -796,10 +1203,10 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="images/logoo.png" alt="Logo Casa Mia" width="40" height="40" class="d-inline-block align-top me-2">
+                <img src="images/logoo.png" alt="Logo Casa Mia" class="me-2">
                 <span class="brand-name d-none d-md-inline"><span class="brand-first">Casa</span> Mia</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -825,206 +1232,164 @@
             </div>
         </div>
     </nav>
-    <!-- Section Présentation 
-    <section class="section-presentation py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="presentation-image">
-                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" 
-                             alt="Intérieur du restaurant Casa Mia" class="img-fluid rounded shadow">
-                        <div class="experience-badge">
-                            <div class="experience-years">10+</div>
-                            <div class="experience-text">Ans d'expérience</div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title fade-in">Notre <span class="highlight">Histoire</span></h1>
+                    <p class="hero-subtitle fade-in">Une passion sénégalaise depuis 2010</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Histoire -->
+        <section>
+            <div class="container">
+                <div class="row align-items-center mb-4">
+                    <div class="col-lg-6 fade-in">
+                        <h2 class="section-title">L'Aventure <span class="highlight">Casa Mia</span></h2>
+                        <p class="lead">Casa Mia est une passion familiale qui dure depuis plus d'une décennie.</p>
+                        <p>Tout a commencé en 2010 lorsque Tafa Wade décida de partager son amour pour la cuisine sénégalaise avec sa ville natale, Saint Louis.</p>
+                        <p>Le nom "Casa Mia" qui signifie "Ma Maison" en italien, reflète notre philosophie : accueillir chaque client comme un membre de notre famille et lui offrir une expérience culinaire chaleureuse et authentique.</p>
+                    </div>
+                    <div class="col-lg-6 fade-in">
+                        <div class="history-image">
+                            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" 
+                                 alt="Fondateur Casa Mia" class="img-fluid">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <h2 class="section-title">Une Expérience Culinaire <span class="highlight">Inoubliable</span></h2>
-                    <p class="lead">Installé à Saint Louis sur la route de Khor en face ARD, Casa Mia vous invite à découvrir les saveurs traditionnelles sénégalaises.</p>
-                    <p>Notre chef sélectionne avec soin les meilleurs ingrédients locaux pour créer des plats authentiques.</p>
-                    <div class="features-grid mt-3">
-                        <div class="feature-item">
-                            <i class="fas fa-utensils feature-icon"></i>
-                            <h5>Cuisine Traditionnelle</h5>
-                            <p>Recettes authentiques</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-leaf feature-icon"></i>
-                            <h5>Produits Locaux</h5>
-                            <p>Ingrédients frais</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-pepper-hot feature-icon"></i>
-                            <h5>Saveurs Authentiques</h5>
-                            <p>Épices traditionnelles</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-users feature-icon"></i>
-                            <h5>Ambiance Familiale</h5>
-                            <p>Cadre accueillant</p>
+
+                <!-- Timeline -->
+                <h2 class="section-title text-center mb-4 fade-in">Notre <span class="highlight">Parcours</span></h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2010</div>
+                            <h4>Ouverture de Casa Mia</h4>
+                            <p>Ouverture du premier restaurant Casa Mia à Saint Louis avec seulement 10 tables. Le succès est immédiat grâce à l'authenticité des plats sénégalais.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title fade-in">Notre <span class="highlight">Histoire</span></h1>
-                <p class="hero-subtitle fade-in">Une passion sénégalaise depuis 2010</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Histoire -->
-    <section>
-        <div class="container">
-            <div class="row align-items-center mb-4">
-                <div class="col-lg-6 fade-in">
-                    <h2 class="section-title">L'Aventure <span class="highlight">Casa Mia</span></h2>
-                    <p class="lead">Casa Mia est une passion familiale qui dure depuis plus d'une décennie.</p>
-                    <p>Tout a commencé en 2010 lorsque Tafa Wade décida de partager son amour pour la cuisine sénégalaise avec sa ville natale, Saint Louis.</p>
-                    <p>Le nom "Casa Mia" qui signifie "Ma Maison" en italien, reflète notre philosophie : accueillir chaque client comme un membre de notre famille et lui offrir une expérience culinaire chaleureuse et authentique.</p>
-                </div>
-                <div class="col-lg-6 fade-in">
-                    <div class="history-image">
-                        <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" 
-                             alt="Fondateur Casa Mia" class="img-fluid">
+                    
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2013</div>
+                            <h4>Agrandissement</h4>
+                            <p>Le restaurant s'agrandit pour accueillir 50 couverts suite à sa popularité grandissante. Introduction des spécialités régionales.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2016</div>
+                            <h4>Prix du Meilleur Restaurant</h4>
+                            <p>Casa Mia reçoit le prix du "Meilleur Restaurant Sénégalais de Saint Louis" par le guide gastronomique local.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020</div>
+                            <h4>Rénovation Complète</h4>
+                            <p>Rénovation complète du restaurant avec une nouvelle cuisine ouverte et une terrasse extérieure. Introduction du service de livraison.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023</div>
+                            <h4>Expansion</h4>
+                            <p>Ouverture d'un espace événementiel pour les fêtes privées et lancement d'ateliers de cuisine sénégalaise.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Timeline -->
-            <h2 class="section-title text-center mb-4 fade-in">Notre <span class="highlight">Parcours</span></h2>
-            
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2010</div>
-                        <h4>Ouverture de Casa Mia</h4>
-                        <p>Ouverture du premier restaurant Casa Mia à Saint Louis avec seulement 10 tables. Le succès est immédiat grâce à l'authenticité des plats sénégalais.</p>
-                    </div>
-                </div>
+        <!-- Section Équipe -->
+        <section class="section-bg-light">
+            <div class="container">
+                <h2 class="section-title text-center mb-4 fade-in">Notre <span class="highlight">Équipe</span></h2>
                 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2013</div>
-                        <h4>Agrandissement</h4>
-                        <p>Le restaurant s'agrandit pour accueillir 50 couverts suite à sa popularité grandissante. Introduction des spécialités régionales.</p>
+                <div class="row">
+                    <div class="col-md-4 fade-in">
+                        <div class="team-member">
+                            <img src="images/logoo.png" 
+                                 alt="Aicha Diaw - Chef Cuisinière matin" class="team-photo">
+                            <h4>Aicha Diaw</h4>
+                            <p class="position">Chef Cuisinière matin</p>
+                            <p>Passionnée par la cuisine sénégalaise, Aicha apporte 15 ans d'expérience dans la cuisine traditionnelle authentique.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2016</div>
-                        <h4>Prix du Meilleur Restaurant</h4>
-                        <p>Casa Mia reçoit le prix du "Meilleur Restaurant Sénégalais de Saint Louis" par le guide gastronomique local.</p>
+                    
+                    <div class="col-md-4 fade-in">
+                        <div class="team-member">
+                            <img src="images/logoo.png" 
+                                 alt="Amar Dieng - Chef Cuisinier soir" class="team-photo">
+                            <h4>Amar Dieng</h4>
+                            <p class="position">Chef Cuisinier Soir</p>
+                            <p>Spécialiste des plats traditionnels, Amar crée chaque jour des plats qui racontent une histoire de saveurs authentiques.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2020</div>
-                        <h4>Rénovation Complète</h4>
-                        <p>Rénovation complète du restaurant avec une nouvelle cuisine ouverte et une terrasse extérieure. Introduction du service de livraison.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2023</div>
-                        <h4>Expansion</h4>
-                        <p>Ouverture d'un espace événementiel pour les fêtes privées et lancement d'ateliers de cuisine sénégalaise.</p>
+                    
+                    <div class="col-md-4 fade-in">
+                        <div class="team-member">
+                            <img src="images/logoo.png" 
+                                 alt="Mame Diarra Niang - Serveuse" class="team-photo">
+                            <h4>Mame Diarra Niang</h4>
+                            <p class="position">Serveuse</p>
+                            <p>Mame Diarra veille à ce que chaque client se sente comme à la maison avec un service attentif et personnalisé depuis 8 ans.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Section Équipe -->
-    <section class="section-bg-light">
-        <div class="container">
-            <h2 class="section-title text-center mb-4 fade-in">Notre <span class="highlight">Équipe</span></h2>
-            
-            <div class="row">
-                <div class="col-md-4 fade-in">
-                    <div class="team-member">
-                        <img src="images/logoo.png" 
-                             alt="Tafa Wade - Chef Propriétaire" class="team-photo">
-                        <h4>Aicha Diaw</h4>
-                        <p class="position">Chef Cuisinière matin</p>
-                        <p>Passionné par la cuisine sénégalaise, Tafa apporte 15 ans d'expérience dans la cuisine traditionnelle authentique.</p>
-                    </div>
-                </div>
+        <!-- Section Valeurs -->
+        <section>
+            <div class="container">
+                <h2 class="section-title text-center mb-4 fade-in">Nos <span class="highlight">Valeurs</span></h2>
                 
-                <div class="col-md-4 fade-in">
-                    <div class="team-member">
-                        <img src="images/logoo.png" 
-                             alt="Maria Diop - Chef Cuisinière" class="team-photo">
-                        <h4>Amar Dieng</h4>
-                        <p class="position">Chef Cuisinier Soir</p>
-                        <p>Spécialiste des plats traditionnels, Maria crée chaque jour des plats qui racontent une histoire de saveurs authentiques.</p>
+                <div class="values-grid">
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Passion</h4>
+                        <p>Nous mettons tout notre cœur dans chaque plat que nous préparons, avec amour et dévouement.</p>
                     </div>
-                </div>
-                
-                <div class="col-md-4 fade-in">
-                    <div class="team-member">
-                        <img src="images/logoo.png" 
-                             alt="Amadou Fall - Maître d'Hôtel" class="team-photo">
-                        <h4>Mame Diarra Niang</h4>
-                        <p class="position">Serveuse</p>
-                        <p>Amadou veille à ce que chaque client se sente comme à la maison avec un service attentif et personnalisé depuis 8 ans.</p>
+                    
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4>Authenticité</h4>
+                        <p>Nous respectons les recettes traditionnelles sénégalaises tout en utilisant des produits locaux frais.</p>
+                    </div>
+                    
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Communauté</h4>
+                        <p>Nous sommes fiers de faire partie de la communauté de Saint Louis et soutenons les producteurs locaux.</p>
+                    </div>
+                    
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Excellence</h4>
+                        <p>Nous visons l'excellence dans chaque aspect de notre restaurant, de la cuisine au service.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Section Valeurs -->
-    <section>
-        <div class="container">
-            <h2 class="section-title text-center mb-4 fade-in">Nos <span class="highlight">Valeurs</span></h2>
-            
-            <div class="values-grid">
-                <div class="value-card fade-in">
-                    <div class="value-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h4>Passion</h4>
-                    <p>Nous mettons tout notre cœur dans chaque plat que nous préparons, avec amour et dévouement.</p>
-                </div>
-                
-                <div class="value-card fade-in">
-                    <div class="value-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h4>Authenticité</h4>
-                    <p>Nous respectons les recettes traditionnelles sénégalaises tout en utilisant des produits locaux frais.</p>
-                </div>
-                
-                <div class="value-card fade-in">
-                    <div class="value-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h4>Communauté</h4>
-                    <p>Nous sommes fiers de faire partie de la communauté de Saint Louis et soutenons les producteurs locaux.</p>
-                </div>
-                
-                <div class="value-card fade-in">
-                    <div class="value-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h4>Excellence</h4>
-                    <p>Nous visons l'excellence dans chaque aspect de notre restaurant, de la cuisine au service.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1092,40 +1457,43 @@
         <i class="fas fa-chevron-up"></i>
     </a>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JS Personnalisé -->
     <script>
-        // Animation d'apparition au défilement
-        function revealOnScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 100;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation d'apparition au défilement
+            function revealOnScroll() {
+                const elements = document.querySelectorAll('.fade-in');
                 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        // Bouton retour en haut
-        function toggleBackToTop() {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('active');
-            } else {
-                backToTop.classList.remove('active');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 100;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
             }
-        }
-        
-        // Gestionnaire d'événements
-        window.addEventListener('scroll', () => {
-            revealOnScroll();
-            toggleBackToTop();
-        });
-        
-        // Initialiser au chargement
-        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Bouton retour en haut
+            function toggleBackToTop() {
+                const backToTop = document.querySelector('.back-to-top');
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+            }
+            
+            // Gestionnaire d'événements
+            window.addEventListener('scroll', () => {
+                revealOnScroll();
+                toggleBackToTop();
+            });
+            
+            // Initialiser au chargement
             revealOnScroll();
             toggleBackToTop();
             
@@ -1157,13 +1525,42 @@
             });
             
             // Set active nav link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.getAttribute('href') === 'apropos.html') {
+                if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
                 }
             });
+
+            // Fix pour le menu mobile
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            
+            if (navbarToggler && navbarCollapse) {
+                navbarToggler.addEventListener('click', function() {
+                    navbarCollapse.classList.toggle('show');
+                });
+                
+                // Fermer le menu quand on clique en dehors
+                document.addEventListener('click', function(e) {
+                    if (!navbarToggler.contains(e.target) && !navbarCollapse.contains(e.target)) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                });
+            }
+
+            // Optimisation mobile
+            if (window.innerWidth <= 768) {
+                // Désactiver certaines animations sur mobile
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.style.animationDuration = '0.4s';
+                });
+                
+                // Ajouter un padding au body pour éviter que le contenu ne soit caché par la navbar
+                document.body.style.paddingTop = '60px';
+            }
         });
     </script>
 </body>
