@@ -1096,36 +1096,86 @@
                 padding: 0 1rem;
             }
             
-            /* Grid responsive pour mobile */
+            /* ===== MODIFICATION CRITIQUE : GRID 2 COLONNES SUR MOBILE ===== */
             .dishes-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
                 margin-top: 1rem;
             }
             
             .dish-card {
                 margin-bottom: 0;
                 border-radius: 10px;
+                width: 100%;
             }
             
             .dish-image {
-                height: 160px;
+                height: 140px;
             }
             
             .dish-content {
-                padding: 1rem;
+                padding: 0.8rem;
+            }
+            
+            .dish-header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 0.6rem;
             }
             
             .dish-name {
-                font-size: 1.1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.3rem;
+                line-height: 1.3;
             }
             
             .dish-price {
-                font-size: 1.1rem;
+                font-size: 0.95rem;
+                margin-left: 0;
+                margin-top: 0.3rem;
             }
             
             .dish-description {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 2.8em;
+            }
+            
+            .dish-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .dish-tag {
+                font-size: 0.7rem;
+                padding: 0.15rem 0.5rem;
+            }
+            
+            .dish-actions {
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+            
+            .quantity-selector {
+                width: 100%;
+                justify-content: space-between;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .add-to-cart {
+                width: 100%;
+                justify-content: center;
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
             }
             
             /* Panier mobile */
@@ -1273,39 +1323,61 @@
                 margin: 0.5rem;
             }
             
+            /* ===== VERSION TRÈS PETITS ÉCRANS ===== */
+            .dishes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+            
             .dish-image {
-                height: 140px;
+                height: 120px;
             }
             
             .dish-content {
-                padding: 0.8rem;
+                padding: 0.6rem;
             }
             
             .dish-name {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                line-height: 1.2;
             }
             
             .dish-price {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .dish-description {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
+                line-height: 1.3;
+                height: 2.6em;
+            }
+            
+            .dish-tag {
+                font-size: 0.65rem;
+                padding: 0.1rem 0.4rem;
             }
             
             .dish-actions {
-                flex-direction: column;
-                gap: 0.8rem;
+                gap: 0.4rem;
             }
             
             .quantity-selector {
-                width: 100%;
-                justify-content: space-between;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .qty-btn {
+                width: 22px;
+                height: 22px;
+                font-size: 0.7rem;
+            }
+            
+            .qty-value {
+                font-size: 0.9rem;
             }
             
             .add-to-cart {
-                width: 100%;
-                justify-content: center;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
             }
             
             .cart-toggle {
@@ -1328,13 +1400,144 @@
             }
         }
 
-        @media (min-width: 769px) and (max-width: 992px) {
+        /* ===== VERSION EXTRA-PETITS ÉCRANS (moins de 400px) ===== */
+        @media (max-width: 400px) {
             .dishes-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .dish-image {
+                height: 110px;
+            }
+            
+            .dish-content {
+                padding: 0.5rem;
+            }
+            
+            .dish-name {
+                font-size: 0.85rem;
+            }
+            
+            .dish-price {
+                font-size: 0.85rem;
+            }
+            
+            .dish-description {
+                font-size: 0.7rem;
+                line-height: 1.2;
+                height: 2.4em;
+            }
+            
+            .dish-tags {
+                gap: 0.2rem;
+            }
+            
+            .dish-tag {
+                font-size: 0.6rem;
+                padding: 0.1rem 0.3rem;
+            }
+            
+            .dish-actions {
+                gap: 0.4rem;
+            }
+            
+            .quantity-selector {
+                padding: 0.25rem 0.5rem;
+            }
+            
+            .qty-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 0.65rem;
+            }
+            
+            .add-to-cart {
+                padding: 0.35rem 0.5rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 992px) {
+            /* Pour les tablettes */
+            .dishes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
             }
             
             .cart-sidebar {
                 width: 350px;
+            }
+        }
+
+        @media (min-width: 993px) {
+            /* Pour les desktop */
+            .dishes-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        /* Améliorations pour les cartes sur mobile */
+        @media (max-width: 768px) {
+            .dish-card {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                min-height: 320px;
+            }
+            
+            .dish-image {
+                flex-shrink: 0;
+            }
+            
+            .dish-content {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .dish-description {
+                flex-grow: 1;
+            }
+            
+            .dish-actions {
+                margin-top: auto;
+            }
+            
+            /* Assurer que les cartes ont la même hauteur dans la même ligne */
+            .dishes-grid {
+                align-items: stretch;
+            }
+        }
+
+        /* Correction pour éviter les débordements */
+        @media (max-width: 768px) {
+            .dish-name,
+            .dish-description {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+        }
+
+        /* Ajustement des marges pour une meilleure lisibilité */
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 0.5rem 0;
+            }
+            
+            .menu-section {
+                margin: 0.5rem 0.5rem 1rem;
+            }
+            
+            .section-title {
+                margin-bottom: 0.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            .section-subtitle {
+                margin-bottom: 1rem;
+                padding: 0 1rem;
             }
         }
 
@@ -2039,214 +2242,139 @@
             const total = itemsTotal; // Pas de frais de livraison
             
             message += `\n*Récapitulatif:*\n`;
-            message += `Total des articles: ${itemsTotal.toLocaleString()} FCFA\n`;
+            message += `Total articles: ${itemsTotal.toLocaleString()} FCFA\n`;
+            message += `Frais de service: 0 FCFA\n`;
             message += `*TOTAL À PAYER: ${total.toLocaleString()} FCFA*\n\n`;
             
             if (clientInfo.notes) {
-                message += `*Notes du client:* ${clientInfo.notes}\n\n`;
+                message += `*Notes supplémentaires:*\n${clientInfo.notes}\n\n`;
             }
             
-            message += `Commande passée le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}`;
+            message += `Merci pour votre commande! Nous vous contacterons pour confirmer.`;
             
             return encodeURIComponent(message);
         }
         
-        function sendWhatsAppOrder(clientInfo) {
-            if (!clientInfo.name || !clientInfo.phone) {
-                showNotification('Veuillez remplir les champs obligatoires', 'error');
-                return false;
-            }
-            
-            const phoneNumber = '221772068181'; // Numéro Casa Mia
-            const message = generateWhatsAppMessage(clientInfo);
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-            
-            // Sauvegarder la commande dans localStorage
-            const orderData = {
-                client: clientInfo,
-                items: cart,
-                itemsTotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-                date: new Date().toISOString(),
-                status: 'en attente'
-            };
-            
-            // Sauvegarder l'historique des commandes
-            const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
-            orderHistory.push(orderData);
-            localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
-            
-            // Vider le panier
-            cart = [];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartUI();
-            
-            // Ouvrir WhatsApp
-            window.open(whatsappUrl, '_blank');
-            
-            return true;
-        }
-        
         function showNotification(message, type) {
             const notification = document.createElement('div');
-            notification.className = `notification`;
-            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
-            const color = type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#ffc107';
-            
+            notification.className = 'notification';
             notification.innerHTML = `
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-${icon} me-2" style="color: ${color}"></i>
-                    <div>${message}</div>
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2" style="color: var(--primary-color);"></i>
+                    <span>${message}</span>
                 </div>
             `;
             
             document.body.appendChild(notification);
             
             setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
+                notification.remove();
             }, 3000);
         }
         
-        function setupCart() {
-            const cartToggle = document.getElementById('cartToggle');
-            const closeCart = document.querySelector('.close-cart');
-            const cartSidebar = document.querySelector('.cart-sidebar');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            const clearCartBtn = document.getElementById('clearCartBtn');
-            const whatsappModal = document.getElementById('whatsappModal');
-            const closeModal = document.querySelector('.close-modal');
-            const cancelOrderBtn = document.getElementById('cancelOrderBtn');
-            const sendWhatsAppBtn = document.getElementById('sendWhatsAppBtn');
-            const closeEmptyCart = document.getElementById('closeEmptyCart');
-            
-            // Ouvrir/fermer le panier
-            cartToggle.addEventListener('click', () => {
-                cartSidebar.classList.add('open');
-            });
-            
-            closeCart.addEventListener('click', () => {
-                cartSidebar.classList.remove('open');
-            });
-            
-            closeEmptyCart.addEventListener('click', () => {
-                cartSidebar.classList.remove('open');
-            });
-            
-            // Vider le panier
-            clearCartBtn.addEventListener('click', clearCart);
-            
-            // Ouvrir modal WhatsApp
-            checkoutBtn.addEventListener('click', () => {
-                if (cart.length === 0) {
-                    showNotification('Votre panier est vide!', 'info');
-                    return;
-                }
-                
-                // Pré-remplir le formulaire si disponible
-                const savedClient = JSON.parse(localStorage.getItem('clientInfo'));
-                if (savedClient) {
-                    document.getElementById('clientName').value = savedClient.name || '';
-                    document.getElementById('clientPhone').value = savedClient.phone || '';
-                    document.getElementById('clientAddress').value = savedClient.address || '';
-                }
-                
-                whatsappModal.classList.add('active');
-            });
-            
-            // Gérer modal WhatsApp
-            closeModal.addEventListener('click', () => {
-                whatsappModal.classList.remove('active');
-            });
-            
-            cancelOrderBtn.addEventListener('click', () => {
-                whatsappModal.classList.remove('active');
-            });
-            
-            // Envoyer commande via WhatsApp
-            sendWhatsAppBtn.addEventListener('click', () => {
-                const clientInfo = {
-                    name: document.getElementById('clientName').value.trim(),
-                    phone: document.getElementById('clientPhone').value.trim(),
-                    address: document.getElementById('clientAddress').value.trim(),
-                    notes: document.getElementById('clientNotes').value.trim()
-                };
-                
-                if (!document.getElementById('acceptTerms').checked) {
-                    showNotification('Veuillez accepter les conditions', 'error');
-                    return;
-                }
-                
-                if (sendWhatsAppOrder(clientInfo)) {
-                    // Sauvegarder les infos client pour la prochaine fois
-                    localStorage.setItem('clientInfo', JSON.stringify({
-                        name: clientInfo.name,
-                        phone: clientInfo.phone,
-                        address: clientInfo.address
-                    }));
-                    
-                    whatsappModal.classList.remove('active');
-                    showNotification('Commande envoyée avec succès!', 'success');
-                    cartSidebar.classList.remove('open');
-                    
-                    // Réinitialiser le formulaire
-                    document.getElementById('clientName').value = '';
-                    document.getElementById('clientPhone').value = '';
-                    document.getElementById('clientAddress').value = '';
-                    document.getElementById('clientNotes').value = '';
-                    document.getElementById('acceptTerms').checked = false;
-                }
-            });
-            
-            // Fermer modal en cliquant en dehors
-            whatsappModal.addEventListener('click', (e) => {
-                if (e.target === whatsappModal) {
-                    whatsappModal.classList.remove('active');
-                }
-            });
-            
-            // Fermer panier en appuyant sur Échap
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    cartSidebar.classList.remove('open');
-                    whatsappModal.classList.remove('active');
-                }
-            });
-            
-            // Fermer panier en cliquant en dehors (pour mobile)
-            cartSidebar.addEventListener('click', (e) => {
-                if (e.target === cartSidebar) {
-                    cartSidebar.classList.remove('open');
-                }
-            });
-        }
-        
-        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             displayAllDishes();
-            setupCart();
             updateCartUI();
             
-            // Set active nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.getAttribute('href') === 'menu.html') {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
+            // Cart toggle
+            document.getElementById('cartToggle').addEventListener('click', function() {
+                document.querySelector('.cart-sidebar').classList.add('open');
+            });
+            
+            document.querySelector('.close-cart').addEventListener('click', function() {
+                document.querySelector('.cart-sidebar').classList.remove('open');
+            });
+            
+            document.getElementById('closeEmptyCart').addEventListener('click', function() {
+                document.querySelector('.cart-sidebar').classList.remove('open');
+            });
+            
+            // WhatsApp modal
+            document.getElementById('checkoutBtn').addEventListener('click', function() {
+                if (cart.length === 0) {
+                    showNotification('Votre panier est vide', 'info');
+                    return;
+                }
+                document.getElementById('whatsappModal').classList.add('active');
+            });
+            
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('whatsappModal').classList.remove('active');
+            });
+            
+            document.getElementById('cancelOrderBtn').addEventListener('click', function() {
+                document.getElementById('whatsappModal').classList.remove('active');
+            });
+            
+            document.getElementById('clearCartBtn').addEventListener('click', clearCart);
+            
+            document.getElementById('sendWhatsAppBtn').addEventListener('click', function() {
+                const clientName = document.getElementById('clientName').value.trim();
+                const clientPhone = document.getElementById('clientPhone').value.trim();
+                const clientAddress = document.getElementById('clientAddress').value.trim();
+                const clientNotes = document.getElementById('clientNotes').value.trim();
+                const acceptTerms = document.getElementById('acceptTerms').checked;
+                
+                if (!clientName || !clientPhone) {
+                    showNotification('Veuillez remplir les champs obligatoires', 'info');
+                    return;
+                }
+                
+                if (!acceptTerms) {
+                    showNotification('Veuillez accepter les conditions', 'info');
+                    return;
+                }
+                
+                const clientInfo = {
+                    name: clientName,
+                    phone: clientPhone,
+                    address: clientAddress,
+                    notes: clientNotes
+                };
+                
+                // Format the phone number for WhatsApp
+                const formattedPhone = clientPhone.replace(/\s/g, '');
+                
+                const message = generateWhatsAppMessage(clientInfo);
+                const whatsappURL = `https://wa.me/221772068181?text=${message}`;
+                
+                // Open WhatsApp in a new tab
+                window.open(whatsappURL, '_blank');
+                
+                // Close modal
+                document.getElementById('whatsappModal').classList.remove('active');
+                
+                // Clear form
+                document.getElementById('clientName').value = '';
+                document.getElementById('clientPhone').value = '';
+                document.getElementById('clientAddress').value = '';
+                document.getElementById('clientNotes').value = '';
+                document.getElementById('acceptTerms').checked = false;
+                
+                // Optionally clear cart after order
+                if (confirm('Commande envoyée! Voulez-vous vider le panier?')) {
+                    clearCart();
                 }
             });
             
-            // Gérer le responsive lors du redimensionnement
-            window.addEventListener('resize', function() {
-                updateCartUI();
+            // Close modals when clicking outside
+            document.getElementById('whatsappModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
             });
             
-            // Désactiver l'effet hover sur mobile
-            if ('ontouchstart' in window) {
-                document.body.classList.add('touch-device');
-            }
+            // Fermer le panier en cliquant en dehors sur mobile
+            document.querySelector('.cart-sidebar').addEventListener('click', function(e) {
+                if (window.innerWidth <= 768 && e.target === this) {
+                    this.classList.remove('open');
+                }
+            });
+        });
+        
+        // Initialiser le panier au chargement de la page
+        window.addEventListener('load', function() {
+            updateCartUI();
         });
     </script>
 </body>
