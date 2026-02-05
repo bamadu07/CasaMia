@@ -429,27 +429,27 @@
             color: white;
         }
 
-        /* ===== SECTION TÉMOIGNAGES AVEC SLIDER - TAILLE RÉDUITE ===== */
+        /* ===== SECTION TÉMOIGNAGES AVEC SLIDER - FLÈCHES CORRIGÉES ===== */
         .section-testimonials {
             padding: 2.5rem 0;
             background: linear-gradient(135deg, rgba(255, 253, 231, 0.3) 0%, rgba(255, 248, 225, 0.5) 100%);
             position: relative;
+            overflow: hidden;
         }
 
         /* Conteneur du slider */
         .testimonials-slider {
             position: relative;
-            max-width: 900px; /* Réduit de 1200px */
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 40px; /* Réduit de 50px */
-            overflow: hidden;
+            padding: 0 50px;
+            overflow: visible;
         }
 
         /* Track du slider */
         .slider-track {
             display: flex;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            gap: 30px;
         }
 
         /* Slide individuelle */
@@ -458,29 +458,28 @@
             padding: 10px;
             box-sizing: border-box;
             display: none;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         .testimonial-slide.active {
             display: block;
-            animation: fadeIn 0.8s ease-out;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Carte témoignage dans le slider - TAILLE RÉDUITE */
+        /* Carte témoignage dans le slider */
         .testimonial-card-slider {
-            background: linear-gradient(135deg, #FFFFFF 0%, #FFFDE7 100%);
-            border-radius: 16px; /* Réduit de 20px */
-            padding: 1.8rem; /* Réduit de 2.5rem */
-            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.15); /* Ombre réduite */
-            border: 2px solid rgba(255, 193, 7, 0.2);
-            max-width: 600px; /* Réduit de 800px */
-            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.2);
+            border: 3px solid var(--primary-color);
             position: relative;
             overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .testimonial-card-slider:before {
@@ -489,27 +488,27 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px; /* Réduit de 5px */
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
         }
 
-        /* En-tête du témoignage - TAILLE RÉDUITE */
+        /* En-tête du témoignage */
         .testimonial-header-slider {
             display: flex;
             align-items: center;
-            margin-bottom: 1.2rem; /* Réduit de 1.5rem */
-            padding-bottom: 1rem; /* Réduit de 1.5rem */
-            border-bottom: 1px solid rgba(255, 193, 7, 0.2); /* Réduit de 2px */
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid rgba(255, 193, 7, 0.2);
         }
 
         .testimonial-avatar-slider {
-            width: 70px; /* Réduit de 90px */
-            height: 70px; /* Réduit de 90px */
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 1rem; /* Réduit de 1.5rem */
-            border: 3px solid var(--primary-color); /* Réduit de 4px */
-            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3); /* Ombre réduite */
+            margin-right: 1.5rem;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
         }
 
         .testimonial-info-slider {
@@ -517,169 +516,212 @@
         }
 
         .testimonial-info-slider h5 {
-            font-size: 1.1rem; /* Réduit de 1.3rem */
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--dark-color);
-            margin-bottom: 0.2rem; /* Réduit de 0.3rem */
+            margin-bottom: 0.3rem;
         }
 
         .testimonial-info-slider .profession {
             color: var(--text-light);
-            font-size: 0.9rem; /* Réduit de 1rem */
-            margin-bottom: 0.4rem; /* Réduit de 0.5rem */
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
         }
 
         .testimonial-rating-slider {
             color: var(--primary-color);
-            font-size: 0.95rem; /* Réduit de 1.1rem */
-            margin-bottom: 0.2rem; /* Réduit de 0.3rem */
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
         }
 
-        /* Contenu du témoignage - TAILLE RÉDUITE */
+        /* Contenu du témoignage */
         .testimonial-content-slider {
-            margin-bottom: 1.2rem; /* Réduit de 1.5rem */
+            margin-bottom: 1.5rem;
         }
 
         .testimonial-text-slider {
             font-style: italic;
             color: var(--text-color);
-            line-height: 1.6; /* Réduit de 1.8 */
-            font-size: 0.95rem; /* Réduit de 1.1rem */
+            line-height: 1.7;
+            font-size: 1rem;
             text-align: center;
             position: relative;
-            padding: 0 1.5rem; /* Réduit de 2rem */
+            padding: 0 2rem;
         }
 
         .testimonial-text-slider:before {
             content: '"';
-            font-size: 3rem; /* Réduit de 4rem */
+            font-size: 4rem;
             color: var(--primary-light);
             position: absolute;
             left: 0;
-            top: -15px; /* Réduit de -20px */
-            opacity: 0.5;
+            top: -25px;
+            opacity: 0.7;
             font-family: 'Playfair Display', serif;
+            font-weight: bold;
         }
 
         .testimonial-text-slider:after {
             content: '"';
-            font-size: 3rem; /* Réduit de 4rem */
+            font-size: 4rem;
             color: var(--primary-light);
             position: absolute;
             right: 0;
-            bottom: -30px; /* Réduit de -40px */
-            opacity: 0.5;
+            bottom: -40px;
+            opacity: 0.7;
             font-family: 'Playfair Display', serif;
+            font-weight: bold;
         }
 
-        /* Pied du témoignage - TAILLE RÉDUITE */
+        /* Pied du témoignage */
         .testimonial-footer-slider {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem; /* Réduit de 1.5rem */
-            border-top: 1px solid rgba(255, 193, 7, 0.2); /* Réduit de 2px */
+            padding-top: 1.2rem;
+            border-top: 2px solid rgba(255, 193, 7, 0.2);
             color: var(--text-light);
-            font-size: 0.85rem; /* Réduit de 0.9rem */
+            font-size: 0.9rem;
         }
 
         .testimonial-date-slider {
             display: flex;
             align-items: center;
-            gap: 0.4rem; /* Réduit de 0.5rem */
+            gap: 0.5rem;
         }
 
         .testimonial-date-slider i {
             color: var(--primary-color);
-            font-size: 0.9rem; /* Réduit */
+            font-size: 1rem;
         }
 
         .testimonial-visits-slider {
             display: flex;
             align-items: center;
-            gap: 0.4rem; /* Réduit de 0.5rem */
+            gap: 0.5rem;
         }
 
         .testimonial-visits-slider i {
             color: var(--primary-color);
-            font-size: 0.9rem; /* Réduit */
+            font-size: 1rem;
         }
 
-        /* Contrôles du slider - TAILLE RÉDUITE */
+        /* ===== FLÈCHES DE NAVIGATION CORRIGÉES ===== */
+        .slider-nav-arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+            pointer-events: none;
+            padding: 0 15px;
+        }
+
+        .arrow-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
+            border: 3px solid white;
+            pointer-events: all;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arrow-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-color) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .arrow-btn:hover:before {
+            opacity: 1;
+        }
+
+        .arrow-btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .arrow-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(255, 193, 7, 0.7);
+        }
+
+        .arrow-btn:active {
+            transform: translateY(-1px) scale(1.05);
+        }
+
+        .arrow-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .arrow-btn:disabled:hover {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        /* Contrôles du slider */
         .slider-controls {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px; /* Réduit de 30px */
-            margin-top: 1.5rem; /* Réduit de 2rem */
-        }
-
-        .slider-btn {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--dark-color);
-            border: none;
-            width: 45px; /* Réduit de 50px */
-            height: 45px; /* Réduit de 50px */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1.1rem; /* Réduit de 1.2rem */
-            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3); /* Ombre réduite */
-            border: 2px solid white;
-        }
-
-        .slider-btn:hover {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-color) 100%);
-            color: white;
-            transform: translateY(-2px) scale(1.05); /* Réduit de translateY(-3px) scale(1.1) */
-            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4); /* Ombre réduite */
-        }
-
-        .slider-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .slider-btn:disabled:hover {
-            transform: none;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--dark-color);
-        }
-
-        /* Indicateurs du slider - TAILLE RÉDUITE */
-        .slider-indicators {
-            display: flex;
-            gap: 12px; /* Réduit de 15px */
-        }
-
-        .slider-indicator {
-            width: 10px; /* Réduit de 12px */
-            height: 10px; /* Réduit de 12px */
-            border-radius: 50%;
-            background: rgba(255, 193, 7, 0.3);
-            border: 2px solid white;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre réduite */
-        }
-
-        .slider-indicator.active {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            transform: scale(1.2); /* Réduit de 1.3 */
-            box-shadow: 0 0 8px rgba(255, 193, 7, 0.6); /* Ombre réduite */
+            margin-top: 2rem;
+            gap: 1rem;
         }
 
         /* Compteur du slider */
         .slider-counter {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--dark-color);
-            font-size: 0.85rem; /* Réduit de 0.9rem */
-            min-width: 70px; /* Réduit de 80px */
+            font-size: 1rem;
+            min-width: 100px;
             text-align: center;
+            background: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.2);
+        }
+
+        .current-slide {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+
+        .total-slides {
+            color: var(--text-light);
+        }
+
+        /* Animation pour les flèches */
+        @keyframes pulseArrow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .arrow-btn:not(:disabled) {
+            animation: pulseArrow 2s infinite;
         }
 
         /* Cartes Infos */
@@ -936,11 +978,11 @@
             50% { transform: scale(1.1); }
         }
 
-        /* ===== RESPONSIVE - Ajustements pour la taille réduite ===== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1200px) {
             .testimonial-card-slider {
-                max-width: 550px; /* Réduit de 700px */
-                padding: 1.6rem; /* Réduit de 2rem */
+                max-width: 650px;
+                padding: 1.8rem;
             }
         }
 
@@ -954,26 +996,33 @@
             }
             
             .testimonials-slider {
-                padding: 0 30px; /* Réduit de 40px */
+                max-width: 700px;
+                padding: 0 40px;
             }
             
             .testimonial-card-slider {
-                max-width: 500px; /* Réduit de 600px */
-                padding: 1.5rem; /* Réduit de 1.8rem */
+                max-width: 600px;
+                padding: 1.8rem;
             }
             
             .testimonial-avatar-slider {
-                width: 65px; /* Réduit de 80px */
-                height: 65px; /* Réduit de 80px */
+                width: 70px;
+                height: 70px;
             }
             
             .testimonial-text-slider {
-                font-size: 0.9rem; /* Réduit de 1rem */
-                padding: 0 1.2rem; /* Réduit de 1.5rem */
+                font-size: 0.95rem;
+                padding: 0 1.5rem;
+            }
+            
+            .arrow-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
             }
         }
 
-        /* ===== CORRECTION POUR MOBILE - Taille réduite ===== */
+        /* ===== CORRECTION POUR MOBILE ===== */
         @media (max-width: 768px) {
             /* IMPORTANT: Correction pour le body avec navbar fixe sur mobile */
             body {
@@ -1044,94 +1093,121 @@
                 margin-bottom: 1.2rem !important;
             }
             
-            /* ===== SLIDER TÉMOIGNAGES SUR MOBILE ===== */
+            /* ===== SLIDER TÉMOIGNAGES SUR MOBILE CORRIGÉ ===== */
             .testimonials-slider {
-                padding: 0 20px !important; /* Réduit de 30px */
+                padding: 0 60px !important; /* Plus d'espace pour les flèches */
+                max-width: 100%;
             }
             
             .testimonial-card-slider {
-                padding: 1.2rem !important; /* Réduit de 1.5rem */
-                border-radius: 14px !important; /* Réduit de 16px */
+                padding: 1.5rem !important;
+                border-radius: 14px !important;
+                border-width: 2px !important;
+                box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15) !important;
             }
             
             .testimonial-header-slider {
                 flex-direction: column !important;
                 text-align: center !important;
-                margin-bottom: 1rem !important; /* Réduit de 1.2rem */
-                padding-bottom: 0.8rem !important; /* Réduit de 1rem */
+                margin-bottom: 1.2rem !important;
+                padding-bottom: 1rem !important;
             }
             
             .testimonial-avatar-slider {
-                width: 60px !important; /* Réduit de 80px */
-                height: 60px !important; /* Réduit de 80px */
+                width: 70px !important;
+                height: 70px !important;
                 margin-right: 0 !important;
                 margin-bottom: 1rem !important;
-                border: 2px solid var(--primary-color) !important; /* Réduit de 3px */
-                box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3) !important; /* Ombre réduite */
+                border-width: 3px !important;
+                box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3) !important;
             }
             
             .testimonial-info-slider h5 {
-                font-size: 1rem !important; /* Réduit de 1.1rem */
+                font-size: 1.1rem !important;
                 margin-bottom: 0.3rem !important;
             }
             
             .testimonial-info-slider .profession {
-                font-size: 0.85rem !important; /* Réduit de 0.9rem */
+                font-size: 0.9rem !important;
                 margin-bottom: 0.5rem !important;
             }
             
             .testimonial-rating-slider {
-                font-size: 0.9rem !important; /* Réduit de 0.95rem */
+                font-size: 0.95rem !important;
                 margin-bottom: 0.5rem !important;
             }
             
             .testimonial-text-slider {
-                font-size: 0.85rem !important; /* Réduit de 0.95rem */
-                line-height: 1.5 !important; /* Réduit de 1.6 */
-                padding: 0 1rem !important; /* Réduit de 1.5rem */
+                font-size: 0.9rem !important;
+                line-height: 1.6 !important;
+                padding: 0 1.2rem !important;
                 text-align: justify !important;
             }
             
             .testimonial-text-slider:before {
-                font-size: 2.5rem !important; /* Réduit de 3rem */
-                top: -12px !important; /* Réduit de -15px */
+                font-size: 3rem !important;
+                top: -20px !important;
+                left: 5px !important;
             }
             
             .testimonial-text-slider:after {
-                font-size: 2.5rem !important; /* Réduit de 3rem */
-                bottom: -25px !important; /* Réduit de -30px */
+                font-size: 3rem !important;
+                bottom: -30px !important;
+                right: 5px !important;
             }
             
             .testimonial-footer-slider {
                 flex-direction: column !important;
-                gap: 10px !important;
+                gap: 0.8rem !important;
                 text-align: center !important;
                 padding-top: 1rem !important;
-                font-size: 0.8rem !important; /* Réduit de 0.85rem */
+                font-size: 0.85rem !important;
+            }
+            
+            /* ===== FLÈCHES SUR MOBILE CORRIGÉES ===== */
+            .slider-nav-arrows {
+                position: absolute !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                padding: 0 !important;
+                width: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                justify-content: space-between !important;
+            }
+            
+            .arrow-btn {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.2rem !important;
+                position: relative !important;
+                margin: 0 !important;
+                border-width: 2px !important;
+                box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4) !important;
+            }
+            
+            .arrow-btn.prev-arrow {
+                margin-left: 0 !important;
+                left: 5px !important;
+            }
+            
+            .arrow-btn.next-arrow {
+                margin-right: 0 !important;
+                right: 5px !important;
             }
             
             .slider-controls {
-                gap: 15px !important; /* Réduit de 20px */
-                margin-top: 1.2rem !important; /* Réduit de 1.5rem */
+                margin-top: 1.5rem !important;
             }
             
-            .slider-btn {
-                width: 40px !important; /* Réduit de 45px */
-                height: 40px !important; /* Réduit de 45px */
-                font-size: 1rem !important; /* Réduit de 1.1rem */
-            }
-            
-            .slider-indicators {
-                gap: 8px !important; /* Réduit de 10px */
-            }
-            
-            .slider-indicator {
-                width: 8px !important; /* Réduit de 10px */
-                height: 8px !important; /* Réduit de 10px */
+            .slider-counter {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+                min-width: 90px;
             }
         }
 
-        /* ===== VERSION TRÈS MOBILE - Taille encore plus réduite ===== */
+        /* ===== VERSION TRÈS MOBILE ===== */
         @media (max-width: 576px) {
             body {
                 padding-top: 55px !important;
@@ -1155,83 +1231,83 @@
             
             /* Slider sur très petits écrans */
             .testimonials-slider {
-                padding: 0 15px !important; /* Réduit de 20px */
+                padding: 0 50px !important;
             }
             
             .testimonial-card-slider {
-                padding: 1rem !important; /* Réduit de 1.2rem */
-                border-radius: 12px !important; /* Réduit de 14px */
+                padding: 1.2rem !important;
+                border-radius: 12px !important;
             }
             
             .testimonial-avatar-slider {
-                width: 55px !important; /* Réduit de 60px */
-                height: 55px !important; /* Réduit de 60px */
+                width: 65px !important;
+                height: 65px !important;
             }
             
             .testimonial-info-slider h5 {
-                font-size: 0.95rem !important; /* Réduit de 1rem */
+                font-size: 0.95rem !important;
             }
             
             .testimonial-text-slider {
-                font-size: 0.8rem !important; /* Réduit de 0.85rem */
-                line-height: 1.4 !important; /* Réduit de 1.5 */
-                padding: 0 0.8rem !important; /* Réduit de 1rem */
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+                padding: 0 1rem !important;
             }
             
             .testimonial-text-slider:before {
-                font-size: 2rem !important; /* Réduit de 2.5rem */
-                top: -10px !important; /* Réduit de -12px */
+                font-size: 2.5rem !important;
+                top: -15px !important;
             }
             
             .testimonial-text-slider:after {
-                font-size: 2rem !important; /* Réduit de 2.5rem */
-                bottom: -20px !important; /* Réduit de -25px */
+                font-size: 2.5rem !important;
+                bottom: -25px !important;
             }
             
-            .slider-btn {
-                width: 35px !important; /* Réduit de 40px */
-                height: 35px !important; /* Réduit de 40px */
-                font-size: 0.9rem !important; /* Réduit de 1rem */
+            .arrow-btn {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 1.1rem !important;
             }
             
-            .slider-indicator {
-                width: 6px !important; /* Réduit de 8px */
-                height: 6px !important; /* Réduit de 8px */
+            .arrow-btn.prev-arrow {
+                left: 0 !important;
+            }
+            
+            .arrow-btn.next-arrow {
+                right: 0 !important;
             }
         }
 
         /* ===== VERSION TRÈS PETITS ÉCRANS ===== */
         @media (max-width: 400px) {
+            .testimonials-slider {
+                padding: 0 45px !important;
+            }
+            
             .testimonial-card-slider {
-                padding: 0.8rem !important; /* Réduit de 1rem */
-                border-radius: 10px !important; /* Réduit de 12px */
+                padding: 1rem !important;
             }
             
             .testimonial-avatar-slider {
-                width: 50px !important; /* Réduit de 55px */
-                height: 50px !important; /* Réduit de 55px */
+                width: 60px !important;
+                height: 60px !important;
             }
             
             .testimonial-text-slider {
-                font-size: 0.75rem !important; /* Réduit de 0.8rem */
-                line-height: 1.3 !important; /* Réduit de 1.4 */
-                padding: 0 0.6rem !important; /* Réduit de 0.8rem */
+                font-size: 0.8rem !important;
+                padding: 0 0.8rem !important;
             }
             
-            .testimonial-text-slider:before {
-                font-size: 1.8rem !important; /* Réduit de 2rem */
-                top: -8px !important; /* Réduit de -10px */
+            .arrow-btn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1rem !important;
             }
             
-            .testimonial-text-slider:after {
-                font-size: 1.8rem !important; /* Réduit de 2rem */
-                bottom: -18px !important; /* Réduit de -20px */
-            }
-            
-            .slider-btn {
-                width: 32px !important; /* Réduit de 35px */
-                height: 32px !important; /* Réduit de 35px */
-                font-size: 0.85rem !important; /* Réduit de 0.9rem */
+            .slider-counter {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
             }
         }
 
@@ -1399,7 +1475,7 @@
                         </div>
                     </div>
                     
-                    <!-- Spécialité 5 -->
+                    <!-- Spécialité 5 
                     <div class="col-md-4 fade-in-up" style="animation-delay: 0.5s">
                         <div class="specialty-card">
                             <div class="specialty-image">
@@ -1416,9 +1492,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     
-                    <!-- Spécialité 6 -->
+                    <!-- Spécialité 6 
                     <div class="col-md-4 fade-in-up" style="animation-delay: 0.6s">
                         <div class="specialty-card">
                             <div class="specialty-image">
@@ -1442,7 +1518,7 @@
                     <a href="menu.html" class="btn btn-primary px-3 py-1">Voir Tout le Menu <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- SECTION ÉVÉNEMENTS -->
         <section class="section-events">
@@ -1519,7 +1595,7 @@
             </div>
         </section>
 
-        <!-- Section Témoignages avec SLIDER RÉDUIT -->
+        <!-- Section Témoignages avec SLIDER AVEC FLÈCHES CORRIGÉES -->
         <section class="section-testimonials">
             <div class="container">
                 <div class="text-center mb-4 fade-in-up">
@@ -1528,6 +1604,16 @@
                 </div>
                 
                 <div class="testimonials-slider fade-in-up">
+                    <!-- Flèches de navigation principales -->
+                    <div class="slider-nav-arrows">
+                        <button class="arrow-btn prev-arrow" aria-label="Témoignage précédent">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="arrow-btn next-arrow" aria-label="Témoignage suivant">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
                     <!-- Slide 1 -->
                     <div class="slider-track">
                         <div class="testimonial-slide active">
@@ -1681,7 +1767,7 @@
                             </div>
                         </div>
                         
-                        <!-- Slide 5 
+                        <!-- Slide 5 -->
                         <div class="testimonial-slide">
                             <div class="testimonial-card-slider">
                                 <div class="testimonial-header-slider">
@@ -1717,9 +1803,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         
-                        <!-- Slide 6 
+                        <!-- Slide 6 -->
                         <div class="testimonial-slide">
                             <div class="testimonial-card-slider">
                                 <div class="testimonial-header-slider">
@@ -1756,30 +1842,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
                     
-                    <!-- Contrôles du slider -->
+                    <!-- Contrôles du slider (compteur seulement) -->
                     <div class="slider-controls">
-                        <button class="slider-btn prev-btn" aria-label="Témoignage précédent">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        
-                        <div class="slider-indicators">
-                            <button class="slider-indicator active" data-slide="0"></button>
-                            <button class="slider-indicator" data-slide="1"></button>
-                            <button class="slider-indicator" data-slide="2"></button>
-                            <button class="slider-indicator" data-slide="3"></button>
-                            <button class="slider-indicator" data-slide="4"></button>
-                            <button class="slider-indicator" data-slide="5"></button>
-                        </div>
-                        
                         <div class="slider-counter">
                             <span class="current-slide">1</span> / <span class="total-slides">6</span>
                         </div>
-                        
-                        <button class="slider-btn next-btn" aria-label="Témoignage suivant">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -1967,13 +2036,12 @@
                 });
             });
 
-            // ===== SLIDER DES TÉMOIGNAGES - VERSION RÉDUITE =====
+            // ===== SLIDER DES TÉMOIGNAGES AVEC FLÈCHES CORRIGÉ =====
             class TestimonialsSlider {
                 constructor() {
                     this.slides = document.querySelectorAll('.testimonial-slide');
-                    this.indicators = document.querySelectorAll('.slider-indicator');
-                    this.prevBtn = document.querySelector('.prev-btn');
-                    this.nextBtn = document.querySelector('.next-btn');
+                    this.prevBtn = document.querySelector('.prev-arrow');
+                    this.nextBtn = document.querySelector('.next-arrow');
                     this.currentSlideElement = document.querySelector('.current-slide');
                     this.totalSlidesElement = document.querySelector('.total-slides');
                     
@@ -1990,14 +2058,9 @@
                     this.totalSlidesElement.textContent = this.totalSlides;
                     this.updateCounter();
                     
-                    // Événements des boutons
+                    // Événements des flèches
                     this.prevBtn.addEventListener('click', () => this.prevSlide());
                     this.nextBtn.addEventListener('click', () => this.nextSlide());
-                    
-                    // Événements des indicateurs
-                    this.indicators.forEach((indicator, index) => {
-                        indicator.addEventListener('click', () => this.goToSlide(index));
-                    });
                     
                     // Événements clavier
                     document.addEventListener('keydown', (e) => {
@@ -2054,25 +2117,33 @@
                     this.isTransitioning = true;
                     
                     // Supprimer la classe active de tous les slides
-                    this.slides.forEach(slide => slide.classList.remove('active'));
+                    this.slides.forEach(slide => {
+                        slide.classList.remove('active');
+                        slide.style.opacity = '0';
+                        slide.style.transform = 'translateY(20px)';
+                    });
                     
                     // Ajouter la classe active au slide courant
-                    this.slides[this.currentSlide].classList.add('active');
+                    const currentSlide = this.slides[this.currentSlide];
+                    currentSlide.classList.add('active');
                     
-                    // Mettre à jour les indicateurs
-                    this.indicators.forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === this.currentSlide);
-                    });
+                    // Animation d'entrée
+                    setTimeout(() => {
+                        currentSlide.style.opacity = '1';
+                        currentSlide.style.transform = 'translateY(0)';
+                        currentSlide.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    }, 50);
                     
                     // Mettre à jour le compteur
                     this.updateCounter();
                     
-                    // Mettre à jour l'état des boutons
+                    // Mettre à jour l'état des flèches
                     this.updateButtons();
                     
                     // Réinitialiser le flag de transition
                     setTimeout(() => {
                         this.isTransitioning = false;
+                        currentSlide.style.transition = '';
                     }, 500);
                 }
                 
@@ -2081,6 +2152,7 @@
                 }
                 
                 updateButtons() {
+                    // Désactiver les flèches au début/fin
                     this.prevBtn.disabled = this.currentSlide === 0;
                     this.nextBtn.disabled = this.currentSlide === this.totalSlides - 1;
                 }
@@ -2107,14 +2179,6 @@
                         this.currentSlide = this.totalSlides - 1; // Aller à la fin
                     }
                     
-                    this.updateSlides();
-                    this.resetAutoSlide();
-                }
-                
-                goToSlide(index) {
-                    if (this.isTransitioning || index === this.currentSlide) return;
-                    
-                    this.currentSlide = index;
                     this.updateSlides();
                     this.resetAutoSlide();
                 }
